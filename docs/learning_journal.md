@@ -1,78 +1,33 @@
-\# FieldSense-Z Learning Journal
+## Entry 2 — Hardware component audit
 
+### 1. What I was trying to achieve
 
+I was trying to identify the exact hardware I have before choosing a Zephyr board target or wiring the sensor.
 
-\## Entry 1 — Repository initialization
+### 2. What concept I learned
 
+I learned that board bring-up starts with physical evidence. The PCB text, module marking, USB connector, sensor markings, and pin labels all affect how the system should be configured and tested.
 
+### 3. What I changed
 
-\### 1. What I was trying to achieve
+I updated the component audit with the ESP32 PCB text, ESP32 module text, Micro-USB connector type, sensor marking, sensor pin labels, operating system, and Git workflow.
 
+### 4. How I tested it
 
+I verified the documentation file using PowerShell and checked Git status before committing the documentation update.
 
-I was trying to start FieldSense-Z in a clean and organized way before writing any sensor code. The goal was to create the repository structure, document the project direction, and keep space for hardware photos, logs, and debugging evidence.
+### 5. What actually happened
 
+I identified the board as ESP32 DEVKIT V1 with an ESP-WROOM-32 module. The sensor breakout is marked or described as GY-BME280 or unknown, with pins VCC, GND, SCL, SDA, CSB, and SDO.
 
+### 6. Any problem and its root cause
 
-\### 2. What concept I learned
+The sensor is not fully verified as BME280 yet. The root cause is that a breakout label or seller name alone is not enough evidence to confirm humidity support or the exact chip.
 
+### 7. What I would explain in an interview
 
+I would explain that I documented the hardware before wiring because I did not want to assume the board target, I2C pins, voltage behavior, or sensor address.
 
-I learned that an embedded project starts before code is written. The exact board, module, connector, sensor breakout, voltage rules, and pin labels affect how the firmware should be configured and tested.
+### 8. Blog-style paragraph
 
-
-
-I also learned that Git does not track empty folders, so placeholder files such as `.gitkeep` are useful when I want the repository structure to appear before source code or test results exist.
-
-
-
-\### 3. What I changed
-
-
-
-I created the initial FieldSense-Z repository structure with folders for source code, headers, board configuration, tests, scripts, documentation, logs, plots, photos, and screenshots.
-
-
-
-I added placeholder documentation files for the project overview, component audit, learning journal, and debug journal.
-
-
-
-\### 4. How I tested it
-
-
-
-I checked the repository using `git status` to confirm that Git could see the new files.
-
-
-
-\### 5. What actually happened
-
-
-
-TBD after I run the commands and confirm the files exist.
-
-
-
-\### 6. Any problem and its root cause
-
-
-
-TBD.
-
-
-
-\### 7. What I would explain in an interview
-
-
-
-I would explain that I did not start by writing sensor code because the hardware was not fully identified yet. Instead, I created a structured repository and documented the unknowns so that board-target selection, I2C wiring, and sensor configuration can be based on evidence.
-
-
-
-\### 8. Blog-style paragraph
-
-
-
-I started FieldSense-Z by treating project setup as the first engineering task. Instead of immediately writing sensor code, I created a repository structure that separates application code, board configuration, documentation, logs, photos, and debug notes. This gives me a clean base for hardware bring-up because every future test can be tied to real evidence from the board.
-
+For this step, I treated the hardware audit as part of the bring-up process. I recorded the ESP32 board text, module marking, USB connector, and sensor pin labels before writing code. This helped me separate what I know from what still needs to be verified, which is important when working with real hardware instead of only following a tutorial.

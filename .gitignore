@@ -1,0 +1,27 @@
+# Zephyr build output
+build/
+build-*/
+
+# CMake output
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Logs and temporary files
+*.tmp
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.venv/
+venv/

@@ -1,33 +1,33 @@
-## Entry 2 — Hardware component audit
+## Entry 3 — Zephyr environment check
 
 ### 1. What I was trying to achieve
 
-I was trying to identify the exact hardware I have before choosing a Zephyr board target or wiring the sensor.
+I was trying to verify my Zephyr development environment before writing application code or choosing an ESP32 board target.
 
 ### 2. What concept I learned
 
-I learned that board bring-up starts with physical evidence. The PCB text, module marking, USB connector, sensor markings, and pin labels all affect how the system should be configured and tested.
+I learned that Zephyr development depends on the shell environment. Even before writing code, tools like `west`, Python, CMake, and the Zephyr workspace must be available from the terminal.
 
 ### 3. What I changed
 
-I updated the component audit with the ESP32 PCB text, ESP32 module text, Micro-USB connector type, sensor marking, sensor pin labels, operating system, and Git workflow.
+I saved the Zephyr environment check output in `results/logs/zephyr_environment_check.txt`.
 
 ### 4. How I tested it
 
-I verified the documentation file using PowerShell and checked Git status before committing the documentation update.
+I started a PowerShell transcript and ran `west --version`, `where.exe west`, and `Get-Command west`.
 
 ### 5. What actually happened
 
-I identified the board as ESP32 DEVKIT V1 with an ESP-WROOM-32 module. The sensor breakout is marked or described as GY-BME280 or unknown, with pins VCC, GND, SCL, SDA, CSB, and SDO.
+PowerShell could not find the `west` command. `where.exe west` also could not find a west executable.
 
 ### 6. Any problem and its root cause
 
-The sensor is not fully verified as BME280 yet. The root cause is that a breakout label or seller name alone is not enough evidence to confirm humidity support or the exact chip.
+The root cause is not fully confirmed yet. The current evidence shows that west is not available in this PowerShell environment. It may not be installed, may not be on PATH, or may require activation of a Python virtual environment.
 
 ### 7. What I would explain in an interview
 
-I would explain that I documented the hardware before wiring because I did not want to assume the board target, I2C pins, voltage behavior, or sensor address.
+I would explain that I checked the Zephyr toolchain before writing firmware. When `west` was not recognized, I treated it as an environment setup issue and documented the exact evidence instead of changing project code randomly.
 
 ### 8. Blog-style paragraph
 
-For this step, I treated the hardware audit as part of the bring-up process. I recorded the ESP32 board text, module marking, USB connector, and sensor pin labels before writing code. This helped me separate what I know from what still needs to be verified, which is important when working with real hardware instead of only following a tutorial.
+During the Zephyr environment check, I found that my current PowerShell session could not recognize the `west` command. I saved the error output in the project logs and documented it in the debug journal. This was useful because it separated a toolchain problem from a firmware problem and gave me a clear next step before board bring-up.

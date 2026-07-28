@@ -1,41 +1,78 @@
-# FieldSense-Z Debug Journal
+\## Debug entry — west command not recognized
 
-This file will record problems, symptoms, root causes, and fixes observed during the project.
 
-## Debug entry template
 
-### Date
+\### Date
 
-TBD
 
-### Symptom
 
-TBD
+July 28, 2026
 
-### What I expected
 
-TBD
 
-### What actually happened
+\### Symptom
 
-TBD
 
-### Evidence collected
 
-TBD
+PowerShell did not recognize the `west` command during the Zephyr environment check.
 
-### Root cause
 
-TBD
 
-### Fix
+\### What I expected
 
-TBD
 
-### Verification
 
-TBD
+I expected `west --version` to print the installed west version so I could verify the Zephyr command-line tool before writing application code.
 
-### What I learned
 
-TBD
+
+\### What actually happened
+
+
+
+PowerShell reported that `west` is not recognized as the name of a cmdlet, function, script file, or operable program.
+
+
+
+I also ran `where.exe west`, and it reported that it could not find files for the given pattern.
+
+
+
+\### Evidence collected
+
+
+
+\- `results/logs/zephyr\_environment\_check.txt`
+
+
+
+\### Root cause
+
+
+
+The current PowerShell environment cannot find `west`. This likely means west is not installed, is not added to PATH, or is installed inside a Python virtual environment that is not active.
+
+
+
+\### Fix
+
+
+
+Not fixed yet. Next step is to verify Python and pip, then install or activate west using the official Zephyr setup instructions.
+
+
+
+\### Verification
+
+
+
+Pending. I need `west --version` or `python -m west --version` to work before this is resolved.
+
+
+
+\### What I learned
+
+
+
+I learned that Zephyr bring-up depends on the development shell being configured correctly. Before debugging firmware or hardware, I need to confirm that the toolchain commands are actually available.
+

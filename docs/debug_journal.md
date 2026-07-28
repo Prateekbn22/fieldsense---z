@@ -1,78 +1,37 @@
-\## Debug entry — west command not recognized
+## Debug entry — Zephyr setup path and west availability
 
-
-
-\### Date
-
-
+### Date
 
 July 28, 2026
 
+### Symptom
 
+PowerShell initially did not recognize `west`, and the Zephyr dependency installation failed when the workspace was under a Windows user path containing spaces.
 
-\### Symptom
+### What I expected
 
+I expected `west --version` to work and the Zephyr Python dependencies to install cleanly.
 
+### What actually happened
 
-PowerShell did not recognize the `west` command during the Zephyr environment check.
+`west` was not initially available. After installing it, the dependency installation failed because the path was split incorrectly around spaces in the Windows user folder.
 
+### Evidence collected
 
+- `results/logs/zephyr_environment_check.txt`
 
-\### What I expected
+### Root cause
 
+The Zephyr environment was not available at first, and the first workspace location used a path with spaces. This caused Windows command parsing problems during dependency installation.
 
+### Fix
 
-I expected `west --version` to print the installed west version so I could verify the Zephyr command-line tool before writing application code.
+I created a clean Zephyr workspace at `C:\zephyrproject`, created a new Python virtual environment there, installed `west`, downloaded Zephyr modules, installed dependencies, and completed SDK setup.
 
+### Verification
 
+Pending from the final `zephyr_environment_check.txt` log.
 
-\### What actually happened
+### What I learned
 
-
-
-PowerShell reported that `west` is not recognized as the name of a cmdlet, function, script file, or operable program.
-
-
-
-I also ran `where.exe west`, and it reported that it could not find files for the given pattern.
-
-
-
-\### Evidence collected
-
-
-
-\- `results/logs/zephyr\_environment\_check.txt`
-
-
-
-\### Root cause
-
-
-
-The current PowerShell environment cannot find `west`. This likely means west is not installed, is not added to PATH, or is installed inside a Python virtual environment that is not active.
-
-
-
-\### Fix
-
-
-
-Not fixed yet. Next step is to verify Python and pip, then install or activate west using the official Zephyr setup instructions.
-
-
-
-\### Verification
-
-
-
-Pending. I need `west --version` or `python -m west --version` to work before this is resolved.
-
-
-
-\### What I learned
-
-
-
-I learned that Zephyr bring-up depends on the development shell being configured correctly. Before debugging firmware or hardware, I need to confirm that the toolchain commands are actually available.
-
+I learned that embedded toolchains can fail before any firmware is written. A clean installation path and an activated virtual environment are important parts of reliable board bring-up.

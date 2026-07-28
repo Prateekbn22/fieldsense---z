@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20260728131728
+Start time: 20260728142348
 Username: LAPTOP-74CEOV26\Prateek B N
 RunAs User: LAPTOP-74CEOV26\Prateek B N
 Configuration Name: 
 Machine: LAPTOP-74CEOV26 (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
-Process ID: 24428
+Process ID: 29184
 PSVersion: 5.1.26100.8737
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8737
@@ -16,43 +16,92 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Transcript started, output file is results\logs\zephyr_environment_check.txt
-PS C:\Users\Prateek B N\OneDrive\Desktop\10Projects\fieldsense - z> west --version
-west : The term 'west' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
-spelling of the name, or if a path was included, verify that the path is correct and try again.
-At line:1 char:1
-+ west --version
-+ ~~~~
-    + CategoryInfo          : ObjectNotFound: (west:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
-west : The term 'west' is not recognized as the name of a cmdlet, function, script file, or operable program. Check
-the spelling of the name, or if a path was included, verify that the path is correct and try again.
-At line:1 char:1
-+ west --version
-+ ~~~~
-    + CategoryInfo          : ObjectNotFound: (west:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
+Transcript started, output file is C:\Users\Prateek B N\OneDrive\Desktop\10Projects\fieldsense - z\results\logs\zephyr_environment_check.txt
+PS C:\zephyrproject>
+(.venv) cd C:\zephyrproject
+PS C:\zephyrproject>
+(.venv) west --version
 
-PS C:\Users\Prateek B N\OneDrive\Desktop\10Projects\fieldsense - z> where.exe west
+PS C:\zephyrproject>
+(.venv) west topdir
 
-PS C:\Users\Prateek B N\OneDrive\Desktop\10Projects\fieldsense - z> Get-Command west
-Get-Command : The term 'west' is not recognized as the name of a cmdlet, function, script file, or operable program. 
-Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
-At line:1 char:1
-+ Get-Command west
-+ ~~~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: (west:String) [Get-Command], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
-Get-Command : The term 'west' is not recognized as the name of a cmdlet, function, script file, or operable program.
-Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
-At line:1 char:1
-+ Get-Command west
-+ ~~~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: (west:String) [Get-Command], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
+PS C:\zephyrproject>
+(.venv) west list zephyr
 
-PS C:\Users\Prateek B N\OneDrive\Desktop\10Projects\fieldsense - z> Stop-Transcript
+PS C:\zephyrproject>
+(.venv) west boards | Select-String -Pattern "esp32"
+
+esp32c3_042_oled
+adafruit_feather_esp32
+adafruit_feather_esp32s2
+adafruit_feather_esp32s2_tft
+adafruit_feather_esp32s2_tft_reverse
+adafruit_feather_esp32s3
+adafruit_feather_esp32s3_tft
+adafruit_feather_esp32s3_tft_reverse
+adafruit_qt_py_esp32s3
+esp32_cam
+dnesp32s3b
+beetle_esp32c3
+esp32c3_devkitc
+esp32c3_devkitm
+esp32c3_rust
+esp32c5_devkitc
+esp32c6_devkitc
+esp32h2_devkitm
+esp32p4x_function_ev_board
+esp32p4_function_ev_board
+esp32s2_devkitc
+esp32s2_saola
+esp32s3_box3
+esp32s3_devkitc
+esp32s3_eye
+esp32_devkitc
+esp32_ethernet_kit
+esp32s2_franzininho
+esp32c3_luatos_core
+esp32s3_luatos_core
+olimex_esp32_evb
+doit_esp32_devkit_v1
+esp32c3_lckfb
+esp32c3_supermini
+esp32h2_supermini
+xiao_esp32c3
+xiao_esp32c5
+xiao_esp32c6
+xiao_esp32s3
+yd_esp32
+esp32p4_wifi6
+esp32p4_wifi6_dev_kit
+esp32s3_geek
+esp32s3_matrix
+esp32s3_rlcd_4_2
+esp32s3_touch_lcd_1_28
+weact_esp32c3_mini
+weact_esp32c6_mini
+weact_esp32s3_b
+weact_esp32s3_mini
+esp32s2_lolin_mini
+
+
+PS C:\zephyrproject>
+(.venv) cmake --version
+
+PS C:\zephyrproject>
+(.venv) ninja --version
+
+PS C:\zephyrproject>
+(.venv) git --version
+
+PS C:\zephyrproject>
+(.venv) py -3.12 --version
+
+PS C:\zephyrproject>
+(.venv) where.exe 7z
+
+PS C:\zephyrproject>
+(.venv) Stop-Transcript
 **********************
 Windows PowerShell transcript end
-End time: 20260728132133
+End time: 20260728142444
 **********************

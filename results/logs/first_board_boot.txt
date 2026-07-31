@@ -1,0 +1,10 @@
+*** Booting Zephyr OS build v4.4.0-9769-gd211a737740b ***
+FieldSense-Z board bring-up start
+Checkpoint: ESP32 boot and serial console only
+BME280 sensor is not connected for this test
+FieldSense-Z alive, uptime_ms=110
+FieldSense-Z alive, uptime_ms=5113
+FieldSense-Z alive, uptime_ms=10113
+FieldSense-Z alive, uptime_ms=15113
+FieldSense-Z alive, uptime_ms=20113
+FieldSense-Z alive, uptime_ms=25113

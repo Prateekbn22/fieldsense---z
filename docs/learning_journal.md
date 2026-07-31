@@ -31,3 +31,41 @@ I would explain that I verified the Zephyr toolchain before writing firmware. Wh
 ### 8. Blog-style paragraph
 
 Before writing sensor code, I set up and verified the Zephyr environment on Windows. I captured the tool versions and ESP32 board listing in a log file so future build or flash issues can be compared against a known setup state. This step helped me separate toolchain problems from firmware or hardware problems.
+
+## Entry 4 — First ESP32 board bring-up
+
+### What I was trying to achieve
+
+I wanted to build, flash, and verify a minimal Zephyr application on my ESP32 before connecting the BME280 sensor.
+
+### What I learned
+
+I learned that hardware bring-up should be done in small steps. First I verified the board target, SDK toolchain, flashing path, and serial console before adding sensor code.
+
+### What I changed
+
+I added a minimal `src/main.c`, updated `CMakeLists.txt`, and kept `prj.conf` limited to serial console and `printk`.
+
+### How I tested it
+
+I built the application using Zephyr west, flashed it to the ESP32, and opened a serial monitor on COM9 at 115200 baud.
+
+### Result
+
+The ESP32 successfully booted Zephyr and printed periodic uptime messages every 5 seconds.
+
+### Evidence
+
+Logs saved:
+
+- `results/logs/first_board_build.txt`
+- `results/logs/first_board_flash.txt`
+- `results/logs/first_board_boot.txt`
+
+### Interview explanation
+
+I would explain that I started with a minimal board bring-up test instead of jumping directly to the sensor. This helped me isolate the build system, board target, SDK, flashing, and serial-console path first.
+
+### Blog-style paragraph
+
+For this step, I kept the firmware intentionally small. The application only prints a startup message and a periodic uptime message. This proved that the ESP32 could build, flash, boot Zephyr, and communicate over the serial console before I connected the BME280 sensor.

@@ -1,12 +1,11 @@
 # FieldSense-Z Zephyr application
 #
-# This file is intentionally minimal during repository initialization.
-# Sensor application code will be added only after the hardware and board target
-# are verified.
+# Checkpoint: first ESP32 board bring-up.
+# No sensor code is included in this checkpoint.
 
 cmake_minimum_required(VERSION 3.20.0)
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(fieldsense_z)
 
-# No application source is added yet.
+target_sources(app PRIVATE src/main.c)

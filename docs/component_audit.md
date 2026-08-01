@@ -108,3 +108,89 @@ Save these photos in:
 
 ```text
 results/photos/
+
+## BME280 I2C Wiring Plan
+
+### Hardware used for this wiring checkpoint
+
+- ESP32 board marking: ESP32 DEVKIT V1
+- ESP32 module marking: ESP-WROOM-32
+- USB connector type: Micro-USB
+- Sensor breakout marking: GY-BME280 or unknown
+- Sensor pin labels visible: VCC, GND, SCL, SDA, CSB, SDO
+- Operating system: Windows 11
+- Verified Zephyr board target: `doit_esp32_devkit_v1/esp32/procpu`
+
+### Wiring goal
+
+Connect the ESP32 to the BME280-style breakout over I2C safely.
+
+This checkpoint is only for wiring planning and documentation. Sensor application code is not added yet.
+
+### Safe voltage rule
+
+The ESP32 GPIO pins are treated as 3.3 V logic. The sensor will be powered from 3.3 V unless the exact breakout documentation proves that the VCC/VIN pin supports 5 V safely.
+
+I will not connect any ESP32 GPIO pin to a 5 V signal.
+
+### Common ground rule
+
+ESP32 GND and sensor GND must be connected together. Without common ground, SDA and SCL signals do not have a shared voltage reference and I2C communication may fail or behave unpredictably.
+
+### I2C signal plan
+
+| Sensor pin | Connection plan | Status |
+|---|---|---|
+| VCC | Connect to ESP32 3.3 V only after verifying the sensor VCC/VIN meaning | TBD |
+| GND | Connect to ESP32 GND | TBD |
+| SDA | Connect to the ESP32 SDA GPIO chosen from board documentation or Zephyr devicetree plan | TBD |
+| SCL | Connect to the ESP32 SCL GPIO chosen from board documentation or Zephyr devicetree plan | TBD |
+| CSB | Do not assume. Research whether it must be tied high for I2C mode on this breakout | TBD |
+| SDO | Do not assume. Research whether it controls the I2C address, usually 0x76 or 0x77 depending on wiring | TBD |
+
+### Pullup check
+
+I2C needs pullup resistors on SDA and SCL. Many BME280 breakout boards already include pullups, but I will verify this from the breakout documentation or board inspection before adding external pullups.
+
+If pullups are used, they must pull up to 3.3 V, not 5 V.
+
+### BME280 vs BMP280 check
+
+The breakout marking is currently `GY-BME280 or unknown`, so I will not assume it is definitely a BME280.
+
+A BME280 measures temperature, pressure, and humidity.
+
+A BMP280 measures temperature and pressure only.
+
+The practical check later will be whether the sensor reports humidity support and whether the detected chip ID matches the expected sensor.
+
+### Sensor address plan
+
+The sensor I2C address is not assumed yet.
+
+Expected address will be documented after checking the breakout documentation and SDO wiring.
+
+Possible addresses to investigate later:
+
+- `0x76`
+- `0x77`
+
+### Pre-power checklist
+
+- [ ] ESP32 3.3 V pin identified
+- [ ] ESP32 GND pin identified
+- [ ] Sensor VCC/VIN meaning verified
+- [ ] SDA GPIO chosen from board documentation or Zephyr devicetree plan
+- [ ] SCL GPIO chosen from board documentation or Zephyr devicetree plan
+- [ ] CSB behavior checked for I2C mode
+- [ ] SDO behavior checked for address selection
+- [ ] Pullups checked or documented
+- [ ] Expected sensor address documented
+- [ ] Wiring photo saved as `results/photos/first_i2c_wiring.jpg`
+- [ ] No power applied until the wiring photo is reviewed
+
+### Wiring photo rule
+
+Before powering the circuit, I will take a clear photo showing ESP32 3.3 V, GND, SDA, SCL, and the sensor pins.
+
+The photo is required because it gives visual evidence of the wiring and helps catch reversed power, missing ground, swapped SDA/SCL, or accidental connection to the wrong voltage pin before powering the board.

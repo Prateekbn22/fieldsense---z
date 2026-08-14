@@ -194,3 +194,33 @@ Possible addresses to investigate later:
 Before powering the circuit, I will take a clear photo showing ESP32 3.3 V, GND, SDA, SCL, and the sensor pins.
 
 The photo is required because it gives visual evidence of the wiring and helps catch reversed power, missing ground, swapped SDA/SCL, or accidental connection to the wrong voltage pin before powering the board.
+
+## Bosch Sensor Identity Check
+
+The HW-611 breakout was originally treated as a BME280-style module, but I did not trust the breakout-board label or seller description alone.
+
+I verified the actual silicon by reading Bosch identification register `0xD0` over I2C.
+
+Result:
+
+- I2C address responding: `0x76`
+- Register read: `0xD0`
+- Chip ID returned: `0x58`
+- Identified device: BMP280
+
+Interpretation:
+
+The module contains a BMP280, not a BME280.
+
+Available measurements with this hardware:
+
+- Temperature
+- Pressure
+
+Not available with this hardware:
+
+- Humidity
+
+Project scope adjustment:
+
+FieldSense-Z will continue temporarily as an ESP32 + BMP280 temperature/pressure monitoring node. Humidity features will not be implemented unless I replace the module with a verified BME280.

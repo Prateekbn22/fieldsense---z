@@ -167,3 +167,28 @@ The actual serial output was saved to:
 ### Blog seed
 
 Before using the Zephyr sensor driver, I validated the lower electrical and protocol layer first. I configured the ESP32 I2C controller on GPIO21 and GPIO22, then scanned only the expected HW-611 sensor addresses, `0x76` and `0x77`. This separated bus bring-up from sensor-driver bring-up. An ACK at one address proves that the ESP32 can reach a target on the I2C bus, but it does not yet prove the exact sensor model or measurement correctness. That separation made the debug path cleaner: first prove power, ground, pins, pullups, and address response, then move on to driver-level identification and measurements.
+
+## Bosch Sensor Identification Debug Note
+
+### Goal
+
+Determine whether the HW-611 module contains a BME280 or BMP280 before writing measurement code.
+
+### Method
+
+I read Bosch identification register `0xD0` over I2C.
+
+### Result
+
+- Address `0x76`: register `0xD0` returned `0x58`
+- Address `0x77`: chip ID read failed with `ret=-5`
+
+### Interpretation
+
+The sensor is BMP280.
+
+The board can provide temperature and pressure measurements, but humidity is not available with this hardware.
+
+### Scope impact
+
+FieldSense-Z will continue with BMP280-compatible scope unless a verified BME280 is purchased later.

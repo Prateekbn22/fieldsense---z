@@ -94,3 +94,18 @@ Actual serial output was saved to:
 
 `results/logs/i2c\_scan.txt`
 
+## Sensor identity result
+
+After validating the I2C bus, I read Bosch register `0xD0` to identify the actual sensor silicon.
+
+The sensor responded at I2C address `0x76`.
+
+Register `0xD0` returned `0x58`, which identifies the device as BMP280.
+
+This means the current HW-611 module supports temperature and pressure, but not humidity.
+
+The I2C address and chip ID are different pieces of evidence:
+
+- `0x76` is the I2C address where the device responds.
+- `0x58` is the chip ID stored inside the Bosch sensor.
+

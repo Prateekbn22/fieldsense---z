@@ -69,3 +69,31 @@ I would explain that I started with a minimal board bring-up test instead of jum
 ### Blog-style paragraph
 
 For this step, I kept the firmware intentionally small. The application only prints a startup message and a periodic uptime message. This proved that the ESP32 could build, flash, boot Zephyr, and communicate over the serial console before I connected the BME280 sensor.
+
+## Entry — Bosch sensor identity verification
+
+### What I was trying to achieve
+
+I wanted to verify whether my HW-611 module actually contained a BME280 or BMP280 before writing sensor-driver measurement code.
+
+### What I learned
+
+I learned that the I2C address and chip ID are different. The address tells me where a device responds on the bus. The chip ID tells me what silicon is inside the package.
+
+### What I tested
+
+I read Bosch register `0xD0`, which is the identification register.
+
+### Result
+
+The sensor responded at address `0x76`, and register `0xD0` returned `0x58`.
+
+This identifies the module as BMP280.
+
+### Project impact
+
+I can continue with temperature and pressure measurements, but humidity cannot be implemented with this hardware. If humidity becomes required for the final FieldSense-Z demo, I need to purchase a verified BME280.
+
+### Blog seed
+
+Instead of trusting the breakout-board name or seller listing, I verified the actual silicon by reading the Bosch chip identification register. The module responded on the I2C bus at `0x76`, but that only proved communication. The stronger identity check was register `0xD0`, which returned `0x58`. That value identifies the device as a BMP280, not a BME280. This changed the project scope honestly: temperature and pressure remain available, but humidity is not possible with the current hardware.

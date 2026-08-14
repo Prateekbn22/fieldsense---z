@@ -1,0 +1,7 @@
+I2C device is ready
+Address 0x76: register 0xd0 returned chip_id=0x58
+Sensor identity: BMP280 detected at address 0x76
+Available measurements: temperature and pressure only
+Humidity is not available with this hardware
+Address 0x77: chip ID read failed, ret=-5
+Sensor identification checkpoint complete

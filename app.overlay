@@ -1,0 +1,26 @@
+#include <zephyr/dt-bindings/pinctrl/esp32-pinctrl.h>
+
+/ {
+	aliases {
+		fieldsense-i2c = &i2c0;
+	};
+};
+
+&pinctrl {
+	fieldsense_i2c0_default: fieldsense_i2c0_default {
+		group1 {
+			pinmux = <I2C0_SDA_GPIO21>,
+				 <I2C0_SCL_GPIO22>;
+			bias-pull-up;
+			drive-open-drain;
+			output-high;
+		};
+	};
+};
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <100000>;
+	pinctrl-0 = <&fieldsense_i2c0_default>;
+	pinctrl-names = "default";
+};

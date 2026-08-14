@@ -1,0 +1,5 @@
+I2C device is ready 
+ACK received at address 0x76 
+No ACK at address 0x77, ret=-5 
+I2C scan result: PASS, one expected address responded 
+I2C bus validation checkpoint complete

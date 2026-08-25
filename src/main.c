@@ -1,9 +1,15 @@
+#include <stdbool.h>
 #include <stdint.h>
 
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
+#include <zephyr/sys/util.h>
 
 #include "sensor_service.h"
+
+#define SENSOR_ACQ_THREAD_STACK_SIZE 2048
+#define SENSOR_ACQ_THREAD_PRIORITY 5
+#define SENSOR_ACQ_PERIOD_MS 2000
 
 static int32_t abs_i32(int32_t value)
 {
@@ -41,11 +47,12 @@ static void print_pressure_pa(int32_t pressure_pa)
 	       kpa_whole, kpa_frac, pressure_pa);
 }
 
-static void print_sample(const struct sensor_sample *sample)
+static void print_successful_sample(const struct sensor_sample *sample)
 {
-	printk("\nSample %u at %u ms\n",
+	printk("\n[ACQ] Sample %u at %u ms: status=%s\n",
 	       sample->sequence,
-	       sample->timestamp_ms);
+	       sample->timestamp_ms,
+	       sensor_sample_status_to_string(sample->status));
 
 	print_milli_value("Temperature",
 			  sample->temperature_milli_celsius,
@@ -57,48 +64,73 @@ static void print_sample(const struct sensor_sample *sample)
 		print_milli_value("Humidity",
 				  sample->humidity_milli_percent_rh,
 				  "%RH");
+	} else {
+		printk("Humidity: not supported by current BMP280 hardware\n");
 	}
 }
 
-int main(void)
+static void print_failed_sample(const struct sensor_sample *sample, int ret)
+{
+	printk("\n[ACQ] Sample %u at %u ms: status=%s, valid=%d, driver_error=%d, ret=%d\n",
+	       sample->sequence,
+	       sample->timestamp_ms,
+	       sensor_sample_status_to_string(sample->status),
+	       sample->valid ? 1 : 0,
+	       sample->driver_error,
+	       ret);
+
+	printk("[ACQ] Recoverable read failure. Continuing to next period.\n");
+}
+
+static void sensor_acquisition_thread(void *p1, void *p2, void *p3)
 {
 	struct sensor_sample sample;
-	bool humidity_note_printed = false;
 	int ret;
 
-	printk("FieldSense-Z environmental sensor service start\n");
-	printk("Board target: doit_esp32_devkit_v1/esp32/procpu\n");
+	ARG_UNUSED(p1);
+	ARG_UNUSED(p2);
+	ARG_UNUSED(p3);
+
+	printk("[ACQ] Sensor acquisition thread started\n");
+	printk("[ACQ] Priority=%d, stack=%d bytes, period=%d ms\n",
+	       SENSOR_ACQ_THREAD_PRIORITY,
+	       SENSOR_ACQ_THREAD_STACK_SIZE,
+	       SENSOR_ACQ_PERIOD_MS);
 
 	ret = sensor_service_init();
 	if (ret != 0) {
-		printk("ERROR: sensor_service_init() failed, ret=%d\n", ret);
-		return 0;
+		printk("[ACQ] sensor_service_init() failed, ret=%d\n", ret);
+		printk("[ACQ] Thread will keep running and retry reads periodically\n");
+	} else {
+		printk("[ACQ] Sensor device is ready: %s\n",
+		       sensor_service_device_name());
 	}
-
-	printk("Sensor device is ready: %s\n", sensor_service_device_name());
-	printk("Sampling every two seconds using sensor_service_read()\n");
 
 	while (1) {
 		ret = sensor_service_read(&sample);
-		if (ret != 0 || !sample.valid) {
-			printk("ERROR: sample read failed, status=%s, driver_error=%d, ret=%d\n",
-			       sensor_sample_status_to_string(sample.status),
-			       sample.driver_error,
-			       ret);
 
-			k_sleep(K_SECONDS(2));
-			continue;
+		if (ret == 0 && sample.valid) {
+			print_successful_sample(&sample);
+		} else {
+			print_failed_sample(&sample, ret);
 		}
 
-		print_sample(&sample);
-
-		if (!sample.humidity_supported && !humidity_note_printed) {
-			printk("Humidity: not supported by current BMP280 hardware\n");
-			humidity_note_printed = true;
-		}
-
-		k_sleep(K_SECONDS(2));
+		k_sleep(K_MSEC(SENSOR_ACQ_PERIOD_MS));
 	}
+}
+
+K_THREAD_DEFINE(sensor_acq_thread_id,
+		SENSOR_ACQ_THREAD_STACK_SIZE,
+		sensor_acquisition_thread,
+		NULL, NULL, NULL,
+		SENSOR_ACQ_THREAD_PRIORITY,
+		0,
+		0);
+int main(void)
+{
+	printk("FieldSense-Z RTOS sensor acquisition checkpoint\n");
+	printk("main(): application startup complete\n");
+	printk("main(): sensor acquisition is handled by a dedicated Zephyr thread\n");
 
 	return 0;
 }

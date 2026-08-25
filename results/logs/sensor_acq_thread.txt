@@ -1,0 +1,29 @@
+[ACQ] Sample 5 at 8429 ms: status=OK
+Temperature: 32.160 deg C
+Pressure: 100.350 kPa (100350 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Sample 6 at 10502 ms: status=OK
+Temperature: 32.160 deg C
+Pressure: 100.349 kPa (100349 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Sample 7 at 12575 ms: status=OK
+Temperature: 32.160 deg C
+Pressure: 100.350 kPa (100350 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Sample 8 at 14648 ms: status=OK
+Temperature: 32.160 deg C
+Pressure: 100.350 kPa (100350 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Sample 9 at 16721 ms: status=OK
+Temperature: 32.160 deg C
+Pressure: 100.350 kPa (100350 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Sample 10 at 18794 ms: status=OK
+Temperature: 32.160 deg C
+Pressure: 100.350 kPa (100350 Pa)
+Humidity: not supported by current BMP280 hardware

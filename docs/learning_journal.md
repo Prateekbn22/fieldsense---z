@@ -97,3 +97,41 @@ I can continue with temperature and pressure measurements, but humidity cannot b
 ### Blog seed
 
 Instead of trusting the breakout-board name or seller listing, I verified the actual silicon by reading the Bosch chip identification register. The module responded on the I2C bus at `0x76`, but that only proved communication. The stronger identity check was register `0xD0`, which returned `0x58`. That value identifies the device as a BMP280, not a BME280. This changed the project scope honestly: temperature and pressure remain available, but humidity is not possible with the current hardware.
+
+## Entry — Sensor service refactor
+
+### What I was trying to achieve
+
+I wanted to keep `main.c` simple by moving environmental sensor access into a reusable sensor service module.
+
+### What I changed
+
+I created:
+
+- `include/app_types.h`
+- `include/sensor_service.h`
+- `src/sensor_service.c`
+
+The sensor service now owns the Zephyr sensor API calls and returns a clean `sensor_sample` structure to the application.
+
+### What I learned
+
+I learned that a good module boundary keeps hardware access separate from application behavior.
+
+`main.c` should not need to know every Zephyr sensor channel or driver detail. It should ask for a sample and decide what to do with it.
+
+I also learned why explicit units matter. Instead of passing around floating-point values or raw driver structures, I store temperature in milli-degrees Celsius and pressure in pascals. This makes logs, comparisons, thresholds, and tests clearer.
+
+### Result
+
+The refactored application produced the same physical measurements as the previous sensor-driver version, but the code is cleaner and easier to extend.
+
+### Evidence
+
+Serial output from the refactored application was saved in:
+
+`results/logs/sensor_service_refactor.txt`
+
+### Blog seed
+
+After proving that the BMP280 worked through Zephyr’s sensor API, I refactored the sensor logic into a small service module. This moved hardware access out of `main.c` and created a cleaner boundary between driver-level operations and application behavior. The service fetches samples, reads supported channels, converts values into explicit integer units, and reports errors through a structured status field. This makes the next stages easier to build because future RTOS threads, queues, statistics, and fault logic can work with a simple `sensor_sample` structure instead of directly depending on sensor-driver calls.

@@ -1,0 +1,23 @@
+Sample 5 at 8413 ms
+Temperature: 31.590 deg C
+Pressure: 100.372 kPa (100372 Pa)
+
+Sample 6 at 10484 ms
+Temperature: 31.590 deg C
+Pressure: 100.372 kPa (100372 Pa)
+
+Sample 7 at 12555 ms
+Temperature: 31.590 deg C
+Pressure: 100.371 kPa (100371 Pa)
+
+Sample 8 at 14626 ms
+Temperature: 31.590 deg C
+Pressure: 100.371 kPa (100371 Pa)
+
+Sample 9 at 16697 ms
+Temperature: 31.590 deg C
+Pressure: 100.370 kPa (100370 Pa)
+
+Sample 10 at 18768 ms
+Temperature: 31.590 deg C
+Pressure: 100.371 kPa (100371 Pa)

@@ -1,0 +1,63 @@
+[ACQ] Published sample 1, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+[CONSUMER] queue_used_after_get=0, queue_free_after_get=4
+
+[CONSUMER] Consumed sample 1 at 161 ms: status=OK, valid=1
+Temperature: 32.430 deg C
+Pressure: 100.338 kPa (100338 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Published sample 2, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+[CONSUMER] queue_used_after_get=0, queue_free_after_get=4
+
+[CONSUMER] Consumed sample 2 at 2232 ms: status=OK, valid=1
+Temperature: 32.430 deg C
+Pressure: 100.338 kPa (100338 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Published sample 3, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+[CONSUMER] queue_used_after_get=0, queue_free_after_get=4
+
+[CONSUMER] Consumed sample 3 at 4303 ms: status=OK, valid=1
+Temperature: 32.430 deg C
+Pressure: 100.338 kPa (100338 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Published sample 4, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+[CONSUMER] queue_used_after_get=0, queue_free_after_get=4
+
+[CONSUMER] Consumed sample 4 at 6374 ms: status=OK, valid=1
+Temperature: 32.420 deg C
+Pressure: 100.338 kPa (100338 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Published sample 5, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+[CONSUMER] queue_used_after_get=0, queue_free_after_get=4
+
+[CONSUMER] Consumed sample 5 at 8445 ms: status=OK, valid=1
+Temperature: 32.420 deg C
+Pressure: 100.338 kPa (100338 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Published sample 6, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+[CONSUMER] queue_used_after_get=0, queue_free_after_get=4
+
+[CONSUMER] Consumed sample 6 at 10516 ms: status=OK, valid=1
+Temperature: 32.420 deg C
+Pressure: 100.339 kPa (100339 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Published sample 7, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+[CONSUMER] queue_used_after_get=0, queue_free_after_get=4
+
+[CONSUMER] Consumed sample 7 at 12587 ms: status=OK, valid=1
+Temperature: 32.420 deg C
+Pressure: 100.339 kPa (100339 Pa)
+Humidity: not supported by current BMP280 hardware
+
+[ACQ] Published sample 8, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+[CONSUMER] queue_used_after_get=0, queue_free_after_get=4
+
+[CONSUMER] Consumed sample 8 at 14658 ms: status=OK, valid=1
+Temperature: 32.420 deg C
+Pressure: 100.340 kPa (100340 Pa)
+Humidity: not supported by current BMP280 hardware

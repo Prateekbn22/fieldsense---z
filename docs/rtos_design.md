@@ -110,3 +110,18 @@ The serial log showed:
 
 \- the acquisition thread continuing instead of crashing.
 
+## Sensor message queue
+
+FieldSense-Z now uses a Zephyr message queue between the sensor acquisition thread and a temporary consumer thread.
+
+Current data path:
+
+```text
+sensor acquisition thread
+        |
+        v
+      k_msgq
+        |
+        v
+temporary consumer thread
+

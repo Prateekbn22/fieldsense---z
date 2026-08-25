@@ -198,5 +198,79 @@ Serial output was saved in:
 
 After refactoring the sensor access into a reusable service, I moved the sampling loop into a dedicated Zephyr thread. This is an important RTOS step because sensor acquisition is now an independent periodic task instead of being hard-coded inside `main()`. The thread wakes every two seconds, reads the BMP280 through the sensor service, timestamps the result, assigns a sequence number, and logs success or failure. If a read fails, the thread records the error and continues instead of crashing the application. This separation makes the system easier to extend later with message queues, statistics, health monitoring, and fault handling.
 
+## RTOS queue architecture
+
+The application now has a producer-consumer structure.
+
+```text
+main()
+  |
+  +-- sensor acquisition thread
+  |     |
+  |     +-- sensor_service_read()
+  |     |
+  |     +-- k_msgq_put(sensor_sample)
+  |
+  +-- temporary consumer thread
+        |
+        +-- k_msgq_get(sensor_sample)
+        |
+        +-- log complete sample
+
+
+---
+
+## 4. Update `docs/learning_journal.md`
+
+Open:
+
+```powershell
+notepad C:\dev\fieldsense-z\docs\learning_journal.md
+
+
+## Entry — RTOS sensor message queue
+
+### What I was trying to achieve
+
+I wanted to separate sensor acquisition from sample consumption using a Zephyr message queue.
+
+### What I changed
+
+I added a `k_msgq` between the acquisition thread and a temporary consumer thread.
+
+The acquisition thread now produces complete `sensor_sample` structures and publishes them to the queue.
+
+The temporary consumer blocks on the queue, receives complete samples, and logs them.
+
+### What I learned
+
+I learned that a message queue is useful because it avoids sharing one mutable global sample between threads.
+
+The producer owns its local sample until it publishes it. The queue stores a copy. The consumer receives its own local copy.
+
+I also learned that queue depth is a design decision. A deeper queue gives more buffering but uses more RAM and can hide slow consumers for longer.
+
+### Queue-full policy
+
+The acquisition thread uses non-blocking sends.
+
+If the queue is full, the newest sample is not enqueued. The code increments `queue_full_count` and logs the event. Older queued samples are preserved.
+
+This means data is not silently lost.
+
+### Result
+
+Under normal operation, produced and consumed sequence numbers matched, samples moved correctly through the queue, and queue-full count stayed zero.
+
+### Evidence
+
+Serial output was saved in:
+
+`results/logs/sensor_msgq.txt`
+
+### Blog seed
+
+After moving sensor acquisition into a dedicated Zephyr thread, I added a message queue between acquisition and a temporary consumer. This changed the design from direct logging to a producer-consumer pipeline. The acquisition thread now creates a complete `sensor_sample` with timestamp, sequence number, measurements, and status, then publishes that structure to a fixed-depth queue. The consumer blocks until a sample is available and then logs its own copy. This avoids shared mutable state and makes the design easier to extend later with processing, statistics, fault detection, or logging threads. I also added an explicit queue-full policy so overload is counted and visible instead of silently losing data.
+
 
 

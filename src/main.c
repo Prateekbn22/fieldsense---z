@@ -5,6 +5,7 @@
 #include <zephyr/sys/printk.h>
 #include <zephyr/sys/util.h>
 
+#include "env_stats.h"
 #include "sensor_service.h"
 
 #define SENSOR_ACQ_THREAD_STACK_SIZE 2048
@@ -15,6 +16,8 @@
 
 #define SENSOR_ACQ_PERIOD_MS 2000
 #define SENSOR_SAMPLE_QUEUE_DEPTH 4
+
+#define THREAD_START_DELAY_MS 1000
 
 #define TEMP_MIN_MILLI_C  (-40000)
 #define TEMP_MAX_MILLI_C  85000
@@ -57,13 +60,16 @@ static void print_milli_value(const char *label, int32_t milli_value,
 	printk("%s: %d.%03d %s\n", label, whole, frac, unit);
 }
 
-static void print_pressure_pa(int32_t pressure_pa)
+static void print_pressure_value(const char *label, int32_t pressure_pa)
 {
 	int32_t kpa_whole = pressure_pa / 1000;
 	int32_t kpa_frac = pressure_pa % 1000;
 
-	printk("Pressure: %d.%03d kPa (%d Pa)\n",
-	       kpa_whole, kpa_frac, pressure_pa);
+	printk("%s: %d.%03d kPa (%d Pa)\n",
+	       label,
+	       kpa_whole,
+	       kpa_frac,
+	       pressure_pa);
 }
 
 static bool validate_sample_data(const struct sensor_sample *sample)
@@ -106,7 +112,7 @@ static void print_processed_sample(const struct sensor_sample *sample)
 			  sample->temperature_milli_celsius,
 			  "deg C");
 
-	print_pressure_pa(sample->pressure_pa);
+	print_pressure_value("Pressure", sample->pressure_pa);
 
 	if (sample->humidity_supported) {
 		print_milli_value("Humidity",
@@ -115,6 +121,53 @@ static void print_processed_sample(const struct sensor_sample *sample)
 	} else {
 		printk("Humidity: not supported by current BMP280 hardware\n");
 	}
+}
+
+static void print_milli_stats(const char *label,
+			      const struct measurement_stats *stats,
+			      const char *unit)
+{
+	if (!stats->has_value) {
+		printk("[STATS] %s: no valid samples yet\n", label);
+		return;
+	}
+
+	printk("[STATS] %s valid_count=%u, window_count=%u\n",
+	       label,
+	       (unsigned int)stats->valid_count,
+	       (unsigned int)stats->window_count);
+
+	print_milli_value("[STATS] latest", stats->latest, unit);
+	print_milli_value("[STATS] minimum", stats->minimum, unit);
+	print_milli_value("[STATS] maximum", stats->maximum, unit);
+	print_milli_value("[STATS] moving_average", stats->moving_average, unit);
+}
+
+static void print_pressure_stats(const struct measurement_stats *stats)
+{
+	if (!stats->has_value) {
+		printk("[STATS] Pressure: no valid samples yet\n");
+		return;
+	}
+
+	printk("[STATS] Pressure valid_count=%u, window_count=%u\n",
+	       (unsigned int)stats->valid_count,
+	       (unsigned int)stats->window_count);
+
+	print_pressure_value("[STATS] latest", stats->latest);
+	print_pressure_value("[STATS] minimum", stats->minimum);
+	print_pressure_value("[STATS] maximum", stats->maximum);
+	print_pressure_value("[STATS] moving_average", stats->moving_average);
+}
+
+static void print_environmental_stats(const struct environmental_stats *stats)
+{
+	printk("[STATS] Supported channels: temperature, pressure\n");
+	print_milli_stats("Temperature",
+			  &stats->temperature_milli_celsius,
+			  "deg C");
+	print_pressure_stats(&stats->pressure_pa);
+	printk("[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity\n");
 }
 
 static void publish_sample(const struct sensor_sample *sample)
@@ -138,7 +191,7 @@ static void publish_sample(const struct sensor_sample *sample)
 	       sample->valid ? 1 : 0,
 	       (unsigned int)k_msgq_num_used_get(&sensor_sample_msgq),
 	       (unsigned int)k_msgq_num_free_get(&sensor_sample_msgq),
-	       queue_full_count);
+	       (unsigned int)queue_full_count);
 }
 
 static void sensor_acquisition_thread(void *p1, void *p2, void *p3)
@@ -186,6 +239,7 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 {
 	struct sensor_sample sample;
 	struct sensor_sample latest_valid_sample;
+	struct environmental_stats stats;
 	bool latest_valid_available = false;
 	uint32_t valid_sample_count = 0;
 	uint32_t invalid_sample_count = 0;
@@ -197,6 +251,8 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 	ARG_UNUSED(p1);
 	ARG_UNUSED(p2);
 	ARG_UNUSED(p3);
+
+	env_stats_init(&stats);
 
 	printk("[PROC] Environmental processing thread started\n");
 	printk("[PROC] Priority=%d, stack=%d bytes\n",
@@ -236,11 +292,14 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 			latest_valid_available = true;
 			valid_sample_count++;
 
+			env_stats_update_from_sample(&stats, &sample);
+
 			printk("\n[PROC] Processed valid sample %u at %u ms\n",
 			       sample.sequence,
 			       sample.timestamp_ms);
 
 			print_processed_sample(&sample);
+			print_environmental_stats(&stats);
 		} else {
 			invalid_sample_count++;
 
@@ -277,7 +336,7 @@ K_THREAD_DEFINE(sensor_acq_thread_id,
 		NULL, NULL, NULL,
 		SENSOR_ACQ_THREAD_PRIORITY,
 		0,
-		0);
+		THREAD_START_DELAY_MS);
 
 K_THREAD_DEFINE(sensor_processing_thread_id,
 		SENSOR_PROCESSING_THREAD_STACK_SIZE,
@@ -285,14 +344,24 @@ K_THREAD_DEFINE(sensor_processing_thread_id,
 		NULL, NULL, NULL,
 		SENSOR_PROCESSING_THREAD_PRIORITY,
 		0,
-		0);
+		THREAD_START_DELAY_MS);
 
 int main(void)
 {
-	printk("FieldSense-Z environmental processing checkpoint\n");
+	bool self_test_passed;
+
+	printk("FieldSense-Z environmental statistics checkpoint\n");
 	printk("main(): startup complete\n");
-	printk("main(): acquisition publishes samples to k_msgq\n");
-	printk("main(): processing thread receives, validates, counts, and stores latest valid sample\n");
+	printk("main(): statistics are calculated outside the hardware layer\n");
+
+	printk("[SELFTEST] Controlled values: 22000, 23000, 21000, 24000, 25000, 26000 milli-C\n");
+	printk("[SELFTEST] Window size: %u\n", ENV_STATS_WINDOW_SIZE);
+	printk("[SELFTEST] Expected latest=26000, min=21000, max=26000, count=6, moving_average=23800\n");
+
+	self_test_passed = env_stats_controlled_self_test();
+
+	printk("[SELFTEST] Environmental stats controlled test: %s\n",
+	       self_test_passed ? "PASS" : "FAIL");
 
 	printk("Queue item size: %u bytes\n",
 	       (unsigned int)sizeof(struct sensor_sample));
@@ -302,7 +371,7 @@ int main(void)
 	       (unsigned int)(sizeof(struct sensor_sample) *
 			      SENSOR_SAMPLE_QUEUE_DEPTH));
 
-	printk("Queue-full policy: non-blocking publish, count event, preserve oldest queued samples, drop newest failed publish\n");
+	printk("Statistics apply only to verified BMP280-supported channels: temperature and pressure\n");
 
 	return 0;
 }

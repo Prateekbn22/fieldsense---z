@@ -135,3 +135,47 @@ Serial output from the refactored application was saved in:
 ### Blog seed
 
 After proving that the BMP280 worked through Zephyr’s sensor API, I refactored the sensor logic into a small service module. This moved hardware access out of `main.c` and created a cleaner boundary between driver-level operations and application behavior. The service fetches samples, reads supported channels, converts values into explicit integer units, and reports errors through a structured status field. This makes the next stages easier to build because future RTOS threads, queues, statistics, and fault logic can work with a simple `sensor_sample` structure instead of directly depending on sensor-driver calls.
+
+## Entry — Environmental measurement statistics
+
+### What I was trying to achieve
+
+I wanted to add useful statistics to the environmental processing thread without mixing calculation logic into the hardware layer.
+
+### What I changed
+
+I added a separate statistics module:
+
+- `include/env_stats.h`
+- `src/env_stats.c`
+
+The processing thread now updates statistics only after receiving and validating a sample.
+
+### What I learned
+
+I learned the difference between latest value, minimum, maximum, arithmetic mean, and moving average.
+
+The latest value is the newest valid reading. The minimum and maximum track the range of valid readings. A moving average smooths short-term variation by averaging only the most recent window of samples.
+
+I also learned why integer scaling matters in embedded systems. Temperature is stored in milli-degrees Celsius and pressure is stored in pascals, so statistics can be calculated without floating point.
+
+I used an `int64_t` moving-window sum to reduce overflow risk when adding multiple `int32_t` values.
+
+### Interview explanation
+
+I kept statistics separate from the hardware layer. The sensor service talks to the Zephyr sensor driver, the acquisition thread publishes samples, and the processing thread validates samples before passing values into the stats module.
+
+This makes the calculation code easier to test. I verified the module first with controlled values, then with real BMP280 measurements.
+
+Since my verified sensor is BMP280, I only calculate statistics for temperature and pressure. Humidity statistics are intentionally skipped because this hardware does not support humidity.
+
+### Evidence
+
+Serial output was saved in:
+
+`results/logs/env_stats.txt`
+
+### Blog seed
+
+After building the producer-consumer pipeline, I added environmental measurement statistics as a separate module. The goal was to keep hardware access, RTOS communication, processing, and calculations separated. The stats module tracks the latest value, minimum, maximum, valid sample count, and a moving average window for temperature and pressure. I verified the math first using controlled values, then ran it on real BMP280 readings. This made the feature easier to test and also kept the design honest because humidity statistics are not calculated on BMP280 hardware.
+

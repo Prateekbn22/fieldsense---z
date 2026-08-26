@@ -9,4 +9,5 @@ target_include_directories(app PRIVATE include)
 target_sources(app PRIVATE
     src/main.c
     src/sensor_service.c
+    src/env_stats.c
 )

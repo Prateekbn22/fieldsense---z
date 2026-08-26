@@ -1,0 +1,634 @@
+--- Miniterm on COM9  115200,8,N,1 ---
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3ffb0000,len:6964
+load:0x40080000,len:35392
+ho 0 tail 12 room 4
+load:0x50000000,len:40
+entry 0x40083f54
+I (soc_init): ESP Simple boot
+I (soc_init): compile time Aug 25 2026 17:24:02
+W (soc_init): Unicore bootloader
+I (soc_init): chip revision: v3.1
+I (flash_init): SPI Speed      : 40MHz
+I (flash_init): SPI Mode       : DIO
+I (flash_init): SPI Flash Size : 4MB
+I (boot): DRAM  : lma=00001020h vma=3ffb0000h size=01b34h (  6964)
+I (boot): IRAM  : lma=00002b5ch vma=40080000h size=08a40h ( 35392)
+I (boot): RTC_DATA      : lma=0000b5a4h vma=50000000h size=00028h (    40)
+I (boot): IROM  : lma=00010000h vma=400d0000h size=03e10h ( 15888)
+I (boot): DROM  : lma=00020000h vma=3f400000h size=10000h ( 65536)
+I (boot): libc heap size 180 kB.
+I (spi_flash): detected chip: generic
+I (spi_flash): flash io: dio
+*** Booting Zephyr OS build v4.4.0-9769-gd211a737740b ***
+FieldSense-Z environmental processing checkpoint
+main(): startup complete
+main(): acquisition publishes samples to k_msgq
+main(): processing thread receives, validates, counts, and stores latest valid sample
+Queue item size: 36 bytes
+Queue depth: 4 samples
+Queue storage estimate: 144 bytes
+Queue-full policy: non-blocking publish, count event, preserve oldest queued samples, drop newest failed publish
+[ACQ] Sensor acquisition thread started
+[ACQ] Priority=5, stack=2048 bytes, period=2000 ms
+[ACQ] Sensor device is ready: bmp280@76
+[PROC] Environmental processing thread started
+[PROC] Priority=6, stack=2048 bytes
+[PROC] Blocking on k_msgq_get(K_FOREVER)
+
+[ACQ] Published sample 1, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 1 at 161 ms
+Temperature: 33.570 deg C
+Pressure: 100.321 kPa (100321 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=1, valid=1, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=1, timestamp=161 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 2, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 2 at 2232 ms
+Temperature: 33.570 deg C
+Pressure: 100.321 kPa (100321 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=2, valid=2, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=2, timestamp=2232 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 3, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 3 at 4303 ms
+Temperature: 33.560 deg C
+Pressure: 100.322 kPa (100322 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=3, valid=3, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=3, timestamp=4303 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3ffb0000,len:6964
+load:0x40080000,len:35392
+ho 0 tail 12 room 4
+load:0x50000000,len:40
+entry 0x40083f54
+I (soc_init): ESP Simple boot
+I (soc_init): compile time Aug 25 2026 17:24:02
+W (soc_init): Unicore bootloader
+I (soc_init): chip revision: v3.1
+I (flash_init): SPI Speed      : 40MHz
+I (flash_init): SPI Mode       : DIO
+I (flash_init): SPI Flash Size : 4MB
+I (boot): DRAM  : lma=00001020h vma=3ffb0000h size=01b34h (  6964)
+I (boot): IRAM  : lma=00002b5ch vma=40080000h size=08a40h ( 35392)
+I (boot): RTC_DATA      : lma=0000b5a4h vma=50000000h size=00028h (    40)
+I (boot): IROM  : lma=00010000h vma=400d0000h size=03e10h ( 15888)
+I (boot): DROM  : lma=00020000h vma=3f400000h size=10000h ( 65536)
+I (boot): libc heap size 180 kB.
+I (spi_flash): detected chip: generic
+I (spi_flash): flash io: dio
+*** Booting Zephyr OS build v4.4.0-9769-gd211a737740b ***
+FieldSense-Z environmental processing checkpoint
+main(): startup complete
+main(): acquisition publishes samples to k_msgq
+main(): processing thread receives, validates, counts, and stores latest valid sample
+Queue item size: 36 bytes
+Queue depth: 4 samples
+Queue storage estimate: 144 bytes
+Queue-full policy: non-blocking publish, count event, preserve oldest queued samples, drop newest failed publish
+[ACQ] Sensor acquisition thread started
+[ACQ] Priority=5, stack=2048 bytes, period=2000 ms
+[ACQ] Sensor device is ready: bmp280@76
+[PROC] Environmental processing thread started
+[PROC] Priority=6, stack=2048 bytes
+[PROC] Blocking on k_msgq_get(K_FOREVER)
+
+[ACQ] Published sample 1, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 1 at 161 ms
+Temperature: 33.560 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=1, valid=1, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=1, timestamp=161 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 2, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 2 at 2232 ms
+Temperature: 33.560 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=2, valid=2, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=2, timestamp=2232 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 3, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 3 at 4303 ms
+Temperature: 33.560 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=3, valid=3, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=3, timestamp=4303 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 4, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 4 at 6374 ms
+Temperature: 33.550 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=4, valid=4, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=4, timestamp=6374 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 5, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 5 at 8444 ms
+Temperature: 33.550 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=5, valid=5, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=5, timestamp=8444 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 6, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 6 at 10515 ms
+Temperature: 33.550 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=6, valid=6, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=6, timestamp=10515 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 7, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 7 at 12586 ms
+Temperature: 33.560 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=7, valid=7, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=7, timestamp=12586 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 8, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 8 at 14657 ms
+Temperature: 33.560 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=8, valid=8, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=8, timestamp=14657 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 9, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 9 at 16728 ms
+Temperature: 33.560 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=9, valid=9, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=9, timestamp=16728 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 10, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 10 at 18799 ms
+Temperature: 33.560 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=10, valid=10, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=10, timestamp=18799 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 11, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 11 at 20870 ms
+Temperature: 33.560 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=11, valid=11, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=11, timestamp=20870 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 12, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 12 at 22941 ms
+Temperature: 33.560 deg C
+Pressure: 100.322 kPa (100322 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=12, valid=12, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=12, timestamp=22941 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 13, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 13 at 25012 ms
+Temperature: 33.560 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=13, valid=13, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=13, timestamp=25012 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 14, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 14 at 27083 ms
+Temperature: 33.560 deg C
+Pressure: 100.322 kPa (100322 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=14, valid=14, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=14, timestamp=27083 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 15, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 15 at 29153 ms
+Temperature: 33.560 deg C
+Pressure: 100.322 kPa (100322 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=15, valid=15, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=15, timestamp=29153 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 16, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 16 at 31224 ms
+Temperature: 33.560 deg C
+Pressure: 100.322 kPa (100322 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=16, valid=16, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=16, timestamp=31224 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 17, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 17 at 33295 ms
+Temperature: 33.560 deg C
+Pressure: 100.322 kPa (100322 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=17, valid=17, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=17, timestamp=33295 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 18, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 18 at 35366 ms
+Temperature: 33.560 deg C
+Pressure: 100.322 kPa (100322 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=18, valid=18, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=18, timestamp=35366 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 19, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 19 at 37437 ms
+Temperature: 33.560 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=19, valid=19, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=19, timestamp=37437 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 20, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 20 at 39508 ms
+Temperature: 33.560 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=20, valid=20, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=20, timestamp=39508 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 21, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 21 at 41579 ms
+Temperature: 33.560 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=21, valid=21, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=21, timestamp=41579 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 22, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 22 at 43650 ms
+Temperature: 33.570 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=22, valid=22, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=22, timestamp=43650 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 23, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 23 at 45721 ms
+Temperature: 33.570 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=23, valid=23, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=23, timestamp=45721 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 24, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 24 at 47792 ms
+Temperature: 33.570 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=24, valid=24, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=24, timestamp=47792 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 25, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 25 at 49862 ms
+Temperature: 33.570 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=25, valid=25, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=25, timestamp=49862 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 26, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 26 at 51933 ms
+Temperature: 33.570 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=26, valid=26, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=26, timestamp=51933 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 27, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 27 at 54004 ms
+Temperature: 33.570 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=27, valid=27, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=27, timestamp=54004 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 28, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 28 at 56075 ms
+Temperature: 33.580 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=28, valid=28, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=28, timestamp=56075 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 29, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 29 at 58146 ms
+Temperature: 33.580 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=29, valid=29, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=29, timestamp=58146 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 30, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 30 at 60217 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=30, valid=30, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=30, timestamp=60217 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 31, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 31 at 62288 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=31, valid=31, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=31, timestamp=62288 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 32, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 32 at 64359 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=32, valid=32, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=32, timestamp=64359 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 33, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 33 at 66430 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=33, valid=33, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=33, timestamp=66430 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 34, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 34 at 68501 ms
+Temperature: 33.580 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=34, valid=34, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=34, timestamp=68501 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 35, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 35 at 70571 ms
+Temperature: 33.580 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=35, valid=35, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=35, timestamp=70571 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 36, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 36 at 72642 ms
+Temperature: 33.580 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=36, valid=36, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=36, timestamp=72642 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 37, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 37 at 74713 ms
+Temperature: 33.580 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=37, valid=37, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=37, timestamp=74713 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 38, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 38 at 76784 ms
+Temperature: 33.580 deg C
+Pressure: 100.325 kPa (100325 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=38, valid=38, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=38, timestamp=76784 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 39, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 39 at 78855 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=39, valid=39, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=39, timestamp=78855 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 40, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 40 at 80926 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=40, valid=40, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=40, timestamp=80926 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 41, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 41 at 82997 ms
+Temperature: 33.580 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=41, valid=41, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=41, timestamp=82997 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 42, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 42 at 85068 ms
+Temperature: 33.580 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=42, valid=42, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=42, timestamp=85068 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 43, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 43 at 87139 ms
+Temperature: 33.580 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=43, valid=43, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=43, timestamp=87139 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 44, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 44 at 89210 ms
+Temperature: 33.580 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=44, valid=44, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=44, timestamp=89210 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 45, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 45 at 91280 ms
+Temperature: 33.580 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=45, valid=45, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=45, timestamp=91280 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 46, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 46 at 93351 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=46, valid=46, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=46, timestamp=93351 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 47, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 47 at 95422 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=47, valid=47, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=47, timestamp=95422 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 48, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 48 at 97493 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=48, valid=48, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=48, timestamp=97493 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 49, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 49 at 99564 ms
+Temperature: 33.580 deg C
+Pressure: 100.324 kPa (100324 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=49, valid=49, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=49, timestamp=99564 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 50, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 50 at 101635 ms
+Temperature: 33.580 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=50, valid=50, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=50, timestamp=101635 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 51, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 51 at 103706 ms
+Temperature: 33.580 deg C
+Pressure: 100.322 kPa (100322 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=51, valid=51, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=51, timestamp=103706 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+
+[ACQ] Published sample 52, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 52 at 105777 ms
+Temperature: 33.580 deg C
+Pressure: 100.323 kPa (100323 Pa)
+Humidity: not supported by current BMP280 hardware
+[PROC] Counters: processed=52, valid=52, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=52, timestamp=105777 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4

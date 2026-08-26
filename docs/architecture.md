@@ -273,4 +273,50 @@ Serial output was saved in:
 After moving sensor acquisition into a dedicated Zephyr thread, I added a message queue between acquisition and a temporary consumer. This changed the design from direct logging to a producer-consumer pipeline. The acquisition thread now creates a complete `sensor_sample` with timestamp, sequence number, measurements, and status, then publishes that structure to a fixed-depth queue. The consumer blocks until a sample is available and then logs its own copy. This avoids shared mutable state and makes the design easier to extend later with processing, statistics, fault detection, or logging threads. I also added an explicit queue-full policy so overload is counted and visible instead of silently losing data.
 
 
+## Entry — Environmental processing thread
+
+### What I was trying to achieve
+
+I wanted to separate sensor acquisition from sensor processing using a producer-consumer RTOS architecture.
+
+### What I changed
+
+I replaced the temporary queue consumer with a dedicated environmental processing thread.
+
+The acquisition thread still reads the sensor periodically and publishes complete `sensor_sample` structures to the message queue.
+
+The processing thread now receives samples, validates them, counts valid and invalid samples, detects sequence gaps, and stores the latest valid sample.
+
+### What I learned
+
+I learned that acquisition and processing are different responsibilities.
+
+Acquisition is timing-sensitive and hardware-facing. It should focus on waking periodically, reading the sensor, timestamping data, assigning sequence numbers, and publishing samples.
+
+Processing should block on the message queue until a sample arrives. This is better than polling because the processing thread does not waste CPU when there is no work.
+
+I also learned how data ownership works in the design. The acquisition thread owns the local sample before publishing, the queue owns the copied message while it waits, and the processing thread owns the received copy after `k_msgq_get()`.
+
+### Interview explanation
+
+I used a producer-consumer architecture. The acquisition thread is the producer because it periodically creates sensor samples. The processing thread is the consumer because it waits on the queue, receives complete samples, validates them, and updates processing state.
+
+This avoids shared mutable state. Instead of two threads reading and writing the same global sample, the sample is copied through a Zephyr message queue. That makes the data flow easier to reason about and helps prevent race conditions.
+
+I also chose acquisition priority higher than processing priority because acquisition owns periodic timing. The processing thread blocks on the queue and only runs when data is available.
+
+### Result
+
+The system was run for at least 50 samples under normal operation. Sequence numbers increased as expected, no unexpected sequence gaps were observed, queue-full count stayed zero, and acquisition continued independently of processing.
+
+### Evidence
+
+Serial output was saved in:
+
+`results/logs/sensor_processing_thread.txt`
+
+### Blog seed
+
+After adding a message queue between acquisition and consumption, I replaced the temporary consumer with a dedicated environmental processing thread. This made the design closer to a real embedded RTOS system. The acquisition thread now focuses only on periodic sensor reads and publishing complete samples. The processing thread blocks on the queue, wakes only when data is available, validates each sample, checks sequence continuity, counts valid and invalid samples, and stores the latest valid reading. This producer-consumer design avoids shared mutable state and makes the project easier to extend later with statistics, health monitoring, and fault detection.
+
 

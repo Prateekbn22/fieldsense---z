@@ -125,3 +125,18 @@ sensor acquisition thread
         v
 temporary consumer thread
 
+## Environmental processing thread
+
+FieldSense-Z now separates sensor acquisition from environmental processing.
+
+Current data path:
+
+```text
+sensor acquisition thread
+        |
+        v
+      k_msgq
+        |
+        v
+environmental processing thread
+

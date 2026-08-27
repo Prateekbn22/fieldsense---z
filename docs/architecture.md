@@ -319,4 +319,35 @@ Serial output was saved in:
 
 After adding a message queue between acquisition and consumption, I replaced the temporary consumer with a dedicated environmental processing thread. This made the design closer to a real embedded RTOS system. The acquisition thread now focuses only on periodic sensor reads and publishing complete samples. The processing thread blocks on the queue, wakes only when data is available, validates each sample, checks sequence continuity, counts valid and invalid samples, and stores the latest valid reading. This producer-consumer design avoids shared mutable state and makes the project easier to extend later with statistics, health monitoring, and fault detection.
 
+## Timing and freshness architecture
 
+Timing metrics are calculated outside the hardware layer.
+
+Current timing path:
+
+```text
+sensor_service.c
+  |
+  v
+sensor acquisition thread
+  |
+  v
+k_msgq
+  |
+  v
+environmental processing thread
+  |
+  v
+timing_metrics.c
+
+
+## Sampling timing and freshness metrics
+
+FieldSense-Z now measures requested timing versus actual RTOS behavior.
+
+### Requested period
+
+The requested sampling period is:
+
+```text
+2000 ms

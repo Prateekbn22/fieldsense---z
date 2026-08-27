@@ -140,3 +140,13 @@ sensor acquisition thread
         v
 environmental processing thread
 
+## Sampling timing and freshness metrics
+
+FieldSense-Z now measures requested timing versus actual RTOS behavior.
+
+### Requested period
+
+The requested sampling period is:
+
+```text
+2000 ms

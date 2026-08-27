@@ -7,6 +7,7 @@
 
 #include "env_stats.h"
 #include "sensor_service.h"
+#include "timing_metrics.h"
 
 #define SENSOR_ACQ_THREAD_STACK_SIZE 2048
 #define SENSOR_PROCESSING_THREAD_STACK_SIZE 2048
@@ -16,6 +17,8 @@
 
 #define SENSOR_ACQ_PERIOD_MS 2000
 #define SENSOR_SAMPLE_QUEUE_DEPTH 4
+#define SENSOR_MISSED_PERIOD_TOLERANCE_MS 250
+#define SENSOR_STALE_DATA_THRESHOLD_MS (SENSOR_ACQ_PERIOD_MS * 3U)
 
 #define THREAD_START_DELAY_MS 1000
 
@@ -170,6 +173,30 @@ static void print_environmental_stats(const struct environmental_stats *stats)
 	printk("[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity\n");
 }
 
+static void print_timing_metrics(const struct timing_metrics *metrics)
+{
+	if (metrics->interval_count == 0U) {
+		printk("[TIME] Waiting for second sample before interval statistics are available\n");
+	} else {
+		printk("[TIME] interval_ms=%u, min_ms=%u, max_ms=%u, mean_ms=%u, scheduler_delay_ms=%d, missed_deadlines=%u\n",
+		       metrics->latest_interval_ms,
+		       metrics->minimum_interval_ms,
+		       metrics->maximum_interval_ms,
+		       metrics->mean_interval_ms,
+		       metrics->latest_scheduler_delay_ms,
+		       metrics->missed_deadline_count);
+	}
+
+	if (metrics->have_last_valid_sample) {
+		printk("[TIME] last_valid_age_ms=%u, stale=%d, stale_threshold_ms=%u\n",
+		       metrics->last_valid_sample_age_ms,
+		       metrics->stale_data ? 1 : 0,
+		       metrics->stale_threshold_ms);
+	} else {
+		printk("[TIME] No valid sample received yet\n");
+	}
+}
+
 static void publish_sample(const struct sensor_sample *sample)
 {
 	int ret;
@@ -219,7 +246,20 @@ static void sensor_acquisition_thread(void *p1, void *p2, void *p3)
 	}
 
 	while (1) {
-		ret = sensor_service_read(&sample);
+		uint32_t acq_start_ms;
+uint32_t acq_end_ms;
+uint32_t acq_execution_time_ms;
+
+acq_start_ms = k_uptime_get_32();
+
+ret = sensor_service_read(&sample);
+
+acq_end_ms = k_uptime_get_32();
+acq_execution_time_ms = acq_end_ms - acq_start_ms;
+
+printk("[ACQ-TIME] sample=%u, execution_time_ms=%u\n",
+       sample.sequence,
+       acq_execution_time_ms);
 
 		if (ret != 0 || !sample.valid) {
 			printk("\n[ACQ] Read failure captured in sample %u: status=%s, driver_error=%d, ret=%d\n",
@@ -240,6 +280,7 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 	struct sensor_sample sample;
 	struct sensor_sample latest_valid_sample;
 	struct environmental_stats stats;
+        struct timing_metrics timing;
 	bool latest_valid_available = false;
 	uint32_t valid_sample_count = 0;
 	uint32_t invalid_sample_count = 0;
@@ -253,6 +294,10 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 	ARG_UNUSED(p3);
 
 	env_stats_init(&stats);
+        timing_metrics_init(&timing,
+		    SENSOR_ACQ_PERIOD_MS,
+		    SENSOR_MISSED_PERIOD_TOLERANCE_MS,
+		    SENSOR_STALE_DATA_THRESHOLD_MS);
 
 	printk("[PROC] Environmental processing thread started\n");
 	printk("[PROC] Priority=%d, stack=%d bytes\n",
@@ -268,6 +313,7 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 		}
 
 		processed_count++;
+        timing_metrics_update(&timing, &sample, k_uptime_get_32());
 
 		if (sample.sequence != expected_sequence) {
 			uint32_t missed = 0;
@@ -300,6 +346,7 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 
 			print_processed_sample(&sample);
 			print_environmental_stats(&stats);
+                        print_timing_metrics(&timing);
 		} else {
 			invalid_sample_count++;
 

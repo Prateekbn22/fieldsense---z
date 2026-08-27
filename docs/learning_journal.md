@@ -179,3 +179,53 @@ Serial output was saved in:
 
 After building the producer-consumer pipeline, I added environmental measurement statistics as a separate module. The goal was to keep hardware access, RTOS communication, processing, and calculations separated. The stats module tracks the latest value, minimum, maximum, valid sample count, and a moving average window for temperature and pressure. I verified the math first using controlled values, then ran it on real BMP280 readings. This made the feature easier to test and also kept the design honest because humidity statistics are not calculated on BMP280 hardware.
 
+## Entry — Sampling timing and freshness metrics
+
+### What I was trying to achieve
+
+I wanted to measure the difference between the requested sampling period and the actual timing behavior of the RTOS application.
+
+### What I changed
+
+I added a timing metrics module:
+
+- `include/timing_metrics.h`
+- `src/timing_metrics.c`
+
+The processing thread now updates timing metrics after receiving samples from the message queue.
+
+The firmware now tracks measured sample interval, minimum interval, maximum interval, mean interval, scheduler delay, missed-deadline count, last-valid-sample age, and stale-data status.
+
+### What I learned
+
+I learned that requesting a 2000 ms period does not guarantee every measured interval will be exactly 2000 ms.
+
+The actual interval includes sensor-read time, queue publishing, logging, thread sleep behavior, and scheduler behavior.
+
+I also learned that environmental monitoring does not need microsecond precision because temperature and pressure change slowly. But timing evidence is still important because it shows whether the firmware is running consistently and whether the latest valid data is fresh.
+
+### Interview explanation
+
+I measured timing using monotonic uptime instead of wall-clock time. The acquisition thread timestamps samples, and the processing side calculates the actual interval between consecutive samples.
+
+I tracked min, max, and mean interval, plus a missed-deadline counter and last-valid-sample age. This gave me real evidence of RTOS behavior instead of assuming that `k_sleep(K_MSEC(2000))` always produces an exact 2000 ms sample interval.
+
+### Result
+
+The timing run showed measured sample intervals close to the requested 2000 ms period under normal operation.
+
+No unexplained missed deadlines or stale-data events were expected during the normal run.
+
+### Evidence
+
+Timing output was saved in:
+
+`results/logs/timing_run.txt`
+
+Timing analysis was documented in:
+
+`docs/timing_analysis.md`
+
+### Blog seed
+
+FieldSense-Z requests a 2000 ms environmental sampling period, but I added timing metrics to measure what actually happens at runtime. The firmware now compares requested timing with measured sample intervals, tracks min, max, and mean interval, counts missed deadlines, and checks the age of the latest valid sample. Environmental data does not need microsecond precision, but measuring timing is still valuable because it proves the RTOS pipeline is sampling consistently and that the data being processed is fresh.

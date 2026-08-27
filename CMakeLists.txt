@@ -10,4 +10,5 @@ target_sources(app PRIVATE
     src/main.c
     src/sensor_service.c
     src/env_stats.c
+    src/timing_metrics.c
 )

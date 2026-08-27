@@ -1,0 +1,1521 @@
+--- Miniterm on COM9  115200,8,N,1 ---
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3ffb0000,len:6964
+load:0x40080000,len:35392
+ho 0 tail 12 room 4
+load:0x50000000,len:40
+entry 0x40083f54
+I (soc_init): ESP Simple boot
+I (soc_init): compile time Aug 26 2026 18:53:06
+W (soc_init): Unicore bootloader
+I (soc_init): chip revision: v3.1
+I (flash_init): SPI Speed      : 40MHz
+I (flash_init): SPI Mode       : DIO
+I (flash_init): SPI Flash Size : 4MB
+I (boot): DRAM  : lma=00001020h vma=3ffb0000h size=01b34h (  6964)
+I (boot): IRAM  : lma=00002b5ch vma=40080000h size=08a40h ( 35392)
+I (boot): RTC_DATA      : lma=0000b5a4h vma=50000000h size=00028h (    40)
+I (boot): IROM  : lma=00010000h vma=400d0000h size=04240h ( 16960)
+I (boot): DROM  : lma=00020000h vma=3f400000h size=10000h ( 65536)
+I (boot): libc heap size 180 kB.
+I (spi_flash): detected chip: generic
+I (spi_flash): flash io: dio
+*** Booting Zephyr OS build v4.4.0-9769-gd211a737740b ***
+FieldSense-Z environmental statistics checkpoint
+main(): startup complete
+main(): statistics are calculated outside the hardware layer
+[SELFTEST] Controlled values: 22000, 23000, 21000, 24000, 25000, 26000 milli-C
+[SELFTEST] Window size: 5
+[SELFTEST] Expected latest=26000, min=21000, max=26000, count=6, moving_average=23800
+[SELFTEST] Environmental stats controlled test: PASS
+Queue item size: 36 bytes
+Queue depth: 4 samples
+Queue storage estimate: 144 bytes
+Statistics apply only to verified BMP280-supported channels: temperature and pressure
+[ACQ] Sensor acquisition thread started
+[ACQ] Priority=5, stack=2048 bytes, period=2000 ms
+[ACQ] Sensor device is ready: bmp280@76
+[PROC] Environmental processing thread started
+[PROC] Priority=6, stack=2048 bytes
+[PROC] Blocking on k_msgq_get(K_FOREVER)
+[ACQ-TIME] sample=1, execution_time_ms=71
+
+[ACQ] Published sample 1, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 1 at 1120 ms
+Temperature: 33.630 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=1, window_count=1
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=1, window_count=1
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.214 kPa (100214 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] Waiting for second sample before interval statistics are available
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=1, valid=1, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=1, timestamp=1120 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=2, execution_time_ms=71
+
+[ACQ] Published sample 2, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 2 at 3191 ms
+Temperature: 33.630 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=2, window_count=2
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=2, window_count=2
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.214 kPa (100214 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2071, max_ms=2071, mean_ms=2071, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=2, valid=2, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=2, timestamp=3191 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=3, execution_time_ms=71
+
+[ACQ] Published sample 3, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 3 at 5262 ms
+Temperature: 33.630 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=3, window_count=3
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=3, window_count=3
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.214 kPa (100214 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2071, max_ms=2071, mean_ms=2071, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=3, valid=3, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=3, timestamp=5262 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=4, execution_time_ms=71
+
+[ACQ] Published sample 4, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 4 at 7333 ms
+Temperature: 33.630 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=4, window_count=4
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=4, window_count=4
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.214 kPa (100214 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2071, max_ms=2071, mean_ms=2071, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=4, valid=4, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=4, timestamp=7333 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=5, execution_time_ms=70
+
+[ACQ] Published sample 5, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 5 at 9404 ms
+Temperature: 33.630 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=5, window_count=5
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=5, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.214 kPa (100214 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2071, max_ms=2071, mean_ms=2071, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=5, valid=5, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=5, timestamp=9404 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=6, execution_time_ms=70
+
+[ACQ] Published sample 6, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 6 at 11475 ms
+Temperature: 33.630 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=6, window_count=5
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=6, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.214 kPa (100214 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2071, max_ms=2071, mean_ms=2071, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=6, valid=6, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=6, timestamp=11475 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=7, execution_time_ms=70
+
+[ACQ] Published sample 7, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 7 at 13546 ms
+Temperature: 33.630 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=7, window_count=5
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=7, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2071, max_ms=2071, mean_ms=2071, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=7, valid=7, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=7, timestamp=13546 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=8, execution_time_ms=71
+
+[ACQ] Published sample 8, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 8 at 15616 ms
+Temperature: 33.630 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=8, window_count=5
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=8, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2070, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=70, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=8, valid=8, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=8, timestamp=15616 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=9, execution_time_ms=71
+
+[ACQ] Published sample 9, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 9 at 17687 ms
+Temperature: 33.630 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=9, window_count=5
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.630 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.630 deg C
+[STATS] Pressure valid_count=9, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=9, valid=9, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=9, timestamp=17687 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=10, execution_time_ms=71
+
+[ACQ] Published sample 10, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 10 at 19758 ms
+Temperature: 33.620 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=10, window_count=5
+[STATS] latest: 33.620 deg C
+[STATS] minimum: 33.620 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.628 deg C
+[STATS] Pressure valid_count=10, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=10, valid=10, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=10, timestamp=19758 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=11, execution_time_ms=71
+
+[ACQ] Published sample 11, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 11 at 21829 ms
+Temperature: 33.620 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=11, window_count=5
+[STATS] latest: 33.620 deg C
+[STATS] minimum: 33.620 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.626 deg C
+[STATS] Pressure valid_count=11, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=11, valid=11, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=11, timestamp=21829 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=12, execution_time_ms=71
+
+[ACQ] Published sample 12, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 12 at 23900 ms
+Temperature: 33.620 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=12, window_count=5
+[STATS] latest: 33.620 deg C
+[STATS] minimum: 33.620 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.624 deg C
+[STATS] Pressure valid_count=12, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.214 kPa (100214 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=12, valid=12, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=12, timestamp=23900 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=13, execution_time_ms=71
+
+[ACQ] Published sample 13, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 13 at 25971 ms
+Temperature: 33.620 deg C
+Pressure: 100.215 kPa (100215 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=13, window_count=5
+[STATS] latest: 33.620 deg C
+[STATS] minimum: 33.620 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.622 deg C
+[STATS] Pressure valid_count=13, window_count=5
+[STATS] latest: 100.215 kPa (100215 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=13, valid=13, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=13, timestamp=25971 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=14, execution_time_ms=71
+
+[ACQ] Published sample 14, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 14 at 28042 ms
+Temperature: 33.610 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=14, window_count=5
+[STATS] latest: 33.610 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.618 deg C
+[STATS] Pressure valid_count=14, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=14, valid=14, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=14, timestamp=28042 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=15, execution_time_ms=70
+
+[ACQ] Published sample 15, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 15 at 30113 ms
+Temperature: 33.610 deg C
+Pressure: 100.215 kPa (100215 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=15, window_count=5
+[STATS] latest: 33.610 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.616 deg C
+[STATS] Pressure valid_count=15, window_count=5
+[STATS] latest: 100.215 kPa (100215 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=15, valid=15, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=15, timestamp=30113 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=16, execution_time_ms=70
+
+[ACQ] Published sample 16, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 16 at 32184 ms
+Temperature: 33.610 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=16, window_count=5
+[STATS] latest: 33.610 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.614 deg C
+[STATS] Pressure valid_count=16, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=16, valid=16, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=16, timestamp=32184 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=17, execution_time_ms=70
+
+[ACQ] Published sample 17, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 17 at 34255 ms
+Temperature: 33.610 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=17, window_count=5
+[STATS] latest: 33.610 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.612 deg C
+[STATS] Pressure valid_count=17, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=17, valid=17, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=17, timestamp=34255 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=18, execution_time_ms=71
+
+[ACQ] Published sample 18, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 18 at 36325 ms
+Temperature: 33.610 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=18, window_count=5
+[STATS] latest: 33.610 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.610 deg C
+[STATS] Pressure valid_count=18, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2070, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=70, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=18, valid=18, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=18, timestamp=36325 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=19, execution_time_ms=71
+
+[ACQ] Published sample 19, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 19 at 38396 ms
+Temperature: 33.620 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=19, window_count=5
+[STATS] latest: 33.620 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.612 deg C
+[STATS] Pressure valid_count=19, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=19, valid=19, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=19, timestamp=38396 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=20, execution_time_ms=71
+
+[ACQ] Published sample 20, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 20 at 40467 ms
+Temperature: 33.620 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=20, window_count=5
+[STATS] latest: 33.620 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.614 deg C
+[STATS] Pressure valid_count=20, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.213 kPa (100213 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=20, valid=20, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=20, timestamp=40467 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=21, execution_time_ms=71
+
+[ACQ] Published sample 21, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 21 at 42538 ms
+Temperature: 33.620 deg C
+Pressure: 100.212 kPa (100212 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=21, window_count=5
+[STATS] latest: 33.620 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.616 deg C
+[STATS] Pressure valid_count=21, window_count=5
+[STATS] latest: 100.212 kPa (100212 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=21, valid=21, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=21, timestamp=42538 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=22, execution_time_ms=71
+
+[ACQ] Published sample 22, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 22 at 44609 ms
+Temperature: 33.630 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=22, window_count=5
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.620 deg C
+[STATS] Pressure valid_count=22, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=22, valid=22, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=22, timestamp=44609 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=23, execution_time_ms=71
+
+[ACQ] Published sample 23, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 23 at 46680 ms
+Temperature: 33.630 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=23, window_count=5
+[STATS] latest: 33.630 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.630 deg C
+[STATS] moving_average: 33.624 deg C
+[STATS] Pressure valid_count=23, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=23, valid=23, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=23, timestamp=46680 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=24, execution_time_ms=71
+
+[ACQ] Published sample 24, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 24 at 48751 ms
+Temperature: 33.640 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=24, window_count=5
+[STATS] latest: 33.640 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.640 deg C
+[STATS] moving_average: 33.628 deg C
+[STATS] Pressure valid_count=24, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=24, valid=24, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=24, timestamp=48751 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=25, execution_time_ms=70
+
+[ACQ] Published sample 25, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 25 at 50822 ms
+Temperature: 33.640 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=25, window_count=5
+[STATS] latest: 33.640 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.640 deg C
+[STATS] moving_average: 33.632 deg C
+[STATS] Pressure valid_count=25, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=25, valid=25, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=25, timestamp=50822 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=26, execution_time_ms=70
+
+[ACQ] Published sample 26, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 26 at 52893 ms
+Temperature: 33.650 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=26, window_count=5
+[STATS] latest: 33.650 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.650 deg C
+[STATS] moving_average: 33.638 deg C
+[STATS] Pressure valid_count=26, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=26, valid=26, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=26, timestamp=52893 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=27, execution_time_ms=70
+
+[ACQ] Published sample 27, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 27 at 54964 ms
+Temperature: 33.650 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=27, window_count=5
+[STATS] latest: 33.650 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.650 deg C
+[STATS] moving_average: 33.642 deg C
+[STATS] Pressure valid_count=27, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=27, valid=27, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=27, timestamp=54964 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=28, execution_time_ms=71
+
+[ACQ] Published sample 28, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 28 at 57034 ms
+Temperature: 33.650 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=28, window_count=5
+[STATS] latest: 33.650 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.650 deg C
+[STATS] moving_average: 33.646 deg C
+[STATS] Pressure valid_count=28, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2070, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=70, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=28, valid=28, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=28, timestamp=57034 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=29, execution_time_ms=71
+
+[ACQ] Published sample 29, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 29 at 59105 ms
+Temperature: 33.650 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=29, window_count=5
+[STATS] latest: 33.650 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.650 deg C
+[STATS] moving_average: 33.648 deg C
+[STATS] Pressure valid_count=29, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=29, valid=29, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=29, timestamp=59105 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=30, execution_time_ms=71
+
+[ACQ] Published sample 30, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 30 at 61176 ms
+Temperature: 33.660 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=30, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.660 deg C
+[STATS] moving_average: 33.652 deg C
+[STATS] Pressure valid_count=30, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=30, valid=30, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=30, timestamp=61176 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=31, execution_time_ms=71
+
+[ACQ] Published sample 31, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 31 at 63247 ms
+Temperature: 33.660 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=31, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.660 deg C
+[STATS] moving_average: 33.654 deg C
+[STATS] Pressure valid_count=31, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=31, valid=31, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=31, timestamp=63247 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=32, execution_time_ms=71
+
+[ACQ] Published sample 32, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 32 at 65318 ms
+Temperature: 33.660 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=32, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.660 deg C
+[STATS] moving_average: 33.656 deg C
+[STATS] Pressure valid_count=32, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=32, valid=32, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=32, timestamp=65318 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=33, execution_time_ms=71
+
+[ACQ] Published sample 33, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 33 at 67389 ms
+Temperature: 33.660 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=33, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.660 deg C
+[STATS] moving_average: 33.658 deg C
+[STATS] Pressure valid_count=33, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=33, valid=33, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=33, timestamp=67389 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=34, execution_time_ms=71
+
+[ACQ] Published sample 34, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 34 at 69460 ms
+Temperature: 33.660 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=34, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.660 deg C
+[STATS] moving_average: 33.660 deg C
+[STATS] Pressure valid_count=34, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=34, valid=34, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=34, timestamp=69460 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=35, execution_time_ms=70
+
+[ACQ] Published sample 35, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 35 at 71531 ms
+Temperature: 33.660 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=35, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.660 deg C
+[STATS] moving_average: 33.660 deg C
+[STATS] Pressure valid_count=35, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=35, valid=35, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=35, timestamp=71531 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=36, execution_time_ms=70
+
+[ACQ] Published sample 36, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 36 at 73602 ms
+Temperature: 33.660 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=36, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.660 deg C
+[STATS] moving_average: 33.660 deg C
+[STATS] Pressure valid_count=36, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=36, valid=36, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=36, timestamp=73602 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=37, execution_time_ms=70
+
+[ACQ] Published sample 37, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 37 at 75673 ms
+Temperature: 33.670 deg C
+Pressure: 100.212 kPa (100212 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=37, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.662 deg C
+[STATS] Pressure valid_count=37, window_count=5
+[STATS] latest: 100.212 kPa (100212 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=37, valid=37, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=37, timestamp=75673 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=38, execution_time_ms=71
+
+[ACQ] Published sample 38, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 38 at 77743 ms
+Temperature: 33.670 deg C
+Pressure: 100.212 kPa (100212 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=38, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.664 deg C
+[STATS] Pressure valid_count=38, window_count=5
+[STATS] latest: 100.212 kPa (100212 Pa)
+[STATS] minimum: 100.212 kPa (100212 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2070, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=70, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=38, valid=38, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=38, timestamp=77743 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=39, execution_time_ms=71
+
+[ACQ] Published sample 39, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 39 at 79814 ms
+Temperature: 33.670 deg C
+Pressure: 100.211 kPa (100211 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=39, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.666 deg C
+[STATS] Pressure valid_count=39, window_count=5
+[STATS] latest: 100.211 kPa (100211 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=39, valid=39, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=39, timestamp=79814 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=40, execution_time_ms=71
+
+[ACQ] Published sample 40, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 40 at 81885 ms
+Temperature: 33.660 deg C
+Pressure: 100.211 kPa (100211 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=40, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.666 deg C
+[STATS] Pressure valid_count=40, window_count=5
+[STATS] latest: 100.211 kPa (100211 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.211 kPa (100211 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=40, valid=40, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=40, timestamp=81885 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=41, execution_time_ms=71
+
+[ACQ] Published sample 41, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 41 at 83956 ms
+Temperature: 33.660 deg C
+Pressure: 100.211 kPa (100211 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=41, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.666 deg C
+[STATS] Pressure valid_count=41, window_count=5
+[STATS] latest: 100.211 kPa (100211 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.211 kPa (100211 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=41, valid=41, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=41, timestamp=83956 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=42, execution_time_ms=71
+
+[ACQ] Published sample 42, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 42 at 86027 ms
+Temperature: 33.660 deg C
+Pressure: 100.211 kPa (100211 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=42, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.664 deg C
+[STATS] Pressure valid_count=42, window_count=5
+[STATS] latest: 100.211 kPa (100211 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.211 kPa (100211 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=42, valid=42, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=42, timestamp=86027 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=43, execution_time_ms=71
+
+[ACQ] Published sample 43, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 43 at 88098 ms
+Temperature: 33.660 deg C
+Pressure: 100.211 kPa (100211 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=43, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.662 deg C
+[STATS] Pressure valid_count=43, window_count=5
+[STATS] latest: 100.211 kPa (100211 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.211 kPa (100211 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=43, valid=43, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=43, timestamp=88098 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=44, execution_time_ms=71
+
+[ACQ] Published sample 44, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 44 at 90169 ms
+Temperature: 33.670 deg C
+Pressure: 100.212 kPa (100212 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=44, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.662 deg C
+[STATS] Pressure valid_count=44, window_count=5
+[STATS] latest: 100.212 kPa (100212 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.211 kPa (100211 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=44, valid=44, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=44, timestamp=90169 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=45, execution_time_ms=70
+
+[ACQ] Published sample 45, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 45 at 92240 ms
+Temperature: 33.670 deg C
+Pressure: 100.212 kPa (100212 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=45, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.664 deg C
+[STATS] Pressure valid_count=45, window_count=5
+[STATS] latest: 100.212 kPa (100212 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.211 kPa (100211 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=45, valid=45, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=45, timestamp=92240 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=46, execution_time_ms=70
+
+[ACQ] Published sample 46, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 46 at 94311 ms
+Temperature: 33.670 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=46, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.666 deg C
+[STATS] Pressure valid_count=46, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.211 kPa (100211 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=46, valid=46, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=46, timestamp=94311 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=47, execution_time_ms=70
+
+[ACQ] Published sample 47, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 47 at 96382 ms
+Temperature: 33.670 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=47, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.668 deg C
+[STATS] Pressure valid_count=47, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=47, valid=47, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=47, timestamp=96382 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=48, execution_time_ms=71
+
+[ACQ] Published sample 48, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 48 at 98452 ms
+Temperature: 33.670 deg C
+Pressure: 100.212 kPa (100212 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=48, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.670 deg C
+[STATS] Pressure valid_count=48, window_count=5
+[STATS] latest: 100.212 kPa (100212 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2070, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=70, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=48, valid=48, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=48, timestamp=98452 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=49, execution_time_ms=71
+
+[ACQ] Published sample 49, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 49 at 100523 ms
+Temperature: 33.670 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=49, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.670 deg C
+[STATS] Pressure valid_count=49, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=49, valid=49, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=49, timestamp=100523 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=50, execution_time_ms=71
+
+[ACQ] Published sample 50, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 50 at 102594 ms
+Temperature: 33.670 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=50, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.670 deg C
+[STATS] Pressure valid_count=50, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=50, valid=50, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=50, timestamp=102594 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=51, execution_time_ms=71
+
+[ACQ] Published sample 51, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 51 at 104665 ms
+Temperature: 33.670 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=51, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.670 deg C
+[STATS] Pressure valid_count=51, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=51, valid=51, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=51, timestamp=104665 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=52, execution_time_ms=71
+
+[ACQ] Published sample 52, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 52 at 106736 ms
+Temperature: 33.670 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=52, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.670 deg C
+[STATS] Pressure valid_count=52, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=52, valid=52, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=52, timestamp=106736 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=53, execution_time_ms=71
+
+[ACQ] Published sample 53, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 53 at 108807 ms
+Temperature: 33.670 deg C
+Pressure: 100.212 kPa (100212 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=53, window_count=5
+[STATS] latest: 33.670 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.670 deg C
+[STATS] Pressure valid_count=53, window_count=5
+[STATS] latest: 100.212 kPa (100212 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=53, valid=53, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=53, timestamp=108807 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=54, execution_time_ms=71
+
+[ACQ] Published sample 54, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 54 at 110878 ms
+Temperature: 33.660 deg C
+Pressure: 100.212 kPa (100212 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=54, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.668 deg C
+[STATS] Pressure valid_count=54, window_count=5
+[STATS] latest: 100.212 kPa (100212 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=54, valid=54, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=54, timestamp=110878 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=55, execution_time_ms=70
+
+[ACQ] Published sample 55, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 55 at 112949 ms
+Temperature: 33.660 deg C
+Pressure: 100.213 kPa (100213 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=55, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.666 deg C
+[STATS] Pressure valid_count=55, window_count=5
+[STATS] latest: 100.213 kPa (100213 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=55, valid=55, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=55, timestamp=112949 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=56, execution_time_ms=70
+
+[ACQ] Published sample 56, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 56 at 115020 ms
+Temperature: 33.660 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=56, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.664 deg C
+[STATS] Pressure valid_count=56, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.212 kPa (100212 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=56, valid=56, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=56, timestamp=115020 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=57, execution_time_ms=70
+
+[ACQ] Published sample 57, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 57 at 117091 ms
+Temperature: 33.660 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=57, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.662 deg C
+[STATS] Pressure valid_count=57, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=70, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=57, valid=57, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=57, timestamp=117091 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=58, execution_time_ms=71
+
+[ACQ] Published sample 58, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 58 at 119161 ms
+Temperature: 33.660 deg C
+Pressure: 100.214 kPa (100214 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=58, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.660 deg C
+[STATS] Pressure valid_count=58, window_count=5
+[STATS] latest: 100.214 kPa (100214 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.213 kPa (100213 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2070, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=70, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=58, valid=58, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=58, timestamp=119161 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4
+[ACQ-TIME] sample=59, execution_time_ms=71
+
+[ACQ] Published sample 59, valid=1, queue_used=0, queue_free=4, queue_full_count=0
+
+[PROC] Processed valid sample 59 at 121232 ms
+Temperature: 33.660 deg C
+Pressure: 100.215 kPa (100215 Pa)
+Humidity: not supported by current BMP280 hardware
+[STATS] Supported channels: temperature, pressure
+[STATS] Temperature valid_count=59, window_count=5
+[STATS] latest: 33.660 deg C
+[STATS] minimum: 33.610 deg C
+[STATS] maximum: 33.670 deg C
+[STATS] moving_average: 33.660 deg C
+[STATS] Pressure valid_count=59, window_count=5
+[STATS] latest: 100.215 kPa (100215 Pa)
+[STATS] minimum: 100.211 kPa (100211 Pa)
+[STATS] maximum: 100.215 kPa (100215 Pa)
+[STATS] moving_average: 100.214 kPa (100214 Pa)
+[STATS] Humidity statistics skipped: BMP280 hardware does not support humidity
+[TIME] interval_ms=2071, min_ms=2070, max_ms=2071, mean_ms=2070, scheduler_delay_ms=71, missed_deadlines=0
+[TIME] last_valid_age_ms=71, stale=0, stale_threshold_ms=6000
+[PROC] Counters: processed=59, valid=59, invalid=0, sequence_gaps=0, latest_valid=yes
+[PROC] Latest valid sample sequence=59, timestamp=121232 ms
+[PROC] queue_used_after_get=0, queue_free_after_get=4

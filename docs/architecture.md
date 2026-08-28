@@ -351,3 +351,27 @@ The requested sampling period is:
 
 ```text
 2000 ms
+
+## Entry — Separating node health from environmental alerts
+
+### What I was trying to achieve
+
+I wanted to define the health and alert model before writing state-machine code.
+
+### What I learned
+
+I learned that node health and environmental status are different systems.
+
+Node health answers whether the embedded device is working correctly. It depends on things like sensor communication, stale data, missed deadlines, queue behavior, and repeated failures.
+
+Environmental status answers what the sensor is measuring. It depends on temperature and pressure values from the environment.
+
+### Why this separation matters
+
+A high-temperature reading does not automatically mean the node is faulty. If the node is reading the sensor correctly, producing fresh samples, meeting timing expectations, and processing data normally, then the node can be healthy while reporting a high-temperature environmental alert.
+
+This separation makes the design easier to explain and safer to extend. Device faults should represent problems with the embedded node. Environmental alerts should represent conditions detected by the node.
+
+### Blog-ready section
+
+In FieldSense-Z, I separated system health from environmental conditions before writing the state-machine code. This matters because a sensor node can be operating correctly while detecting an abnormal environment. For example, if the BMP280 reports a high temperature, that does not automatically mean the firmware or hardware is faulty. It may mean the device is successfully detecting a hot condition. Node health is based on device behavior such as sensor failures, stale data, missed deadlines, and queue overflows. Environmental status is based on measured temperature and pressure. Keeping these two systems separate makes the firmware easier to debug, explain, and extend.

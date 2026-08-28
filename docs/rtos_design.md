@@ -150,3 +150,70 @@ The requested sampling period is:
 
 ```text
 2000 ms
+
+## Structured Zephyr logging
+
+FieldSense-Z now uses Zephyr structured logging instead of temporary `printk()` output.
+
+### Why structured logging was added
+
+The project now has multiple RTOS responsibilities:
+
+- sensor acquisition,
+- message queue publishing,
+- processing,
+- statistics,
+- timing metrics,
+- node health state,
+- environmental status state.
+
+Printing every internal operation creates log flooding and makes real problems harder to see.
+
+Structured logging improves observability by logging important events without overwhelming the serial console.
+
+### Logging concepts used
+
+A log module identifies the source of a message.
+
+Severity levels describe importance:
+
+- `ERR`: real error or fault condition
+- `WRN`: abnormal but recoverable condition
+- `INF`: important normal event
+- `DBG`: detailed debug information
+
+Deferred logging is enabled so application threads do not spend as much time directly printing to the console.
+
+### Events logged
+
+The firmware now logs:
+
+- boot,
+- logging mode,
+- sensor initialization,
+- self-test results,
+- health transitions,
+- environmental transitions,
+- queue overflow,
+- missed deadlines,
+- stale data,
+- qualified recovery,
+- periodic summaries.
+
+### Log flooding control
+
+The firmware avoids printing every internal operation.
+
+Normal per-sample publish details are debug-level only.
+
+The processing thread prints periodic summaries instead of printing every statistic every cycle.
+
+Important events such as queue overflow, missed deadlines, stale data, and state transitions are logged immediately.
+
+### Example observation
+
+During the structured logging run, the node reached:
+
+```text
+Node health: HEALTHY
+Environmental status: HIGH_TEMPERATURE

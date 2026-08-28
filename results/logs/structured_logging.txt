@@ -1,0 +1,49 @@
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3ffb0000,len:8256
+load:0x40080000,len:40416
+load:0x50000000,len:40
+entry 0x40085270
+I (soc_init): ESP Simple boot
+I (soc_init): compile time Aug 27 2026 19:17:59
+W (soc_init): Unicore bootloader
+I (soc_init): chip revision: v3.1
+I (flash_init): SPI Speed      : 40MHz
+I (flash_init): SPI Mode       : DIO
+I (flash_init): SPI Flash Size : 4MB
+I (boot): DRAM  : lma=00001020h vma=3ffb0000h size=02040h (  8256)
+I (boot): IRAM  : lma=00003068h vma=40080000h size=09de0h ( 40416)
+I (boot): RTC_DATA      : lma=0000ce50h vma=50000000h size=00028h (    40)
+I (boot): IROM  : lma=00010000h vma=400d0000h size=05b70h ( 23408)
+I (boot): DROM  : lma=00020000h vma=3f400000h size=10000h ( 65536)
+I (boot): libc heap size 177 kB.
+I (spi_flash): detected chip: generic
+I (spi_flash): flash io: dio
+*** Booting Zephyr OS build v4.4.0-9769-gd211a737740b ***
+[00:00:00.121,000] ␛[0m<inf> app: boot: FieldSense-Z structured logging checkpoint␛[0m
+[00:00:00.121,000] ␛[0m<inf> app: logging mode: deferred␛[0m
+[00:00:00.121,000] ␛[0m<inf> app: pipeline: acquisition -> k_msgq -> processing -> health/environment state machines␛[0m
+[00:00:00.121,000] ␛[0m<inf> app: supported sensor channels: temperature pressure; humidity unsupported on verified BMP280 hardware␛[0m
+[00:00:00.121,000] ␛[0m<inf> app: selftest env_stats=PASS␛[0m
+[00:00:00.121,000] ␛[0m<inf> app: selftest state_model=PASS␛[0m
+[00:00:00.121,000] ␛[0m<inf> app: queue item size=36 bytes depth=4 storage_estimate=144 bytes␛[0m
+[00:00:00.121,000] ␛[0m<inf> app: queue policy: non-blocking publish, count overflow, preserve oldest queued samples, drop newest failed publish␛[0m
+[00:00:01.121,000] ␛[0m<inf> app: acquisition thread started: priority=5 stack=2048 period_ms=2000␛[0m
+[00:00:01.121,000] ␛[0m<inf> sensor_service: sensor initialized: bmp280@76␛[0m
+[00:00:01.121,000] ␛[0m<inf> app: sensor service ready: device=bmp280@76␛[0m
+[00:00:01.121,000] ␛[0m<inf> app: processing thread started: priority=6 stack=2048␛[0m
+[00:00:01.121,000] ␛[0m<inf> app: processing thread blocking on k_msgq_get(K_FOREVER)␛[0m
+[00:00:01.192,000] ␛[0m<inf> app: health transition: INITIALIZING -> HEALTHY␛[0m
+[00:00:01.192,000] ␛[1;33m<wrn> app: environment transition: UNKNOWN -> HIGH_TEMPERATURE␛[0m
+[00:00:19.829,000] ␛[0m<inf> app: summary: processed=10 valid=10 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=HIGH_TEMPERATURE latest_seq=10 temp_mC=32670 pressure_pa=100162 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+[00:00:19.829,000] ␛[0m<inf> app: stats: temp_latest_mC=32670 temp_min_mC=32670 temp_max_mC=32690 temp_avg_mC=32678 pressure_latest_pa=100162 pressure_min_pa=100162 pressure_max_pa=100165 pressure_avg_pa=100163␛[0m
+[00:00:40.537,000] ␛[0m<inf> app: summary: processed=20 valid=20 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=HIGH_TEMPERATURE latest_seq=20 temp_mC=32670 pressure_pa=100161 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+[00:00:40.537,000] ␛[0m<inf> app: stats: temp_latest_mC=32670 temp_min_mC=32670 temp_max_mC=32690 temp_avg_mC=32674 pressure_latest_pa=100161 pressure_min_pa=100161 pressure_max_pa=100165 pressure_avg_pa=100161␛[0m
+[00:01:01.245,000] ␛[0m<inf> app: summary: processed=30 valid=30 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=HIGH_TEMPERATURE latest_seq=30 temp_mC=32670 pressure_pa=100160 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+[00:01:01.245,000] ␛[0m<inf> app: stats: temp_latest_mC=32670 temp_min_mC=32660 temp_max_mC=32690 temp_avg_mC=32668 pressure_latest_pa=100160 pressure_min_pa=100159 pressure_max_pa=100165 pressure_avg_pa=100160␛[0m
+[00:01:21.953,000] ␛[0m<inf> app: summary: processed=40 valid=40 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=HIGH_TEMPERATURE latest_seq=40 temp_mC=32670 pressure_pa=100162 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+[00:01:21.953,000] ␛[0m<inf> app: stats: temp_latest_mC=32670 temp_min_mC=32660 temp_max_mC=32690 temp_avg_mC=32670 pressure_latest_pa=100162 pressure_min_pa=100159 pressure_max_pa=100165 pressure_avg_pa=100160␛[0m
+
+--- exit ---

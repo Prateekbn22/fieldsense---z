@@ -7,6 +7,9 @@
 #include <zephyr/kernel.h>
 
 #include "sensor_service.h"
+#include <zephyr/logging/log.h>
+
+LOG_MODULE_REGISTER(sensor_service, LOG_LEVEL_INF);
 
 #define FIELDSENSE_SENSOR_NODE DT_ALIAS(fieldsense_env_sensor)
 
@@ -45,8 +48,10 @@ static void sensor_sample_clear(struct sensor_sample *sample)
 int sensor_service_init(void)
 {
 	if (!device_is_ready(env_sensor)) {
+                LOG_ERR("sensor device not ready: %s", env_sensor->name);
 		return -ENODEV;
 	}
+        LOG_INF("sensor initialized: %s", env_sensor->name);
 
 	return 0;
 }
@@ -77,6 +82,7 @@ int sensor_service_read(struct sensor_sample *sample)
 	if (ret != 0) {
 		sample->status = SENSOR_SAMPLE_STATUS_FETCH_FAILED;
 		sample->driver_error = ret;
+                LOG_WRN("sensor sample fetch failed ret=%d", ret);
 		return ret;
 	}
 

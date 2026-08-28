@@ -8,6 +8,7 @@
 #include "env_stats.h"
 #include "sensor_service.h"
 #include "timing_metrics.h"
+#include "state_model.h"
 
 #define SENSOR_ACQ_THREAD_STACK_SIZE 2048
 #define SENSOR_PROCESSING_THREAD_STACK_SIZE 2048
@@ -197,6 +198,27 @@ static void print_timing_metrics(const struct timing_metrics *metrics)
 	}
 }
 
+static void print_state_model(const struct state_model *model)
+{
+	printk("[STATE] node=%s, environment=%s\n",
+	       node_health_state_to_string(model->node_health),
+	       environmental_status_to_string(model->environmental_status));
+
+	printk("[STATE] transitions: node=%u, environment=%u\n",
+	       model->node_health_transition_count,
+	       model->environmental_transition_count);
+
+	printk("[STATE] counters: sensor_failures=%u, recovery_valid=%u, stale_events=%u, missed_deadlines=%u, queue_overflows=%u\n",
+	       model->consecutive_sensor_failures,
+	       model->consecutive_recovery_valid_samples,
+	       model->stale_data_event_count,
+	       model->missed_deadline_event_count,
+	       model->queue_overflow_event_count);
+
+	printk("[STATE] last_fault_reason=%s\n",
+	       state_fault_reason_to_string(model->last_fault_reason));
+}
+
 static void publish_sample(const struct sensor_sample *sample)
 {
 	int ret;
@@ -281,6 +303,10 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 	struct sensor_sample latest_valid_sample;
 	struct environmental_stats stats;
         struct timing_metrics timing;
+        struct state_model system_state;
+
+        uint32_t previous_missed_deadline_count = 0U;
+        uint32_t previous_queue_full_count = 0U;
 	bool latest_valid_available = false;
 	uint32_t valid_sample_count = 0;
 	uint32_t invalid_sample_count = 0;
@@ -298,6 +324,7 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 		    SENSOR_ACQ_PERIOD_MS,
 		    SENSOR_MISSED_PERIOD_TOLERANCE_MS,
 		    SENSOR_STALE_DATA_THRESHOLD_MS);
+         state_model_init(&system_state);
 
 	printk("[PROC] Environmental processing thread started\n");
 	printk("[PROC] Priority=%d, stack=%d bytes\n",
@@ -314,6 +341,37 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 
 		processed_count++;
         timing_metrics_update(&timing, &sample, k_uptime_get_32());
+        bool sample_is_valid;
+uint32_t current_missed_deadline_count;
+uint32_t current_queue_full_count;
+bool missed_deadline_event;
+bool queue_overflow_event;
+struct state_model_input state_input;
+
+sample_is_valid = validate_sample_data(&sample);
+
+current_missed_deadline_count = timing.missed_deadline_count;
+current_queue_full_count = queue_full_count;
+
+missed_deadline_event =
+	current_missed_deadline_count > previous_missed_deadline_count;
+
+queue_overflow_event =
+	current_queue_full_count > previous_queue_full_count;
+
+previous_missed_deadline_count = current_missed_deadline_count;
+previous_queue_full_count = current_queue_full_count;
+
+state_input.sample_received = true;
+state_input.sample_valid = sample_is_valid;
+state_input.temperature_milli_celsius = sample.temperature_milli_celsius;
+state_input.pressure_pa = sample.pressure_pa;
+state_input.stale_data = timing.stale_data;
+state_input.missed_deadline_event = missed_deadline_event;
+state_input.queue_overflow_event = queue_overflow_event;
+
+state_model_update(&system_state, &state_input);
+print_state_model(&system_state);
 
 		if (sample.sequence != expected_sequence) {
 			uint32_t missed = 0;
@@ -333,7 +391,7 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 
 		expected_sequence = sample.sequence + 1;
 
-		if (validate_sample_data(&sample)) {
+		if (sample_is_valid) {
 			latest_valid_sample = sample;
 			latest_valid_available = true;
 			valid_sample_count++;
@@ -396,6 +454,7 @@ K_THREAD_DEFINE(sensor_processing_thread_id,
 int main(void)
 {
 	bool self_test_passed;
+        bool state_model_test_passed;
 
 	printk("FieldSense-Z environmental statistics checkpoint\n");
 	printk("main(): startup complete\n");
@@ -409,6 +468,10 @@ int main(void)
 
 	printk("[SELFTEST] Environmental stats controlled test: %s\n",
 	       self_test_passed ? "PASS" : "FAIL");
+        state_model_test_passed = state_model_controlled_self_test();
+
+       printk("[SELFTEST] State model controlled test: %s\n",
+       state_model_test_passed ? "PASS" : "FAIL");
 
 	printk("Queue item size: %u bytes\n",
 	       (unsigned int)sizeof(struct sensor_sample));

@@ -253,3 +253,58 @@ This separation makes the design easier to explain and safer to extend. Device f
 ### Blog-ready section
 
 In FieldSense-Z, I separated system health from environmental conditions before writing the state-machine code. This matters because a sensor node can be operating correctly while detecting an abnormal environment. For example, if the BMP280 reports a high temperature, that does not automatically mean the firmware or hardware is faulty. It may mean the device is successfully detecting a hot condition. Node health is based on device behavior such as sensor failures, stale data, missed deadlines, and queue overflows. Environmental status is based on measured temperature and pressure. Keeping these two systems separate makes the firmware easier to debug, explain, and extend.
+
+## Entry — Health and environmental state machines
+
+### What I was trying to achieve
+
+I wanted to implement the state models that I had already documented, without adding extra features or shell commands yet.
+
+### What I changed
+
+I added a separate state model module:
+
+- `include/state_model.h`
+- `src/state_model.c`
+
+The module keeps node health and environmental status separate.
+
+Node health tracks whether the embedded node itself is working correctly.
+
+Environmental status tracks what the BMP280-supported measurements say about the environment.
+
+### What I learned
+
+I learned that a state machine needs states, events, transitions, guard conditions, and actions.
+
+For node health, events include sensor failures, stale data, missed deadlines, and queue overflows.
+
+For environmental status, events come from temperature and pressure thresholds.
+
+I also learned why recovery qualification matters. The node should not move from `FAULT` back to `HEALTHY` after only one good sample. This implementation requires 5 consecutive valid samples before recovery.
+
+### Interview explanation
+
+I separated node health from environmental status because they answer different questions.
+
+Node health answers: is the embedded system working correctly?
+
+Environmental status answers: what condition is the sensor measuring?
+
+For example, a high-temperature condition means the environment is hot. It does not automatically mean the node is faulty. If the sensor is communicating correctly, timing is fresh, and samples are being processed normally, then the node can be `HEALTHY` while the environmental status is `HIGH_TEMPERATURE`.
+
+The state model is also testable independently from the physical sensor. I added a controlled self-test that verifies normal startup, transient errors, repeated errors, stale data, environmental alerts, and qualified recovery.
+
+### Result
+
+The controlled state-model self-test passed, and normal runtime operation showed the node health and environmental status being reported separately.
+
+### Evidence
+
+Serial output was saved in:
+
+`results/logs/state_machines_run.txt`
+
+### Blog seed
+
+After documenting the FieldSense-Z health and alert model, I implemented the state machines in a separate module. I kept node health separate from environmental status so the firmware can distinguish between a device problem and a real environmental condition. The node health state machine handles initialization, transient errors, repeated failures, stale data, missed deadlines, queue overflows, and qualified recovery. The environmental state machine only uses channels supported by my verified BMP280 hardware, so it tracks temperature and pressure alerts but not humidity. I also added a controlled self-test so the state logic can be verified without needing to physically force every sensor failure or environmental condition.

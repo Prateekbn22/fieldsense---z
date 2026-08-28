@@ -104,3 +104,52 @@ Example:
 
 HEALTHY -> WARNING
 
+## Implementation checkpoint — State machines
+
+The documented health and environmental alert model has now been implemented in firmware.
+
+The implementation keeps two separate state systems:
+
+- node health,
+- environmental status.
+
+### Implemented node health states
+
+- `INITIALIZING`
+- `HEALTHY`
+- `WARNING`
+- `FAULT`
+
+### Implemented environmental states
+
+The verified sensor is BMP280-compatible, so the implemented environmental states are:
+
+- `UNKNOWN`
+- `NORMAL`
+- `HIGH_TEMPERATURE`
+- `PRESSURE_ALERT`
+
+Humidity states are still intentionally excluded because the current hardware does not support humidity.
+
+### Implemented health behavior
+
+The state model supports:
+
+- normal startup from `INITIALIZING`,
+- transient sensor error handling,
+- repeated sensor-error transition to `FAULT`,
+- stale-data detection,
+- missed-deadline awareness,
+- queue-overflow awareness,
+- qualified recovery using multiple valid samples,
+- transition counters,
+- last fault reason tracking.
+
+### Recovery rule
+
+A node does not recover immediately after one good sample.
+
+Recovery requires:
+
+```text
+5 consecutive valid samples

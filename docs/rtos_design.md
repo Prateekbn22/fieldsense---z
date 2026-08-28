@@ -217,3 +217,20 @@ During the structured logging run, the node reached:
 ```text
 Node health: HEALTHY
 Environmental status: HIGH_TEMPERATURE
+
+## Runtime diagnostic shell
+
+FieldSense-Z now includes a runtime diagnostic shell for validation.
+
+The shell provides runtime introspection without reflashing firmware.
+
+Commands include:
+
+```text
+node status
+node latest
+node stats
+node timing
+node faults
+node reset-stats
+node thresholds

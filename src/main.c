@@ -10,6 +10,7 @@
 #include "sensor_service.h"
 #include "timing_metrics.h"
 #include "state_model.h"
+#include "diagnostics.h"
 
 LOG_MODULE_REGISTER(app, LOG_LEVEL_INF);
 
@@ -245,7 +246,7 @@ static void sensor_acquisition_thread(void *p1, void *p2, void *p3)
 static void sensor_processing_thread(void *p1, void *p2, void *p3)
 {
 	struct sensor_sample sample;
-	struct sensor_sample latest_valid_sample;
+	struct sensor_sample latest_valid_sample = {0};
 	struct environmental_stats stats;
 	struct timing_metrics timing;
 	struct state_model system_state;
@@ -296,6 +297,32 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 		if (ret != 0) {
 			LOG_ERR("k_msgq_get failed ret=%d", ret);
 			continue;
+		}
+
+		if (diagnostics_reset_stats_requested_take()) {
+			env_stats_init(&stats);
+
+			timing_metrics_init(&timing,
+					    SENSOR_ACQ_PERIOD_MS,
+					    SENSOR_MISSED_PERIOD_TOLERANCE_MS,
+					    SENSOR_STALE_DATA_THRESHOLD_MS);
+
+			latest_valid_sample = (struct sensor_sample){0};
+			latest_valid_available = false;
+
+			valid_sample_count = 0U;
+			invalid_sample_count = 0U;
+			sequence_gap_count = 0U;
+			processed_count = 0U;
+			expected_sequence = sample.sequence;
+
+			previous_missed_deadline_count =
+				timing.missed_deadline_count;
+			previous_queue_full_count =
+				(uint32_t)atomic_get(&queue_full_count);
+			previous_stale_data = false;
+
+			LOG_INF("diagnostic statistics reset applied");
 		}
 
 		processed_count++;
@@ -397,6 +424,25 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 				sample.driver_error);
 		}
 
+		{
+			struct diagnostics_snapshot_update diagnostic_update = {
+				.processed_count = processed_count,
+				.valid_sample_count = valid_sample_count,
+				.invalid_sample_count = invalid_sample_count,
+				.sequence_gap_count = sequence_gap_count,
+				.queue_full_count =
+					(uint32_t)atomic_get(&queue_full_count),
+				.latest_valid_available = latest_valid_available,
+				.latest_valid_sample = latest_valid_sample,
+				.stats = stats,
+				.timing = timing,
+				.system_state = system_state,
+				.update_time_ms = k_uptime_get_32(),
+			};
+
+			diagnostics_publish_snapshot(&diagnostic_update);
+		}
+
 		if ((processed_count % PERIODIC_SUMMARY_SAMPLE_COUNT) == 0U) {
 			log_periodic_summary(processed_count,
 					     valid_sample_count,
@@ -432,9 +478,11 @@ int main(void)
 	bool env_stats_test_passed;
 	bool state_model_test_passed;
 
-	LOG_INF("boot: FieldSense-Z structured logging checkpoint");
+	diagnostics_init();
+
+	LOG_INF("boot: FieldSense-Z diagnostic shell checkpoint");
 	LOG_INF("logging mode: deferred");
-	LOG_INF("pipeline: acquisition -> k_msgq -> processing -> health/environment state machines");
+	LOG_INF("pipeline: acquisition -> k_msgq -> processing -> diagnostics shell");
 	LOG_INF("supported sensor channels: temperature pressure; humidity unsupported on verified BMP280 hardware");
 
 	env_stats_test_passed = env_stats_controlled_self_test();

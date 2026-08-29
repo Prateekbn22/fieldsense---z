@@ -1,3 +1,5 @@
+#include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 
 #include "timing_metrics.h"
@@ -36,8 +38,18 @@ void timing_metrics_update(struct timing_metrics *metrics,
 	}
 
 	if (metrics->have_previous_sample) {
-		interval_ms = sample->timestamp_ms -
-			      metrics->previous_sample_timestamp_ms;
+		if (sample->timestamp_ms >=
+		    metrics->previous_sample_timestamp_ms) {
+			interval_ms = sample->timestamp_ms -
+				      metrics->previous_sample_timestamp_ms;
+		} else {
+			/*
+			 * Stale-publication fault injection can intentionally
+			 * backdate a sample timestamp. Do not allow unsigned
+			 * wraparound to corrupt interval statistics.
+			 */
+			interval_ms = metrics->requested_period_ms;
+		}
 
 		metrics->latest_interval_ms = interval_ms;
 
@@ -81,11 +93,24 @@ void timing_metrics_update(struct timing_metrics *metrics,
 	}
 
 	if (metrics->have_last_valid_sample) {
-		metrics->last_valid_sample_age_ms =
-			now_ms - metrics->last_valid_sample_timestamp_ms;
+		if (now_ms >= metrics->last_valid_sample_timestamp_ms) {
+			metrics->last_valid_sample_age_ms =
+				now_ms -
+				metrics->last_valid_sample_timestamp_ms;
+		} else {
+			/*
+			 * Protect against a future timestamp or wraparound.
+			 * This should not happen in normal operation, but it
+			 * keeps diagnostics safe.
+			 */
+			metrics->last_valid_sample_age_ms = 0U;
+		}
 
 		metrics->stale_data =
 			metrics->last_valid_sample_age_ms >
 			metrics->stale_threshold_ms;
+	} else {
+		metrics->last_valid_sample_age_ms = 0U;
+		metrics->stale_data = false;
 	}
 }

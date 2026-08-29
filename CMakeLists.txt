@@ -13,4 +13,5 @@ target_sources(app PRIVATE
     src/timing_metrics.c
     src/state_model.c
     src/diagnostics.c
+    src/fault_injection.c
 )

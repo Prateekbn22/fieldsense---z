@@ -84,8 +84,8 @@ static void clear_recoverable_counters(struct state_model *model)
 	model->stale_data_event_count = 0U;
 	model->missed_deadline_event_count = 0U;
 	model->queue_overflow_event_count = 0U;
+	model->last_fault_reason = STATE_FAULT_NONE;
 }
-
 static void update_node_health(struct state_model *model,
 			       const struct state_model_input *input)
 {
@@ -96,6 +96,26 @@ static void update_node_health(struct state_model *model,
 	}
 
 	update_health_counters(model, input);
+
+	/*
+	 * Important recovery rule:
+	 *
+	 * When the node is already in FAULT, old fault counters may still be
+	 * above their fault thresholds. If we check those thresholds before
+	 * checking qualified recovery, the node can never leave FAULT.
+	 *
+	 * Therefore FAULT recovery is checked first.
+	 */
+	if (model->node_health == NODE_HEALTH_FAULT) {
+		if (input_is_recovery_valid(input) &&
+		    model->consecutive_recovery_valid_samples >=
+		    STATE_RECOVERY_VALID_SAMPLE_COUNT) {
+			set_node_health(model, NODE_HEALTH_HEALTHY);
+			clear_recoverable_counters(model);
+		}
+
+		return;
+	}
 
 	if (model->consecutive_sensor_failures >=
 	    STATE_SENSOR_FAILURES_BEFORE_FAULT) {
@@ -149,12 +169,9 @@ static void update_node_health(struct state_model *model,
 		break;
 
 	case NODE_HEALTH_FAULT:
-		if (input_is_recovery_valid(input) &&
-		    model->consecutive_recovery_valid_samples >=
-		    STATE_RECOVERY_VALID_SAMPLE_COUNT) {
-			set_node_health(model, NODE_HEALTH_HEALTHY);
-			clear_recoverable_counters(model);
-		}
+		/*
+		 * Already handled above.
+		 */
 		break;
 
 	default:
@@ -163,7 +180,6 @@ static void update_node_health(struct state_model *model,
 		break;
 	}
 }
-
 static bool high_temperature_active(enum environmental_status_state current,
 				    int32_t temperature_milli_celsius)
 {

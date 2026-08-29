@@ -10,6 +10,7 @@
 #include <zephyr/sys/util.h>
 
 #include "diagnostics.h"
+#include "fault_injection.h"
 #include "sensor_service.h"
 #include "state_model.h"
 
@@ -24,8 +25,11 @@ static atomic_t reset_stats_requested;
 void diagnostics_init(void)
 {
 	(void)k_mutex_lock(&diagnostics_mutex, K_FOREVER);
+
 	memset(&diagnostics_snapshot, 0, sizeof(diagnostics_snapshot));
 	diagnostics_snapshot_valid = false;
+	atomic_set(&reset_stats_requested, 0);
+
 	(void)k_mutex_unlock(&diagnostics_mutex);
 }
 
@@ -128,15 +132,52 @@ static int require_snapshot(const struct shell *sh,
 	return 0;
 }
 
+static void shell_print_fault_injections(const struct shell *sh,
+					 uint32_t mask)
+{
+	shell_print(sh, "fault_injection_mask: 0x%08x",
+		    (unsigned int)mask);
+
+	if (mask == 0U) {
+		shell_print(sh, "active_injections: none");
+		return;
+	}
+
+	shell_print(sh, "active_injections:");
+
+	if ((mask & FAULT_INJECTION_SENSOR_READ_FAILURE) != 0U) {
+		shell_print(sh, "- sensor-read-failure");
+	}
+
+	if ((mask & FAULT_INJECTION_STALE_PUBLICATION) != 0U) {
+		shell_print(sh, "- stale-publication");
+	}
+
+	if ((mask & FAULT_INJECTION_PROCESSING_DELAY) != 0U) {
+		shell_print(sh, "- processing-delay");
+	}
+
+	if ((mask & FAULT_INJECTION_QUEUE_PRESSURE) != 0U) {
+		shell_print(sh, "- queue-pressure");
+	}
+
+	if ((mask & FAULT_INJECTION_INVALID_MEASUREMENT) != 0U) {
+		shell_print(sh, "- invalid-measurement");
+	}
+}
+
 static int cmd_node_status(const struct shell *sh)
 {
 	struct diagnostics_snapshot_update snapshot;
+	uint32_t current_injection_mask;
 	int ret;
 
 	ret = require_snapshot(sh, &snapshot);
 	if (ret != 0) {
 		return ret;
 	}
+
+	current_injection_mask = fault_injection_get_mask();
 
 	shell_print(sh, "Node status");
 	shell_print(sh, "health: %s",
@@ -156,6 +197,11 @@ static int cmd_node_status(const struct shell *sh)
 		    (unsigned int)snapshot.invalid_sample_count);
 	shell_print(sh, "queue_full_count: %u events",
 		    (unsigned int)snapshot.queue_full_count);
+
+	shell_print_fault_injections(sh, current_injection_mask);
+
+	shell_print(sh, "snapshot_fault_injection_mask: 0x%08x",
+		    (unsigned int)snapshot.fault_injection_mask);
 	shell_print(sh, "snapshot_age_reference_ms: %u ms uptime",
 		    (unsigned int)snapshot.update_time_ms);
 
@@ -342,6 +388,8 @@ static int cmd_node_faults(const struct shell *sh)
 	shell_print(sh, "queue_overflow_events: %u",
 		    (unsigned int)state->queue_overflow_event_count);
 
+	shell_print_fault_injections(sh, fault_injection_get_mask());
+
 	return 0;
 }
 
@@ -388,16 +436,79 @@ static int cmd_node_thresholds(const struct shell *sh)
 	return 0;
 }
 
+static int cmd_node_inject(const struct shell *sh, size_t argc, char **argv)
+{
+	const char *fault_name;
+
+	if (argc != 3) {
+		shell_error(sh, "usage: node inject <sensor-failure|stale-publication|processing-delay|queue-pressure|invalid-measurement|clear>");
+		return -EINVAL;
+	}
+
+	fault_name = argv[2];
+
+	if (strcmp(fault_name, "sensor-failure") == 0) {
+		fault_injection_enable(FAULT_INJECTION_SENSOR_READ_FAILURE);
+		shell_print(sh, "enabled injection: sensor-read-failure");
+		return 0;
+	}
+
+	if (strcmp(fault_name, "stale-publication") == 0) {
+		fault_injection_enable(FAULT_INJECTION_STALE_PUBLICATION);
+		shell_print(sh, "enabled injection: stale-publication");
+		return 0;
+	}
+
+	if (strcmp(fault_name, "processing-delay") == 0) {
+		fault_injection_enable(FAULT_INJECTION_PROCESSING_DELAY);
+		shell_print(sh, "enabled injection: processing-delay");
+		return 0;
+	}
+
+	if (strcmp(fault_name, "queue-pressure") == 0) {
+		fault_injection_enable(FAULT_INJECTION_QUEUE_PRESSURE);
+		shell_print(sh, "enabled injection: queue-pressure");
+		return 0;
+	}
+
+	if (strcmp(fault_name, "invalid-measurement") == 0) {
+		fault_injection_enable(FAULT_INJECTION_INVALID_MEASUREMENT);
+		shell_print(sh, "enabled injection: invalid-measurement");
+		return 0;
+	}
+
+	if (strcmp(fault_name, "clear") == 0) {
+		fault_injection_clear_all();
+		shell_print(sh, "all injected faults cleared");
+		return 0;
+	}
+
+	shell_error(sh, "unknown injection: %s", fault_name);
+	shell_error(sh, "valid injections: sensor-failure stale-publication processing-delay queue-pressure invalid-measurement clear");
+
+	return -EINVAL;
+}
+
 static int cmd_node(const struct shell *sh, size_t argc, char **argv)
 {
 	const char *subcmd;
 
-	if (argc != 2) {
-		shell_error(sh, "usage: node <status|latest|stats|timing|faults|reset-stats|thresholds>");
+	if (argc < 2 || argc > 3) {
+		shell_error(sh, "usage: node <status|latest|stats|timing|faults|reset-stats|thresholds|inject>");
 		return -EINVAL;
 	}
 
 	subcmd = argv[1];
+
+	if (strcmp(subcmd, "inject") == 0) {
+		return cmd_node_inject(sh, argc, argv);
+	}
+
+	if (argc != 2) {
+		shell_error(sh, "command does not accept extra arguments: %s",
+			    subcmd);
+		return -EINVAL;
+	}
 
 	if (strcmp(subcmd, "status") == 0) {
 		return cmd_node_status(sh);
@@ -428,7 +539,7 @@ static int cmd_node(const struct shell *sh, size_t argc, char **argv)
 	}
 
 	shell_error(sh, "unknown node command: %s", subcmd);
-	shell_error(sh, "valid commands: status latest stats timing faults reset-stats thresholds");
+	shell_error(sh, "valid commands: status latest stats timing faults reset-stats thresholds inject");
 
 	return -EINVAL;
 }
@@ -438,4 +549,4 @@ SHELL_CMD_ARG_REGISTER(node,
 		       "FieldSense-Z diagnostic commands",
 		       cmd_node,
 		       2,
-		       0);
+		       1);

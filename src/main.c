@@ -1,3 +1,4 @@
+#include <errno.h>
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -11,6 +12,7 @@
 #include "timing_metrics.h"
 #include "state_model.h"
 #include "diagnostics.h"
+#include "fault_injection.h"
 
 LOG_MODULE_REGISTER(app, LOG_LEVEL_INF);
 
@@ -190,6 +192,53 @@ static void log_periodic_summary(
 		(int)stats->pressure_pa.moving_average);
 }
 
+static void apply_fault_injection_to_sample(struct sensor_sample *sample,
+					    int *ret)
+{
+	uint32_t mask;
+	uint32_t now_ms;
+
+	mask = fault_injection_get_mask();
+	now_ms = k_uptime_get_32();
+
+	if ((mask & FAULT_INJECTION_SENSOR_READ_FAILURE) != 0U) {
+		sample->timestamp_ms = now_ms;
+		sample->valid = false;
+		sample->status = SENSOR_SAMPLE_STATUS_FETCH_FAILED;
+		sample->driver_error = -EIO;
+		*ret = -EIO;
+
+		LOG_WRN("injection active: sensor-read-failure sample=%u",
+			(unsigned int)sample->sequence);
+		return;
+	}
+
+	if ((mask & FAULT_INJECTION_INVALID_MEASUREMENT) != 0U) {
+		sample->timestamp_ms = now_ms;
+		sample->valid = true;
+		sample->status = SENSOR_SAMPLE_STATUS_OK;
+		sample->driver_error = 0;
+		sample->temperature_milli_celsius =
+			FAULT_INJECTION_INVALID_TEMP_MILLI_C;
+		sample->pressure_pa =
+			FAULT_INJECTION_INVALID_PRESSURE_PA;
+		*ret = 0;
+
+		LOG_WRN("injection active: invalid-measurement sample=%u temp_mC=%d pressure_pa=%d",
+			(unsigned int)sample->sequence,
+			(int)sample->temperature_milli_celsius,
+			(int)sample->pressure_pa);
+	}
+
+	if ((mask & FAULT_INJECTION_STALE_PUBLICATION) != 0U) {
+		sample->timestamp_ms = now_ms - FAULT_INJECTION_STALE_AGE_MS;
+
+		LOG_WRN("injection active: stale-publication sample=%u age_ms=%u",
+			(unsigned int)sample->sequence,
+			(unsigned int)FAULT_INJECTION_STALE_AGE_MS);
+	}
+}
+
 static void sensor_acquisition_thread(void *p1, void *p2, void *p3)
 {
 	struct sensor_sample sample;
@@ -222,6 +271,8 @@ static void sensor_acquisition_thread(void *p1, void *p2, void *p3)
 
 		ret = sensor_service_read(&sample);
 
+		apply_fault_injection_to_sample(&sample, &ret);
+
 		acq_end_ms = k_uptime_get_32();
 		acq_execution_time_ms = acq_end_ms - acq_start_ms;
 
@@ -238,6 +289,18 @@ static void sensor_acquisition_thread(void *p1, void *p2, void *p3)
 		}
 
 		publish_sample(&sample);
+
+		if (fault_injection_is_active(FAULT_INJECTION_QUEUE_PRESSURE)) {
+			for (uint32_t i = 0U;
+			     i < FAULT_INJECTION_QUEUE_PRESSURE_BURST_COUNT;
+			     i++) {
+				LOG_WRN("injection active: queue-pressure burst=%u sample=%u",
+					(unsigned int)(i + 1U),
+					(unsigned int)sample.sequence);
+
+				publish_sample(&sample);
+			}
+		}
 
 		k_sleep(K_MSEC(SENSOR_ACQ_PERIOD_MS));
 	}
@@ -323,6 +386,13 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 			previous_stale_data = false;
 
 			LOG_INF("diagnostic statistics reset applied");
+		}
+
+		if (fault_injection_is_active(FAULT_INJECTION_PROCESSING_DELAY)) {
+			LOG_WRN("injection active: processing-delay delay_ms=%u",
+				(unsigned int)FAULT_INJECTION_PROCESSING_DELAY_MS);
+
+			k_sleep(K_MSEC(FAULT_INJECTION_PROCESSING_DELAY_MS));
 		}
 
 		processed_count++;
@@ -432,6 +502,7 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 				.sequence_gap_count = sequence_gap_count,
 				.queue_full_count =
 					(uint32_t)atomic_get(&queue_full_count),
+				.fault_injection_mask = fault_injection_get_mask(),
 				.latest_valid_available = latest_valid_available,
 				.latest_valid_sample = latest_valid_sample,
 				.stats = stats,
@@ -478,12 +549,14 @@ int main(void)
 	bool env_stats_test_passed;
 	bool state_model_test_passed;
 
+	fault_injection_init();
 	diagnostics_init();
 
-	LOG_INF("boot: FieldSense-Z diagnostic shell checkpoint");
+	LOG_INF("boot: FieldSense-Z fault injection checkpoint");
 	LOG_INF("logging mode: deferred");
-	LOG_INF("pipeline: acquisition -> k_msgq -> processing -> diagnostics shell");
+	LOG_INF("pipeline: acquisition -> k_msgq -> processing -> diagnostics shell -> fault injection");
 	LOG_INF("supported sensor channels: temperature pressure; humidity unsupported on verified BMP280 hardware");
+	LOG_INF("fault injection: software-only, reversible, diagnostic-shell controlled");
 
 	env_stats_test_passed = env_stats_controlled_self_test();
 	if (env_stats_test_passed) {

@@ -153,3 +153,21 @@ Recovery requires:
 
 ```text
 5 consecutive valid samples
+
+## Deterministic software fault injection
+
+FieldSense-Z now supports controlled software fault injection for validation.
+
+The goal is to verify the fault model without depending only on random physical faults.
+
+Physical tests are still useful, but they are harder to repeat exactly. Software injection allows the same fault to be triggered repeatedly with known expected behavior.
+
+### Supported injected faults
+
+```text
+node inject sensor-failure
+node inject stale-publication
+node inject processing-delay
+node inject queue-pressure
+node inject invalid-measurement
+node inject clear

@@ -1,0 +1,11 @@
+tests:
+  fieldsense.health_state:
+    tags:
+      - fieldsense
+      - health
+      - state-machine
+      - timing
+      - ztest
+    harness: ztest
+    platform_allow:
+      - qemu_x86

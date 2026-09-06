@@ -1,0 +1,11 @@
+﻿tests:
+  fieldsense.processing_stats:
+    tags:
+      - fieldsense
+      - processing
+      - statistics
+      - ztest
+    harness: ztest
+    platform_allow:
+      - qemu_x86
+      - native_sim

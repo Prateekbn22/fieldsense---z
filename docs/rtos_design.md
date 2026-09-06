@@ -234,3 +234,94 @@ node timing
 node faults
 node reset-stats
 node thresholds
+## Queue backpressure and recovery validation
+
+FieldSense-Z uses a producer/consumer RTOS structure.
+
+The acquisition thread is the producer. It reads the BMP280 sensor and publishes samples into a finite Zephyr message queue.
+
+The processing thread is the consumer. It removes samples from the queue, validates them, updates statistics, updates timing metrics, and updates the health state machine.
+
+### Producer/consumer rate imbalance
+
+A producer/consumer rate imbalance happens when the producer creates samples faster than the consumer can process them.
+
+In FieldSense-Z, this can happen during processing-delay injection. The acquisition thread continues producing samples every 2000 ms, but the processing thread is intentionally slowed down.
+
+### Finite queue capacity
+
+The sample queue has a fixed depth.
+
+Because the queue is finite, it can absorb temporary bursts but cannot grow forever.
+
+Queue occupancy is visible through the diagnostic shell using:
+
+```text
+node status
+```
+
+The shell reports:
+
+```text
+queue_used_count
+queue_free_count
+queue_depth
+queue_full_count
+```
+
+### Dropping newest versus oldest
+
+FieldSense-Z uses a drop-newest policy.
+
+When the queue is full, the newest failed publication is dropped and the oldest queued samples are preserved.
+
+This keeps already accepted work in order and prevents the acquisition thread from blocking forever.
+
+### Blocking versus nonblocking publication
+
+A blocking publish could stall the acquisition thread when the processing thread is slow.
+
+FieldSense-Z uses nonblocking publication with `K_NO_WAIT`.
+
+If the queue is full, publication fails immediately, the queue-full counter increases, and the sample is dropped.
+
+### Backpressure
+
+Backpressure means the firmware can observe that the consumer is falling behind.
+
+In this project, backpressure is visible through:
+
+- queue occupancy,
+- queue-full count,
+- queue-overflow events,
+- missed-deadline events,
+- health-state transitions.
+
+### Controlled validation sequence
+
+The controlled sequence verified was:
+
+```text
+normal operation
+→ slow processing
+→ queue occupancy rises
+→ queue-full policy activates
+→ normal processing resumes
+→ queue drains
+→ recovery criteria are met
+```
+
+### Shared-state safety
+
+The processing thread owns the live statistics, timing metrics, and state model.
+
+The diagnostic shell does not directly read live processing-thread variables.
+
+Instead, the processing thread publishes a diagnostic snapshot.
+
+The diagnostic snapshot is protected by a mutex.
+
+The queue-full counter is atomic because it can be updated by the acquisition thread and read by the processing thread and diagnostic shell.
+
+The fault-injection mask is accessed through the fault-injection service instead of exposing raw shared state directly.
+

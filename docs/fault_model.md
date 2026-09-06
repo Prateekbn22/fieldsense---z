@@ -171,3 +171,102 @@ node inject processing-delay
 node inject queue-pressure
 node inject invalid-measurement
 node inject clear
+## Queue backpressure fault behavior
+
+Queue backpressure is treated as a recoverable fault condition.
+
+When the processing thread is slowed down, the acquisition thread can continue publishing samples faster than the consumer can process them.
+
+As queue occupancy rises, the finite queue can become full.
+
+When the queue is full, FieldSense-Z uses a nonblocking drop-newest policy:
+
+```text
+preserve oldest queued samples
+drop newest failed publication
+increment queue_full_count
+log queue overflow
+```
+
+Repeated queue overflow events can move the node health state toward `FAULT`.
+
+### Recovery hysteresis
+
+Recovery is hysteretic.
+
+The node does not immediately return to `HEALTHY` after one good sample.
+
+After a fault is cleared, the node must receive the configured number of consecutive recovery-valid samples before returning to `HEALTHY`.
+
+This prevents unstable behavior where the node rapidly switches between `FAULT` and `HEALTHY`.
+
+### Repeated sensor error
+
+Repeated sensor read failures are treated as a health fault.
+
+Expected behavior:
+
+```text
+HEALTHY
+→ WARNING
+→ FAULT
+```
+
+The fault reason becomes:
+
+```text
+SENSOR_FAILURES
+```
+
+After clearing the injected sensor failure, recovery requires consecutive valid samples.
+
+### Stale data
+
+Stale data is detected when the latest valid sample age exceeds the stale threshold.
+
+Expected behavior during stale-publication injection:
+
+```text
+stale_data: yes
+last_fault_reason: STALE_DATA
+```
+
+After clearing the injection, stale data must return to:
+
+```text
+stale_data: no
+```
+
+### Environmental alert clearing
+
+The environmental state uses hysteresis.
+
+For high temperature:
+
+```text
+enter HIGH_TEMPERATURE at or above 30.000 C
+clear HIGH_TEMPERATURE at or below 28.000 C
+```
+
+Because the real BMP280 temperature may stay above the clear threshold during testing, a software-only `normal-environment` validation stimulus is used.
+
+The `normal-environment` stimulus injects a safe, valid environmental sample:
+
+```text
+temperature: 26.000 C
+pressure: 100.000 kPa
+```
+
+This verifies environmental alert clearing without changing hardware wiring or physically cooling the sensor.
+
+### Final recovery result
+
+After clearing injected faults, the node returned to:
+
+```text
+health: HEALTHY
+last_fault_reason: NONE
+fault_injection_mask: 0x00000000
+active_injections: none
+```
+

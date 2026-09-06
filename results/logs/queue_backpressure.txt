@@ -1,0 +1,1143 @@
+--- Miniterm on COM9  115200,8,N,1 ---
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3ffb0000,len:8420
+load:0x40080000,len:42656
+ho 0 tail 12 room 4
+load:0x50000000,len:40
+entry 0x40085b38
+I (soc_init): ESP Simple boot
+I (soc_init): compile time Sep  6 2026 11:01:15
+W (soc_init): Unicore bootloader
+I (soc_init): chip revision: v3.1
+I (flash_init): SPI Speed      : 40MHz
+I (flash_init): SPI Mode       : DIO
+I (flash_init): SPI Flash Size : 4MB
+I (boot): DRAM  : lma=00001020h vma=3ffb0000h size=020e4h (  8420)
+I (boot): IRAM  : lma=0000310ch vma=40080000h size=0a6a0h ( 42656)
+I (boot): RTC_DATA      : lma=0000d7b4h vma=50000000h size=00028h (    40)
+I (boot): IROM  : lma=00010000h vma=400d0000h size=0c4c0h ( 50368)
+I (boot): DROM  : lma=00020000h vma=3f400000h size=10000h ( 65536)
+I (boot): libc heap size 175 kB.
+I (spi_flash): detected chip: generic
+I (spi_flash): flash io: dio
+␛[m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J*** Booting Zephyr OS build v4.4.0-9769-gd211a737740b ***
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: boot: FieldSense-Z queue backpressure checkpoint␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: logging mode: deferred␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: pipeline: acquisition -> k_msgq -> processing -> diagnostics shell -> fault injection␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: supported sensor channels: temperature pressure; humidity unsupported on verified BMP280 hardware␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: fault injection: software-only, reversible, diagnostic-shell controlled␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: queue backpressure: finite queue, nonblocking publish, drop newest on full queue␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: selftest env_stats=PASS␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: selftest state_model=PASS␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: queue item size=36 bytes depth=4 storage_estimate=144 bytes␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:00.124,000] ␛[0m<inf> app: queue policy: non-blocking publish, count overflow, preserve oldest queued samples, drop newest failed publish␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:01.124,000] ␛[0m<inf> app: acquisition thread started: priority=5 stack=2048 period_ms=2000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:01.124,000] ␛[0m<inf> sensor_service: sensor initialized: bmp280@76␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:01.124,000] ␛[0m<inf> app: sensor service ready: device=bmp280@76␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:01.124,000] ␛[0m<inf> app: processing thread started: priority=6 stack=2048␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:01.124,000] ␛[0m<inf> app: processing thread blocking on k_msgq_get(K_FOREVER)␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:01.195,000] ␛[0m<inf> app: health transition: INITIALIZING -> HEALTHY␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:01.195,000] ␛[0m<inf> app: environment transition: UNKNOWN -> NORMAL␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject clear
+all injected faults cleared
+␛[1;32mfieldsense> ␛[mnode reset-stats
+reset-stats requested
+processing, statistics, timing, and sequence counters will reset on the next processed sample
+node health state is not forcibly changed by this command
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:17.762,000] ␛[0m<inf> app: diagnostic statistics reset applied␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: HEALTHY
+environment: NORMAL
+last_fault_reason: NONE
+processed_count: 7 samples
+valid_count: 7 samples
+invalid_count: 0 samples
+queue_full_count: 0 events
+queue_used_count: 0 samples
+queue_free_count: 4 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000000
+active_injections: none
+snapshot_fault_injection_mask: 0x00000000
+snapshot_age_reference_ms: 30186 ms uptime
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:36.399,000] ␛[0m<inf> app: summary: processed=10 valid=10 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=18 temp_mC=27780 pressure_pa=100082 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:36.399,000] ␛[0m<inf> app: stats: temp_latest_mC=27780 temp_min_mC=27780 temp_max_mC=27860 temp_avg_mC=27808 pressure_latest_pa=100082 pressure_min_pa=100080 pressure_max_pa=100083 pressure_avg_pa=100081␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: HEALTHY
+environment_status: NORMAL
+last_fault_reason: NONE
+node_health_transitions: 1
+environment_transitions: 1
+consecutive_sensor_failures: 0
+recovery_valid_samples: 20
+stale_data_events: 0
+missed_deadline_events: 0
+queue_overflow_events: 0
+fault_injection_mask: 0x00000000
+active_injections: none
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:57.107,000] ␛[0m<inf> app: summary: processed=20 valid=20 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=28 temp_mC=27680 pressure_pa=100082 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:00:57.107,000] ␛[0m<inf> app: stats: temp_latest_mC=27680 temp_min_mC=27680 temp_max_mC=27860 temp_avg_mC=27688 pressure_latest_pa=100082 pressure_min_pa=100080 pressure_max_pa=100083 pressure_avg_pa=100082␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject processing-delay
+enabled injection: processing-delay
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:09.532,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:13.032,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:16.532,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:20.032,000] ␛[1;33m<wrn> app: health transition: HEALTHY -> WARNING reason=NONE␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:20.032,000] ␛[0m<inf> app: environment transition: NORMAL -> UNKNOWN␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:20.032,000] ␛[1;33m<wrn> app: stale data detected: last_valid_age_ms=6430 threshold_ms=6000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:20.032,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:23.532,000] ␛[1;31m<err> app: health transition: WARNING -> FAULT reason=STALE_DATA␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:23.532,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:27.032,000] ␛[0m<inf> app: summary: processed=30 valid=30 invalid=0 sequence_gaps=0 queue_full=0 health=FAULT environment=UNKNOWN latest_seq=38 temp_mC=27630 pressure_pa=100081 interval_mean_ms=2070 missed_deadlines=0 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:27.032,000] ␛[0m<inf> app: stats: temp_latest_mC=27630 temp_min_mC=27630 temp_max_mC=27860 temp_avg_mC=27648 pressure_latest_pa=100081 pressure_min_pa=100080 pressure_max_pa=100083 pressure_avg_pa=100081␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:27.032,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:30.240,000] ␛[1;31m<err> app: queue overflow: sample=44 ret=-35 queue_full_count=1 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:30.532,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:34.033,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:36.452,000] ␛[1;31m<err> app: queue overflow: sample=47 ret=-35 queue_full_count=2 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:37.533,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:40.594,000] ␛[1;31m<err> app: queue overflow: sample=49 ret=-35 queue_full_count=3 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:41.033,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:44.533,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:46.806,000] ␛[1;31m<err> app: queue overflow: sample=52 ret=-35 queue_full_count=4 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:48.033,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:48.033,000] ␛[1;33m<wrn> app: sequence gap detected: expected=44 received=45 missed=1 gap_count=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:48.033,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:50.948,000] ␛[1;31m<err> app: queue overflow: sample=54 ret=-35 queue_full_count=5 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:51.533,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:55.033,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=2␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:55.033,000] ␛[1;33m<wrn> app: sequence gap detected: expected=47 received=48 missed=1 gap_count=2␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:55.033,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:57.160,000] ␛[1;31m<err> app: queue overflow: sample=57 ret=-35 queue_full_count=6 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:58.533,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=3␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:58.533,000] ␛[1;33m<wrn> app: sequence gap detected: expected=49 received=50 missed=1 gap_count=3␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:01:58.533,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:01.302,000] ␛[1;31m<err> app: queue overflow: sample=59 ret=-35 queue_full_count=7 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:02.033,000] ␛[0m<inf> app: summary: processed=40 valid=40 invalid=0 sequence_gaps=3 queue_full=7 health=FAULT environment=UNKNOWN latest_seq=51 temp_mC=27440 pressure_pa=100079 interval_mean_ms=2230 missed_deadlines=3 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:02.033,000] ␛[0m<inf> app: stats: temp_latest_mC=27440 temp_min_mC=27440 temp_max_mC=27860 temp_avg_mC=27488 pressure_latest_pa=100079 pressure_min_pa=100079 pressure_max_pa=100083 pressure_avg_pa=100079␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:02.033,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status.
+␛[1;31munknown node command: status.
+␛[m␛[1;31mvalid commands: status latest stats timing faults reset-stats thresholds inject
+␛[m␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:05.443,000] ␛[1;31m<err> app: queue overflow: sample=61 ret=-35 queue_full_count=8 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:05.534,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=4␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:05.534,000] ␛[1;33m<wrn> app: sequence gap detected: expected=52 received=53 missed=1 gap_count=4␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:05.534,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:09.034,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:09.034,000] ␛[1;33m<wrn> app: sequence gap detected: expected=54 received=55 missed=1 gap_count=5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:09.034,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:11.656,000] ␛[1;31m<err> app: queue overflow: sample=64 ret=-35 queue_full_count=9 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:12.534,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: FAULT
+environment_status: UNKNOWN
+last_fault_reason: STALE_DATA
+node_health_transitions: 3
+environment_transitions: 2
+consecutive_sensor_failures: 0
+recovery_valid_samples: 0
+stale_data_events: 16
+missed_deadline_events: 5
+queue_overflow_events: 9
+fault_injection_mask: 0x00000004
+active_injections:
+- processing-delay
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:15.797,000] ␛[1;31m<err> app: queue overflow: sample=66 ret=-35 queue_full_count=10 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:16.034,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=6␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:16.034,000] ␛[1;33m<wrn> app: sequence gap detected: expected=57 received=58 missed=1 gap_count=6␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:16.034,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[Jnode faults␛[11D␛[Jnode status.␛[12D␛[Jnode inject processing-delay␛[40D␛[J[00:02:19.534,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=7␛[0m
+␛[1;32mfieldsense> ␛[mnode inject processing-delay␛[40D␛[J[00:02:19.534,000] ␛[1;33m<wrn> app: sequence gap detected: expected=59 received=60 missed=1 gap_count=7␛[0m
+␛[1;32mfieldsense> ␛[mnode inject processing-delay␛[40D␛[J[00:02:19.534,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[mnode inject processing-delay␛[40D␛[J␛[1;32mfieldsense> ␛[mnode inject processing-delaynode status␛[51D␛[J[00:02:22.010,000] ␛[1;31m<err> app: queue overflow: sample=69 ret=-35 queue_full_count=11 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[mnode inject processing-delaynode status␛[51D␛[J␛[1;32mfieldsense> ␛[mnode inject processing-delaynode status
+␛[1;31mnode: wrong parameter count
+␛[mnode - FieldSense-Z diagnostic commands
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:23.034,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4141 threshold_ms=2250 missed_count=8␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:23.034,000] ␛[1;33m<wrn> app: sequence gap detected: expected=61 received=62 missed=1 gap_count=8␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:23.034,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: FAULT
+environment: UNKNOWN
+last_fault_reason: STALE_DATA
+processed_count: 46 samples
+valid_count: 46 samples
+invalid_count: 0 samples
+queue_full_count: 11 events
+queue_used_count: 4 samples
+queue_free_count: 0 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000004
+active_injections:
+- processing-delay
+snapshot_fault_injection_mask: 0x00000004
+snapshot_age_reference_ms: 143034 ms uptime
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:26.151,000] ␛[1;31m<err> app: queue overflow: sample=71 ret=-35 queue_full_count=12 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:26.534,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:30.034,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=9␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:30.034,000] ␛[1;33m<wrn> app: sequence gap detected: expected=64 received=65 missed=1 gap_count=9␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:30.034,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: FAULT
+environment_status: UNKNOWN
+last_fault_reason: STALE_DATA
+node_health_transitions: 3
+environment_transitions: 2
+consecutive_sensor_failures: 0
+recovery_valid_samples: 0
+stale_data_events: 21
+missed_deadline_events: 9
+queue_overflow_events: 12
+fault_injection_mask: 0x00000004
+active_injections:
+- processing-delay
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:32.364,000] ␛[1;31m<err> app: queue overflow: sample=74 ret=-35 queue_full_count=13 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:33.534,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4141 threshold_ms=2250 missed_count=10␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:33.534,000] ␛[1;33m<wrn> app: sequence gap detected: expected=66 received=67 missed=1 gap_count=10␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:33.534,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:36.505,000] ␛[1;31m<err> app: queue overflow: sample=76 ret=-35 queue_full_count=14 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:37.035,000] ␛[0m<inf> app: summary: processed=50 valid=50 invalid=0 sequence_gaps=10 queue_full=14 health=FAULT environment=UNKNOWN latest_seq=68 temp_mC=27320 pressure_pa=100078 interval_mean_ms=2493 missed_deadlines=10 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:37.035,000] ␛[0m<inf> app: stats: temp_latest_mC=27320 temp_min_mC=27300 temp_max_mC=27860 temp_avg_mC=27312 pressure_latest_pa=100078 pressure_min_pa=100078 pressure_max_pa=100083 pressure_avg_pa=100079␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:37.035,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:40.535,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=11␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:40.535,000] ␛[1;33m<wrn> app: sequence gap detected: expected=69 received=70 missed=1 gap_count=11␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:40.535,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:42.718,000] ␛[1;31m<err> app: queue overflow: sample=79 ret=-35 queue_full_count=15 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:44.035,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4141 threshold_ms=2250 missed_count=12␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:44.035,000] ␛[1;33m<wrn> app: sequence gap detected: expected=71 received=72 missed=1 gap_count=12␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:44.035,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:46.859,000] ␛[1;31m<err> app: queue overflow: sample=81 ret=-35 queue_full_count=16 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:47.535,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject queue-pressure
+enabled injection: queue-pressure
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=82␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;31m<err> app: queue overflow: sample=82 ret=-35 queue_full_count=17 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=82␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;31m<err> app: queue overflow: sample=82 ret=-35 queue_full_count=18 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=82␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;31m<err> app: queue overflow: sample=82 ret=-35 queue_full_count=19 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=82␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;31m<err> app: queue overflow: sample=82 ret=-35 queue_full_count=20 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=82␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;31m<err> app: queue overflow: sample=82 ret=-35 queue_full_count=21 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=82␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:48.930,000] ␛[1;31m<err> app: queue overflow: sample=82 ret=-35 queue_full_count=22 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;31m<err> app: queue overflow: sample=83 ret=-35 queue_full_count=23 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=83␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;31m<err> app: queue overflow: sample=83 ret=-35 queue_full_count=24 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=83␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;31m<err> app: queue overflow: sample=83 ret=-35 queue_full_count=25 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=83␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;31m<err> app: queue overflow: sample=83 ret=-35 queue_full_count=26 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=83␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;31m<err> app: queue overflow: sample=83 ret=-35 queue_full_count=27 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=83␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;31m<err> app: queue overflow: sample=83 ret=-35 queue_full_count=28 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=83␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.001,000] ␛[1;31m<err> app: queue overflow: sample=83 ret=-35 queue_full_count=29 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.035,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=13␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.035,000] ␛[1;33m<wrn> app: sequence gap detected: expected=74 received=75 missed=1 gap_count=13␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:51.035,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=84␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;31m<err> app: queue overflow: sample=84 ret=-35 queue_full_count=30 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=84␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;31m<err> app: queue overflow: sample=84 ret=-35 queue_full_count=31 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=84␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;31m<err> app: queue overflow: sample=84 ret=-35 queue_full_count=32 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=84␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;31m<err> app: queue overflow: sample=84 ret=-35 queue_full_count=33 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=84␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;31m<err> app: queue overflow: sample=84 ret=-35 queue_full_count=34 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=84␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:53.072,000] ␛[1;31m<err> app: queue overflow: sample=84 ret=-35 queue_full_count=35 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:54.535,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4141 threshold_ms=2250 missed_count=14␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:54.535,000] ␛[1;33m<wrn> app: sequence gap detected: expected=76 received=77 missed=1 gap_count=14␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:54.535,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=85␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;31m<err> app: queue overflow: sample=85 ret=-35 queue_full_count=36 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=85␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;31m<err> app: queue overflow: sample=85 ret=-35 queue_full_count=37 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=85␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;31m<err> app: queue overflow: sample=85 ret=-35 queue_full_count=38 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=85␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;31m<err> app: queue overflow: sample=85 ret=-35 queue_full_count=39 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=85␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;31m<err> app: queue overflow: sample=85 ret=-35 queue_full_count=40 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=85␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:55.143,000] ␛[1;31m<err> app: queue overflow: sample=85 ret=-35 queue_full_count=41 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;31m<err> app: queue overflow: sample=86 ret=-35 queue_full_count=42 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=86␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;31m<err> app: queue overflow: sample=86 ret=-35 queue_full_count=43 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=86␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;31m<err> app: queue overflow: sample=86 ret=-35 queue_full_count=44 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=86␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;31m<err> app: queue overflow: sample=86 ret=-35 queue_full_count=45 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=86␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;31m<err> app: queue overflow: sample=86 ret=-35 queue_full_count=46 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=86␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;31m<err> app: queue overflow: sample=86 ret=-35 queue_full_count=47 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=86␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:57.213,000] ␛[1;31m<err> app: queue overflow: sample=86 ret=-35 queue_full_count=48 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:58.035,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=87␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;31m<err> app: queue overflow: sample=87 ret=-35 queue_full_count=49 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=87␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;31m<err> app: queue overflow: sample=87 ret=-35 queue_full_count=50 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=87␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;31m<err> app: queue overflow: sample=87 ret=-35 queue_full_count=51 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=87␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;31m<err> app: queue overflow: sample=87 ret=-35 queue_full_count=52 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=87␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;31m<err> app: queue overflow: sample=87 ret=-35 queue_full_count=53 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=87␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:02:59.284,000] ␛[1;31m<err> app: queue overflow: sample=87 ret=-35 queue_full_count=54 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;31m<err> app: queue overflow: sample=88 ret=-35 queue_full_count=55 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=88␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;31m<err> app: queue overflow: sample=88 ret=-35 queue_full_count=56 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=88␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;31m<err> app: queue overflow: sample=88 ret=-35 queue_full_count=57 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=88␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;31m<err> app: queue overflow: sample=88 ret=-35 queue_full_count=58 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=88␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;31m<err> app: queue overflow: sample=88 ret=-35 queue_full_count=59 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=88␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;31m<err> app: queue overflow: sample=88 ret=-35 queue_full_count=60 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=88␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.355,000] ␛[1;31m<err> app: queue overflow: sample=88 ret=-35 queue_full_count=61 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.535,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=15␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.535,000] ␛[1;33m<wrn> app: sequence gap detected: expected=79 received=80 missed=1 gap_count=15␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:01.535,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=89␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;31m<err> app: queue overflow: sample=89 ret=-35 queue_full_count=62 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=89␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;31m<err> app: queue overflow: sample=89 ret=-35 queue_full_count=63 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=89␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;31m<err> app: queue overflow: sample=89 ret=-35 queue_full_count=64 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=89␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;31m<err> app: queue overflow: sample=89 ret=-35 queue_full_count=65 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=89␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;31m<err> app: queue overflow: sample=89 ret=-35 queue_full_count=66 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=89␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:03.426,000] ␛[1;31m<err> app: queue overflow: sample=89 ret=-35 queue_full_count=67 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.035,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4141 threshold_ms=2250 missed_count=16␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.035,000] ␛[1;33m<wrn> app: sequence gap detected: expected=81 received=82 missed=1 gap_count=16␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.035,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=90␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;31m<err> app: queue overflow: sample=90 ret=-35 queue_full_count=68 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=90␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;31m<err> app: queue overflow: sample=90 ret=-35 queue_full_count=69 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=90␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;31m<err> app: queue overflow: sample=90 ret=-35 queue_full_count=70 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=90␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;31m<err> app: queue overflow: sample=90 ret=-35 queue_full_count=71 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=90␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;31m<err> app: queue overflow: sample=90 ret=-35 queue_full_count=72 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=90␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:05.497,000] ␛[1;31m<err> app: queue overflow: sample=90 ret=-35 queue_full_count=73 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: FAULT
+environment: UNKNOWN
+last_fault_reason: STALE_DATA
+processed_count: 58 samples
+valid_count: 58 samples
+invalid_count: 0 samples
+queue_full_count: 67 events
+queue_used_count: 4 samples
+queue_free_count: 0 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x0000000c
+active_injections:
+- processing-delay
+- queue-pressure
+snapshot_fault_injection_mask: 0x0000000c
+snapshot_age_reference_ms: 185035 ms uptime
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.567,000] ␛[1;31m<err> app: queue overflow: sample=91 ret=-35 queue_full_count=74 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.567,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=91␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.567,000] ␛[1;31m<err> app: queue overflow: sample=91 ret=-35 queue_full_count=75 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=91␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;31m<err> app: queue overflow: sample=91 ret=-35 queue_full_count=76 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=91␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;31m<err> app: queue overflow: sample=91 ret=-35 queue_full_count=77 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=91␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;31m<err> app: queue overflow: sample=91 ret=-35 queue_full_count=78 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=91␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;31m<err> app: queue overflow: sample=91 ret=-35 queue_full_count=79 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=91␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:07.568,000] ␛[1;31m<err> app: queue overflow: sample=91 ret=-35 queue_full_count=80 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:08.535,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=17␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:08.535,000] ␛[1;33m<wrn> app: sequence gap detected: expected=83 received=84 missed=1 gap_count=17␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:08.535,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=92␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;31m<err> app: queue overflow: sample=92 ret=-35 queue_full_count=81 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=92␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;31m<err> app: queue overflow: sample=92 ret=-35 queue_full_count=82 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=92␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;31m<err> app: queue overflow: sample=92 ret=-35 queue_full_count=83 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=92␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;31m<err> app: queue overflow: sample=92 ret=-35 queue_full_count=84 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=92␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;31m<err> app: queue overflow: sample=92 ret=-35 queue_full_count=85 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=92␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:09.638,000] ␛[1;31m<err> app: queue overflow: sample=92 ret=-35 queue_full_count=86 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;31m<err> app: queue overflow: sample=93 ret=-35 queue_full_count=87 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=93␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;31m<err> app: queue overflow: sample=93 ret=-35 queue_full_count=88 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=93␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;31m<err> app: queue overflow: sample=93 ret=-35 queue_full_count=89 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=93␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;31m<err> app: queue overflow: sample=93 ret=-35 queue_full_count=90 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=93␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;31m<err> app: queue overflow: sample=93 ret=-35 queue_full_count=91 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=93␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;31m<err> app: queue overflow: sample=93 ret=-35 queue_full_count=92 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=93␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:11.709,000] ␛[1;31m<err> app: queue overflow: sample=93 ret=-35 queue_full_count=93 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:12.036,000] ␛[0m<inf> app: summary: processed=60 valid=60 invalid=0 sequence_gaps=17 queue_full=93 health=FAULT environment=UNKNOWN latest_seq=85 temp_mC=27300 pressure_pa=100077 interval_mean_ms=2667 missed_deadlines=17 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:12.036,000] ␛[0m<inf> app: stats: temp_latest_mC=27300 temp_min_mC=27300 temp_max_mC=27860 temp_avg_mC=27330 pressure_latest_pa=100077 pressure_min_pa=100075 pressure_max_pa=100083 pressure_avg_pa=100076␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:12.036,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=94␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;31m<err> app: queue overflow: sample=94 ret=-35 queue_full_count=94 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=94␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;31m<err> app: queue overflow: sample=94 ret=-35 queue_full_count=95 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=94␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;31m<err> app: queue overflow: sample=94 ret=-35 queue_full_count=96 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=94␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;31m<err> app: queue overflow: sample=94 ret=-35 queue_full_count=97 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=94␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;31m<err> app: queue overflow: sample=94 ret=-35 queue_full_count=98 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=94␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:13.780,000] ␛[1;31m<err> app: queue overflow: sample=94 ret=-35 queue_full_count=99 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:15.536,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=18␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:15.536,000] ␛[1;33m<wrn> app: sequence gap detected: expected=86 received=87 missed=1 gap_count=18␛[0m
+␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: FAULT
+environment_status: UNKNOWN
+last_fault_reason: STALE_DATA
+node_health_transitions: 3
+environment_transitions: 2
+consecutive_sensor_failures: 0
+recovery_valid_samples: 0
+stale_data_events: 34
+missed_deadline_events: 18
+queue_overflow_events: 24
+fault_injection_mask: 0x0000000c
+active_injections:
+- processing-delay
+- queue-pressure
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.536,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=95␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;31m<err> app: queue overflow: sample=95 ret=-35 queue_full_count=100 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=95␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;31m<err> app: queue overflow: sample=95 ret=-35 queue_full_count=101 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=95␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;31m<err> app: queue overflow: sample=95 ret=-35 queue_full_count=102 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=95␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;31m<err> app: queue overflow: sample=95 ret=-35 queue_full_count=103 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=95␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;31m<err> app: queue overflow: sample=95 ret=-35 queue_full_count=104 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=95␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:15.851,000] ␛[1;31m<err> app: queue overflow: sample=95 ret=-35 queue_full_count=105 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;31m<err> app: queue overflow: sample=96 ret=-35 queue_full_count=106 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=96␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;31m<err> app: queue overflow: sample=96 ret=-35 queue_full_count=107 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=96␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;31m<err> app: queue overflow: sample=96 ret=-35 queue_full_count=108 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=96␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;31m<err> app: queue overflow: sample=96 ret=-35 queue_full_count=109 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=96␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;31m<err> app: queue overflow: sample=96 ret=-35 queue_full_count=110 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=96␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;31m<err> app: queue overflow: sample=96 ret=-35 queue_full_count=111 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=96␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:03:17.922,000] ␛[1;31m<err> app: queue overflow: sample=96 ret=-35 queue_full_count=112 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: FAULT
+environment_status: UNKNOWN
+last_fault_reason: STALE_DATA
+node_health_transitions: 3
+environment_transitions: 2
+consecutive_sensor_failures: 0
+recovery_valid_samples: 0
+stale_data_events: 34
+missed_deadline_events: 18
+queue_overflow_events: 24
+fault_injection_mask: 0x0000000c
+active_injections:
+- processing-delay
+- queue-pressure
+␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: FAULT
+environment_status: UNKNOWN
+last_fault_reason: STALE_DATA
+node_health_transitions: 3
+environment_transitions: 2
+consecutive_sensor_failures: 0
+recovery_valid_samples: 0
+stale_data_events: 35
+missed_deadline_events: 19
+queue_overflow_events: 25
+fault_injection_mask: 0x0000000c
+active_injections:
+- processing-delay
+- queue-pressure
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.036,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4141 threshold_ms=2250 missed_count=19␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.036,000] ␛[1;33m<wrn> app: sequence gap detected: expected=88 received=89 missed=1 gap_count=19␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.036,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=97␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;31m<err> app: queue overflow: sample=97 ret=-35 queue_full_count=113 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=97␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;31m<err> app: queue overflow: sample=97 ret=-35 queue_full_count=114 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=97␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;31m<err> app: queue overflow: sample=97 ret=-35 queue_full_count=115 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=97␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;31m<err> app: queue overflow: sample=97 ret=-35 queue_full_count=116 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=97␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;31m<err> app: queue overflow: sample=97 ret=-35 queue_full_count=117 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=97␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:19.993,000] ␛[1;31m<err> app: queue overflow: sample=97 ret=-35 queue_full_count=118 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;31m<err> app: queue overflow: sample=98 ret=-35 queue_full_count=119 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=98␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;31m<err> app: queue overflow: sample=98 ret=-35 queue_full_count=120 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=98␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;31m<err> app: queue overflow: sample=98 ret=-35 queue_full_count=121 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=98␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;31m<err> app: queue overflow: sample=98 ret=-35 queue_full_count=122 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=98␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;31m<err> app: queue overflow: sample=98 ret=-35 queue_full_count=123 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=98␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;31m<err> app: queue overflow: sample=98 ret=-35 queue_full_count=124 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=98␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.063,000] ␛[1;31m<err> app: queue overflow: sample=98 ret=-35 queue_full_count=125 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:22.536,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=99␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;31m<err> app: queue overflow: sample=99 ret=-35 queue_full_count=126 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=99␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;31m<err> app: queue overflow: sample=99 ret=-35 queue_full_count=127 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=99␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;31m<err> app: queue overflow: sample=99 ret=-35 queue_full_count=128 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=99␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;31m<err> app: queue overflow: sample=99 ret=-35 queue_full_count=129 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=99␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;31m<err> app: queue overflow: sample=99 ret=-35 queue_full_count=130 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=99␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:24.134,000] ␛[1;31m<err> app: queue overflow: sample=99 ret=-35 queue_full_count=131 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: FAULT
+environment_status: UNKNOWN
+last_fault_reason: STALE_DATA
+node_health_transitions: 3
+environment_transitions: 2
+consecutive_sensor_failures: 0
+recovery_valid_samples: 0
+stale_data_events: 36
+missed_deadline_events: 19
+queue_overflow_events: 26
+fault_injection_mask: 0x0000000c
+active_injections:
+- processing-delay
+- queue-pressure
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.036,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=20␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.036,000] ␛[1;33m<wrn> app: sequence gap detected: expected=91 received=92 missed=1 gap_count=20␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.036,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=100␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;31m<err> app: queue overflow: sample=100 ret=-35 queue_full_count=132 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=100␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;31m<err> app: queue overflow: sample=100 ret=-35 queue_full_count=133 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=100␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;31m<err> app: queue overflow: sample=100 ret=-35 queue_full_count=134 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=100␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;31m<err> app: queue overflow: sample=100 ret=-35 queue_full_count=135 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=100␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;31m<err> app: queue overflow: sample=100 ret=-35 queue_full_count=136 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=100␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:26.205,000] ␛[1;31m<err> app: queue overflow: sample=100 ret=-35 queue_full_count=137 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;31m<err> app: queue overflow: sample=101 ret=-35 queue_full_count=138 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=101␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;31m<err> app: queue overflow: sample=101 ret=-35 queue_full_count=139 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=101␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;31m<err> app: queue overflow: sample=101 ret=-35 queue_full_count=140 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=101␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;31m<err> app: queue overflow: sample=101 ret=-35 queue_full_count=141 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=101␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;31m<err> app: queue overflow: sample=101 ret=-35 queue_full_count=142 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=101␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;31m<err> app: queue overflow: sample=101 ret=-35 queue_full_count=143 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=101␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:28.276,000] ␛[1;31m<err> app: queue overflow: sample=101 ret=-35 queue_full_count=144 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:29.536,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4141 threshold_ms=2250 missed_count=21␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:29.536,000] ␛[1;33m<wrn> app: sequence gap detected: expected=93 received=94 missed=1 gap_count=21␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:29.536,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=102␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;31m<err> app: queue overflow: sample=102 ret=-35 queue_full_count=145 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=102␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;31m<err> app: queue overflow: sample=102 ret=-35 queue_full_count=146 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=102␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;31m<err> app: queue overflow: sample=102 ret=-35 queue_full_count=147 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=102␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;31m<err> app: queue overflow: sample=102 ret=-35 queue_full_count=148 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=102␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;31m<err> app: queue overflow: sample=102 ret=-35 queue_full_count=149 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=102␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:30.347,000] ␛[1;31m<err> app: queue overflow: sample=102 ret=-35 queue_full_count=150 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;31m<err> app: queue overflow: sample=103 ret=-35 queue_full_count=151 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=1 sample=103␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;31m<err> app: queue overflow: sample=103 ret=-35 queue_full_count=152 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=2 sample=103␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;31m<err> app: queue overflow: sample=103 ret=-35 queue_full_count=153 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=3 sample=103␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;31m<err> app: queue overflow: sample=103 ret=-35 queue_full_count=154 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=4 sample=103␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;31m<err> app: queue overflow: sample=103 ret=-35 queue_full_count=155 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=5 sample=103␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;31m<err> app: queue overflow: sample=103 ret=-35 queue_full_count=156 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;33m<wrn> app: injection active: queue-pressure burst=6 sample=103␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:32.418,000] ␛[1;31m<err> app: queue overflow: sample=103 ret=-35 queue_full_count=157 policy=drop_newest_preserve_oldest␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject clear
+all injected faults cleared
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:33.036,000] ␛[1;33m<wrn> app: injection active: processing-delay delay_ms=3500␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.536,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=22␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.536,000] ␛[1;33m<wrn> app: sequence gap detected: expected=96 received=97 missed=1 gap_count=22␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.536,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=23␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.536,000] ␛[1;33m<wrn> app: sequence gap detected: expected=98 received=99 missed=1 gap_count=23␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.536,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=24␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.536,000] ␛[1;33m<wrn> app: sequence gap detected: expected=101 received=102 missed=1 gap_count=24␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.537,000] ␛[0m<inf> app: summary: processed=70 valid=70 invalid=0 sequence_gaps=24 queue_full=157 health=FAULT environment=UNKNOWN latest_seq=102 temp_mC=27190 pressure_pa=100076 interval_mean_ms=2791 missed_deadlines=24 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.537,000] ␛[0m<inf> app: stats: temp_latest_mC=27190 temp_min_mC=27190 temp_max_mC=27860 temp_avg_mC=27194 pressure_latest_pa=100076 pressure_min_pa=100075 pressure_max_pa=100083 pressure_avg_pa=100077␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.537,000] ␛[0m<inf> app: environment transition: UNKNOWN -> NORMAL␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.537,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=4142 threshold_ms=2250 missed_count=25␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:36.537,000] ␛[1;33m<wrn> app: sequence gap detected: expected=103 received=104 missed=1 gap_count=25␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:44.843,000] ␛[0m<inf> app: health transition: FAULT -> HEALTHY␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:44.843,000] ␛[0m<inf> app: qualified recovery complete: required_valid_samples=5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:53.126,000] ␛[0m<inf> app: summary: processed=80 valid=80 invalid=0 sequence_gaps=25 queue_full=157 health=HEALTHY environment=NORMAL latest_seq=113 temp_mC=27220 pressure_pa=100072 interval_mean_ms=2726 missed_deadlines=25 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:03:53.126,000] ␛[0m<inf> app: stats: temp_latest_mC=27220 temp_min_mC=27190 temp_max_mC=27860 temp_avg_mC=27208 pressure_latest_pa=100072 pressure_min_pa=100072 pressure_max_pa=100083 pressure_avg_pa=100073␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: HEALTHY
+environment: NORMAL
+last_fault_reason: NONE
+processed_count: 89 samples
+valid_count: 89 samples
+invalid_count: 0 samples
+queue_full_count: 157 events
+queue_used_count: 0 samples
+queue_free_count: 4 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000000
+active_injections: none
+snapshot_fault_injection_mask: 0x00000000
+snapshot_age_reference_ms: 251763 ms uptime
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:04:13.834,000] ␛[0m<inf> app: summary: processed=90 valid=90 invalid=0 sequence_gaps=25 queue_full=157 health=HEALTHY environment=NORMAL latest_seq=123 temp_mC=27250 pressure_pa=100071 interval_mean_ms=2652 missed_deadlines=25 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:04:13.834,000] ␛[0m<inf> app: stats: temp_latest_mC=27250 temp_min_mC=27190 temp_max_mC=27860 temp_avg_mC=27250 pressure_latest_pa=100071 pressure_min_pa=100070 pressure_max_pa=100083 pressure_avg_pa=100070␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: HEALTHY
+environment_status: NORMAL
+last_fault_reason: NONE
+node_health_transitions: 4
+environment_transitions: 3
+consecutive_sensor_failures: 0
+recovery_valid_samples: 17
+stale_data_events: 0
+missed_deadline_events: 0
+queue_overflow_events: 0
+fault_injection_mask: 0x00000000
+active_injections: none
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:04:34.542,000] ␛[0m<inf> app: summary: processed=100 valid=100 invalid=0 sequence_gaps=25 queue_full=157 health=HEALTHY environment=NORMAL latest_seq=133 temp_mC=27240 pressure_pa=100073 interval_mean_ms=2593 missed_deadlines=25 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:04:34.542,000] ␛[0m<inf> app: stats: temp_latest_mC=27240 temp_min_mC=27190 temp_max_mC=27860 temp_avg_mC=27252 pressure_latest_pa=100073 pressure_min_pa=100070 pressure_max_pa=100083 pressure_avg_pa=100071␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:04:55.250,000] ␛[0m<inf> app: summary: processed=110 valid=110 invalid=0 sequence_gaps=25 queue_full=157 health=HEALTHY environment=NORMAL latest_seq=143 temp_mC=27160 pressure_pa=100072 interval_mean_ms=2545 missed_deadlines=25 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:04:55.250,000] ␛[0m<inf> app: stats: temp_latest_mC=27160 temp_min_mC=27160 temp_max_mC=27860 temp_avg_mC=27162 pressure_latest_pa=100072 pressure_min_pa=100070 pressure_max_pa=100083 pressure_avg_pa=100072␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:05:15.958,000] ␛[0m<inf> app: summary: processed=120 valid=120 invalid=0 sequence_gaps=25 queue_full=157 health=HEALTHY environment=NORMAL latest_seq=153 temp_mC=27130 pressure_pa=100072 interval_mean_ms=2505 missed_deadlines=25 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:05:15.958,000] ␛[0m<inf> app: stats: temp_latest_mC=27130 temp_min_mC=27120 temp_max_mC=27860 temp_avg_mC=27124 pressure_latest_pa=100072 pressure_min_pa=100070 pressure_max_pa=100083 pressure_avg_pa=100072␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:05:36.666,000] ␛[0m<inf> app: summary: processed=130 valid=130 invalid=0 sequence_gaps=25 queue_full=157 health=HEALTHY environment=NORMAL latest_seq=163 temp_mC=27070 pressure_pa=100072 interval_mean_ms=2472 missed_deadlines=25 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:05:36.666,000] ␛[0m<inf> app: stats: temp_latest_mC=27070 temp_min_mC=27070 temp_max_mC=27860 temp_avg_mC=27086 pressure_latest_pa=100072 pressure_min_pa=100070 pressure_max_pa=100083 pressure_avg_pa=100071␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject clear
+all injected faults cleared
+␛[1;32mfieldsense> ␛[mnode reset-stats
+reset-stats requested
+processing, statistics, timing, and sequence counters will reset on the next processed sample
+node health state is not forcibly changed by this command
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:05:49.091,000] ␛[0m<inf> app: diagnostic statistics reset applied␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject sensor-failure
+enabled injection: sensor-read-failure
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:03.586,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=176␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:03.586,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=176 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:03.586,000] ␛[1;33m<wrn> app: health transition: HEALTHY -> WARNING reason=NONE␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:03.586,000] ␛[0m<inf> app: environment transition: NORMAL -> UNKNOWN␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:03.586,000] ␛[1;33m<wrn> app: invalid sample processed: sample=176 timestamp_ms=363586 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:05.657,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=177␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:05.657,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=177 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:05.657,000] ␛[1;33m<wrn> app: invalid sample processed: sample=177 timestamp_ms=365657 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:07.728,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=178␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:07.728,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=178 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:07.728,000] ␛[1;31m<err> app: health transition: WARNING -> FAULT reason=SENSOR_FAILURES␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:07.728,000] ␛[1;33m<wrn> app: stale data detected: last_valid_age_ms=6283 threshold_ms=6000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:07.728,000] ␛[1;33m<wrn> app: invalid sample processed: sample=178 timestamp_ms=367728 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:07.728,000] ␛[0m<inf> app: summary: processed=10 valid=7 invalid=3 sequence_gaps=0 queue_full=0 health=FAULT environment=UNKNOWN latest_seq=175 temp_mC=27120 pressure_pa=100074 interval_mean_ms=2078 missed_deadlines=0 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:07.728,000] ␛[0m<inf> app: stats: temp_latest_mC=27120 temp_min_mC=27080 temp_max_mC=27120 temp_avg_mC=27112 pressure_latest_pa=100074 pressure_min_pa=100072 pressure_max_pa=100074 pressure_avg_pa=100072␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:09.799,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=179␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:09.799,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=179 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:09.799,000] ␛[1;33m<wrn> app: invalid sample processed: sample=179 timestamp_ms=369799 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:11.870,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=180␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:11.870,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=180 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:11.870,000] ␛[1;33m<wrn> app: invalid sample processed: sample=180 timestamp_ms=371870 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:13.941,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=181␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:13.941,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=181 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:13.941,000] ␛[1;33m<wrn> app: invalid sample processed: sample=181 timestamp_ms=373941 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:16.012,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=182␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:16.012,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=182 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:16.012,000] ␛[1;33m<wrn> app: invalid sample processed: sample=182 timestamp_ms=376012 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: FAULT
+environment: UNKNOWN
+last_fault_reason: SENSOR_FAILURES
+processed_count: 15 samples
+valid_count: 7 samples
+invalid_count: 8 samples
+queue_full_count: 0 events
+queue_used_count: 0 samples
+queue_free_count: 4 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000001
+active_injections:
+- sensor-read-failure
+snapshot_fault_injection_mask: 0x00000001
+snapshot_age_reference_ms: 378083 ms uptime
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:18.083,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=183␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:18.083,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=183 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:18.083,000] ␛[1;33m<wrn> app: invalid sample processed: sample=183 timestamp_ms=378083 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:20.153,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=184␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:20.154,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=184 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:20.154,000] ␛[1;33m<wrn> app: invalid sample processed: sample=184 timestamp_ms=380153 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:22.224,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=185␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:22.224,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=185 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:22.224,000] ␛[1;33m<wrn> app: invalid sample processed: sample=185 timestamp_ms=382224 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: FAULT
+environment_status: UNKNOWN
+last_fault_reason: SENSOR_FAILURES
+node_health_transitions: 6
+environment_transitions: 4
+consecutive_sensor_failures: 11
+recovery_valid_samples: 0
+stale_data_events: 9
+missed_deadline_events: 0
+queue_overflow_events: 0
+fault_injection_mask: 0x00000001
+active_injections:
+- sensor-read-failure
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:24.295,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=186␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:24.295,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=186 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:24.295,000] ␛[1;33m<wrn> app: invalid sample processed: sample=186 timestamp_ms=384295 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:26.366,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=187␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:26.366,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=187 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:26.366,000] ␛[1;33m<wrn> app: invalid sample processed: sample=187 timestamp_ms=386366 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:28.437,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=188␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:28.437,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=188 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:28.437,000] ␛[1;33m<wrn> app: invalid sample processed: sample=188 timestamp_ms=388437 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:28.437,000] ␛[0m<inf> app: summary: processed=20 valid=7 invalid=13 sequence_gaps=0 queue_full=0 health=FAULT environment=UNKNOWN latest_seq=175 temp_mC=27120 pressure_pa=100074 interval_mean_ms=2074 missed_deadlines=0 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:28.437,000] ␛[0m<inf> app: stats: temp_latest_mC=27120 temp_min_mC=27080 temp_max_mC=27120 temp_avg_mC=27112 pressure_latest_pa=100074 pressure_min_pa=100072 pressure_max_pa=100074 pressure_avg_pa=100072␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:30.508,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=189␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:30.508,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=189 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:30.508,000] ␛[1;33m<wrn> app: invalid sample processed: sample=189 timestamp_ms=390508 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:32.579,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=190␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:32.579,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=190 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:32.579,000] ␛[1;33m<wrn> app: invalid sample processed: sample=190 timestamp_ms=392579 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:34.650,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=191␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:34.650,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=191 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:34.650,000] ␛[1;33m<wrn> app: invalid sample processed: sample=191 timestamp_ms=394650 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:36.721,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=192␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:36.721,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=192 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:36.721,000] ␛[1;33m<wrn> app: invalid sample processed: sample=192 timestamp_ms=396721 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:38.792,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=193␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:38.792,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=193 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:38.792,000] ␛[1;33m<wrn> app: invalid sample processed: sample=193 timestamp_ms=398792 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:40.862,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=194␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:40.863,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=194 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:40.863,000] ␛[1;33m<wrn> app: invalid sample processed: sample=194 timestamp_ms=400862 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:42.933,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=195␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:42.933,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=195 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:42.933,000] ␛[1;33m<wrn> app: invalid sample processed: sample=195 timestamp_ms=402933 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:45.004,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=196␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:45.004,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=196 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:45.004,000] ␛[1;33m<wrn> app: invalid sample processed: sample=196 timestamp_ms=405004 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:47.075,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=197␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:47.075,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=197 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:47.075,000] ␛[1;33m<wrn> app: invalid sample processed: sample=197 timestamp_ms=407075 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:49.146,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=198␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:49.146,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=198 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:49.146,000] ␛[1;33m<wrn> app: invalid sample processed: sample=198 timestamp_ms=409146 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:49.146,000] ␛[0m<inf> app: summary: processed=30 valid=7 invalid=23 sequence_gaps=0 queue_full=0 health=FAULT environment=UNKNOWN latest_seq=175 temp_mC=27120 pressure_pa=100074 interval_mean_ms=2073 missed_deadlines=0 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:49.146,000] ␛[0m<inf> app: stats: temp_latest_mC=27120 temp_min_mC=27080 temp_max_mC=27120 temp_avg_mC=27112 pressure_latest_pa=100074 pressure_min_pa=100072 pressure_max_pa=100074 pressure_avg_pa=100072␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:51.217,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=199␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:51.217,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=199 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:51.217,000] ␛[1;33m<wrn> app: invalid sample processed: sample=199 timestamp_ms=411217 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject clear
+all injected faults cleared
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:53.288,000] ␛[1;33m<wrn> app: injection active: sensor-read-failure sample=200␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:53.288,000] ␛[1;33m<wrn> app: sensor read failure captured: sample=200 status=FETCH_FAILED driver_error=-5 ret=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:53.288,000] ␛[1;33m<wrn> app: invalid sample processed: sample=200 timestamp_ms=413288 status=FETCH_FAILED driver_error=-5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:06:55.359,000] ␛[0m<inf> app: environment transition: UNKNOWN -> NORMAL␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:03.642,000] ␛[0m<inf> app: health transition: FAULT -> HEALTHY␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:03.642,000] ␛[0m<inf> app: qualified recovery complete: required_valid_samples=5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:09.854,000] ␛[0m<inf> app: summary: processed=40 valid=15 invalid=25 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=208 temp_mC=27150 pressure_pa=100067 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:09.854,000] ␛[0m<inf> app: stats: temp_latest_mC=27150 temp_min_mC=27080 temp_max_mC=27150 temp_avg_mC=27138 pressure_latest_pa=100067 pressure_min_pa=100066 pressure_max_pa=100074 pressure_avg_pa=100067␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: HEALTHY
+environment: NORMAL
+last_fault_reason: NONE
+processed_count: 43 samples
+valid_count: 18 samples
+invalid_count: 25 samples
+queue_full_count: 0 events
+queue_used_count: 0 samples
+queue_free_count: 4 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000000
+active_injections: none
+snapshot_fault_injection_mask: 0x00000000
+snapshot_age_reference_ms: 436067 ms uptime
+␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: HEALTHY
+environment_status: NORMAL
+last_fault_reason: NONE
+node_health_transitions: 7
+environment_transitions: 5
+consecutive_sensor_failures: 0
+recovery_valid_samples: 11
+stale_data_events: 0
+missed_deadline_events: 0
+queue_overflow_events: 0
+fault_injection_mask: 0x00000000
+active_injections: none
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:30.563,000] ␛[0m<inf> app: summary: processed=50 valid=25 invalid=25 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=218 temp_mC=27140 pressure_pa=100067 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:30.563,000] ␛[0m<inf> app: stats: temp_latest_mC=27140 temp_min_mC=27080 temp_max_mC=27150 temp_avg_mC=27146 pressure_latest_pa=100067 pressure_min_pa=100065 pressure_max_pa=100074 pressure_avg_pa=100066␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:51.271,000] ␛[0m<inf> app: summary: processed=60 valid=35 invalid=25 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=228 temp_mC=27120 pressure_pa=100068 interval_mean_ms=2070 missed_deadlines=0 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:51.271,000] ␛[0m<inf> app: stats: temp_latest_mC=27120 temp_min_mC=27080 temp_max_mC=27150 temp_avg_mC=27132 pressure_latest_pa=100068 pressure_min_pa=100065 pressure_max_pa=100074 pressure_avg_pa=100068␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject clear
+all injected faults cleared
+␛[1;32mfieldsense> ␛[mnode reset-stats
+reset-stats requested
+processing, statistics, timing, and sequence counters will reset on the next processed sample
+node health state is not forcibly changed by this command
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:07:59.554,000] ␛[0m<inf> app: diagnostic statistics reset applied␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject stale-publication
+enabled injection: stale-publication
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:14.049,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=239 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:14.049,000] ␛[1;33m<wrn> app: health transition: HEALTHY -> WARNING reason=NONE␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:14.050,000] ␛[0m<inf> app: environment transition: NORMAL -> UNKNOWN␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:14.050,000] ␛[1;33m<wrn> app: stale data detected: last_valid_age_ms=7000 threshold_ms=6000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:16.120,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=240 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:16.120,000] ␛[1;31m<err> app: health transition: WARNING -> FAULT reason=STALE_DATA␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:18.191,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=241 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:18.191,000] ␛[0m<inf> app: summary: processed=10 valid=10 invalid=0 sequence_gaps=0 queue_full=0 health=FAULT environment=UNKNOWN latest_seq=241 temp_mC=27090 pressure_pa=100064 interval_mean_ms=2063 missed_deadlines=0 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:18.191,000] ␛[0m<inf> app: stats: temp_latest_mC=27090 temp_min_mC=27080 temp_max_mC=27100 temp_avg_mC=27084 pressure_latest_pa=100064 pressure_min_pa=100064 pressure_max_pa=100066 pressure_avg_pa=100064␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:20.262,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=242 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:22.333,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=243 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:24.403,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=244 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:26.474,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=245 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode timing
+Timing metrics
+requested_period: 2000 ms
+missed_deadline_threshold: 2250 ms
+stale_threshold: 6000 ms
+latest_interval: 2071 ms
+minimum_interval: 2000 ms
+maximum_interval: 2071 ms
+mean_interval: 2065 ms
+scheduler_delay: 71 ms
+missed_deadlines: 0 events
+last_valid_sample_age: 7000 ms
+stale_data: yes
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:28.545,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=246 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:30.616,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=247 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:32.687,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=248 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:08:34.757,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=249 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: FAULT
+environment_status: UNKNOWN
+last_fault_reason: STALE_DATA
+node_health_transitions: 9
+environment_transitions: 6
+consecutive_sensor_failures: 0
+recovery_valid_samples: 0
+stale_data_events: 11
+missed_deadline_events: 0
+queue_overflow_events: 0
+fault_injection_mask: 0x00000002
+active_injections:
+- stale-publication
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:36.828,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=250 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:38.899,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=251 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:38.899,000] ␛[0m<inf> app: summary: processed=20 valid=20 invalid=0 sequence_gaps=0 queue_full=0 health=FAULT environment=UNKNOWN latest_seq=251 temp_mC=27070 pressure_pa=100064 interval_mean_ms=2067 missed_deadlines=0 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:38.899,000] ␛[0m<inf> app: stats: temp_latest_mC=27070 temp_min_mC=27070 temp_max_mC=27100 temp_avg_mC=27070 pressure_latest_pa=100064 pressure_min_pa=100064 pressure_max_pa=100066 pressure_avg_pa=100064␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:40.970,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=252 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:43.041,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=253 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:45.111,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=254 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:47.182,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=255 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:49.253,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=256 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:51.324,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=257 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:53.395,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=258 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:55.465,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=259 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:57.536,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=260 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:59.607,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=261 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:59.607,000] ␛[0m<inf> app: summary: processed=30 valid=30 invalid=0 sequence_gaps=0 queue_full=0 health=FAULT environment=UNKNOWN latest_seq=261 temp_mC=27110 pressure_pa=100067 interval_mean_ms=2068 missed_deadlines=0 stale=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:08:59.607,000] ␛[0m<inf> app: stats: temp_latest_mC=27110 temp_min_mC=27070 temp_max_mC=27110 temp_avg_mC=27108 pressure_latest_pa=100067 pressure_min_pa=100064 pressure_max_pa=100067 pressure_avg_pa=100066␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:01.678,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=262 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:03.749,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=263 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:05.819,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=264 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:07.890,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=265 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject clear
+all injected faults cleared
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:09.961,000] ␛[1;33m<wrn> app: injection active: stale-publication sample=266 age_ms=7000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:12.032,000] ␛[0m<inf> app: environment transition: UNKNOWN -> NORMAL␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:12.032,000] ␛[1;33m<wrn> app: missed deadline detected: interval_ms=9000 threshold_ms=2250 missed_count=1␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:20.315,000] ␛[0m<inf> app: summary: processed=40 valid=40 invalid=0 sequence_gaps=0 queue_full=0 health=FAULT environment=NORMAL latest_seq=271 temp_mC=26980 pressure_pa=100070 interval_mean_ms=2246 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:20.315,000] ␛[0m<inf> app: stats: temp_latest_mC=26980 temp_min_mC=26980 temp_max_mC=27110 temp_avg_mC=27026 pressure_latest_pa=100070 pressure_min_pa=100064 pressure_max_pa=100070 pressure_avg_pa=100069␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:22.386,000] ␛[0m<inf> app: health transition: FAULT -> HEALTHY␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:22.386,000] ␛[0m<inf> app: qualified recovery complete: required_valid_samples=5␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: HEALTHY
+environment: NORMAL
+last_fault_reason: NONE
+processed_count: 47 samples
+valid_count: 47 samples
+invalid_count: 0 samples
+queue_full_count: 0 events
+queue_used_count: 0 samples
+queue_free_count: 4 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000000
+active_injections: none
+snapshot_fault_injection_mask: 0x00000000
+snapshot_age_reference_ms: 574811 ms uptime
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:41.023,000] ␛[0m<inf> app: summary: processed=50 valid=50 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=281 temp_mC=26840 pressure_pa=100069 interval_mean_ms=2210 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:09:41.023,000] ␛[0m<inf> app: stats: temp_latest_mC=26840 temp_min_mC=26840 temp_max_mC=27110 temp_avg_mC=26850 pressure_latest_pa=100069 pressure_min_pa=100064 pressure_max_pa=100071 pressure_avg_pa=100069␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: HEALTHY
+environment_status: NORMAL
+last_fault_reason: NONE
+node_health_transitions: 10
+environment_transitions: 7
+consecutive_sensor_failures: 0
+recovery_valid_samples: 10
+stale_data_events: 0
+missed_deadline_events: 0
+queue_overflow_events: 0
+fault_injection_mask: 0x00000000
+active_injections: none
+␛[1;32mfieldsense> ␛[m
+␛[1;32mfieldsense> ␛[mnode timing
+Timing metrics
+requested_period: 2000 ms
+missed_deadline_threshold: 2250 ms
+stale_threshold: 6000 ms
+latest_interval: 2071 ms
+minimum_interval: 2000 ms
+maximum_interval: 9000 ms
+mean_interval: 2191 ms
+scheduler_delay: 71 ms
+missed_deadlines: 1 events
+last_valid_sample_age: 70 ms
+stale_data: no
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:10:01.731,000] ␛[0m<inf> app: summary: processed=60 valid=60 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=291 temp_mC=26880 pressure_pa=100068 interval_mean_ms=2187 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J[00:10:01.731,000] ␛[0m<inf> app: stats: temp_latest_mC=26880 temp_min_mC=26830 temp_max_mC=27110 temp_avg_mC=26860 pressure_latest_pa=100068 pressure_min_pa=100064 pressure_max_pa=100071 pressure_avg_pa=100068␛[0m
+␛[1;32mfieldsense> ␛[mnode faults␛[23D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: HEALTHY
+environment_status: NORMAL
+last_fault_reason: NONE
+node_health_transitions: 10
+environment_transitions: 7
+consecutive_sensor_failures: 0
+recovery_valid_samples: 19
+stale_data_events: 0
+missed_deadline_events: 0
+queue_overflow_events: 0
+fault_injection_mask: 0x00000000
+active_injections: none
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:22.439,000] ␛[0m<inf> app: summary: processed=70 valid=70 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=301 temp_mC=26970 pressure_pa=100064 interval_mean_ms=2170 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:22.439,000] ␛[0m<inf> app: stats: temp_latest_mC=26970 temp_min_mC=26830 temp_max_mC=27110 temp_avg_mC=26952 pressure_latest_pa=100064 pressure_min_pa=100064 pressure_max_pa=100071 pressure_avg_pa=100065␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject normal-environment
+enabled injection: normal-environment
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:24.510,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=302 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:26.581,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=303 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:28.651,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=304 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:30.722,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=305 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:32.793,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=306 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:34.864,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=307 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status␛[23D␛[J[00:10:36.935,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=308 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[mnode status␛[23D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: HEALTHY
+environment: NORMAL
+last_fault_reason: NONE
+processed_count: 77 samples
+valid_count: 77 samples
+invalid_count: 0 samples
+queue_full_count: 0 events
+queue_used_count: 0 samples
+queue_free_count: 4 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000020
+active_injections:
+- normal-environment
+snapshot_fault_injection_mask: 0x00000020
+snapshot_age_reference_ms: 636935 ms uptime
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:39.005,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=309 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:41.076,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=310 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode latest␛[23D␛[J[00:10:43.147,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=311 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[mnode latest␛[23D␛[J[00:10:43.147,000] ␛[0m<inf> app: summary: processed=80 valid=80 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=311 temp_mC=26000 pressure_pa=100000 interval_mean_ms=2158 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[mnode latest␛[23D␛[J[00:10:43.147,000] ␛[0m<inf> app: stats: temp_latest_mC=26000 temp_min_mC=26000 temp_max_mC=27110 temp_avg_mC=26000 pressure_latest_pa=100000 pressure_min_pa=100000 pressure_max_pa=100071 pressure_avg_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[mnode latest␛[23D␛[J␛[1;32mfieldsense> ␛[mnode latest
+Latest valid sample
+sequence: 311
+timestamp: 643147 ms
+status: OK
+temperature: 26.000 C (26000 mC)
+pressure: 100.000 kPa (100000 Pa)
+humidity: unsupported by verified BMP280 hardware
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:45.218,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=312 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:47.289,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=313 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:49.359,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=314 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:51.430,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=315 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:53.501,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=316 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:55.572,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=317 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:57.643,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=318 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:10:59.713,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=319 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:01.784,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=320 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:03.855,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=321 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:03.855,000] ␛[0m<inf> app: summary: processed=90 valid=90 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=321 temp_mC=26000 pressure_pa=100000 interval_mean_ms=2148 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:03.855,000] ␛[0m<inf> app: stats: temp_latest_mC=26000 temp_min_mC=26000 temp_max_mC=27110 temp_avg_mC=26000 pressure_latest_pa=100000 pressure_min_pa=100000 pressure_max_pa=100071 pressure_avg_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:05.926,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=322 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:07.997,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=323 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:10.067,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=324 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:12.138,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=325 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:14.209,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=326 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:16.280,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=327 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject clear
+all injected faults cleared
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:18.351,000] ␛[1;33m<wrn> app: injection active: normal-environment sample=328 temp_mC=26000 pressure_pa=100000␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:24.563,000] ␛[0m<inf> app: summary: processed=100 valid=100 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=331 temp_mC=27120 pressure_pa=100059 interval_mean_ms=2140 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:24.563,000] ␛[0m<inf> app: stats: temp_latest_mC=27120 temp_min_mC=26000 temp_max_mC=27120 temp_avg_mC=26668 pressure_latest_pa=100059 pressure_min_pa=100000 pressure_max_pa=100071 pressure_avg_pa=100035␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: HEALTHY
+environment: NORMAL
+last_fault_reason: NONE
+processed_count: 104 samples
+valid_count: 104 samples
+invalid_count: 0 samples
+queue_full_count: 0 events
+queue_used_count: 0 samples
+queue_free_count: 4 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000000
+active_injections: none
+snapshot_fault_injection_mask: 0x00000000
+snapshot_age_reference_ms: 692846 ms uptime
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:45.271,000] ␛[0m<inf> app: summary: processed=110 valid=110 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=341 temp_mC=27160 pressure_pa=100060 interval_mean_ms=2133 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:11:45.271,000] ␛[0m<inf> app: stats: temp_latest_mC=27160 temp_min_mC=26000 temp_max_mC=27160 temp_avg_mC=27152 pressure_latest_pa=100060 pressure_min_pa=100000 pressure_max_pa=100071 pressure_avg_pa=100058␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode inject clear
+all injected faults cleared
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:12:05.979,000] ␛[0m<inf> app: summary: processed=120 valid=120 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=351 temp_mC=27210 pressure_pa=100059 interval_mean_ms=2128 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:12:05.979,000] ␛[0m<inf> app: stats: temp_latest_mC=27210 temp_min_mC=26000 temp_max_mC=27210 temp_avg_mC=27200 pressure_latest_pa=100059 pressure_min_pa=100000 pressure_max_pa=100071 pressure_avg_pa=100059␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode status
+Node status
+health: HEALTHY
+environment: NORMAL
+last_fault_reason: NONE
+processed_count: 127 samples
+valid_count: 127 samples
+invalid_count: 0 samples
+queue_full_count: 0 events
+queue_used_count: 0 samples
+queue_free_count: 4 slots
+queue_depth: 4 slots
+fault_injection_mask: 0x00000000
+active_injections: none
+snapshot_fault_injection_mask: 0x00000000
+snapshot_age_reference_ms: 740475 ms uptime
+␛[1;32mfieldsense> ␛[mnode latest
+Latest valid sample
+sequence: 361
+timestamp: 746616 ms
+status: OK
+temperature: 27.240 C (27240 mC)
+pressure: 100.059 kPa (100059 Pa)
+humidity: unsupported by verified BMP280 hardware
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:12:26.687,000] ␛[0m<inf> app: summary: processed=130 valid=130 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=361 temp_mC=27240 pressure_pa=100059 interval_mean_ms=2123 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:12:26.687,000] ␛[0m<inf> app: stats: temp_latest_mC=27240 temp_min_mC=26000 temp_max_mC=27240 temp_avg_mC=27234 pressure_latest_pa=100059 pressure_min_pa=100000 pressure_max_pa=100071 pressure_avg_pa=100059␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode stats
+Environmental statistics
+valid samples: 133
+invalid samples: 0
+temperature count: 133 samples
+temperature latest: 27.250 C (27250 mC)
+temperature minimum: 26.000 C (26000 mC)
+temperature maximum: 27.250 C (27250 mC)
+temperature moving_average: 27.246 C (27246 mC)
+pressure count: 133 samples
+pressure latest: 100.058 kPa (100058 Pa)
+pressure minimum: 100.000 kPa (100000 Pa)
+pressure maximum: 100.071 kPa (100071 Pa)
+pressure moving_average: 100.058 kPa (100058 Pa)
+humidity statistics: unsupported by verified BMP280 hardware
+␛[1;32mfieldsense> ␛[mnode timing
+Timing metrics
+requested_period: 2000 ms
+missed_deadline_threshold: 2250 ms
+stale_threshold: 6000 ms
+latest_interval: 2071 ms
+minimum_interval: 2000 ms
+maximum_interval: 9000 ms
+mean_interval: 2120 ms
+scheduler_delay: 71 ms
+missed_deadlines: 1 events
+last_valid_sample_age: 71 ms
+stale_data: no
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:12:47.395,000] ␛[0m<inf> app: summary: processed=140 valid=140 invalid=0 sequence_gaps=0 queue_full=0 health=HEALTHY environment=NORMAL latest_seq=371 temp_mC=27280 pressure_pa=100057 interval_mean_ms=2120 missed_deadlines=1 stale=0␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J[00:12:47.395,000] ␛[0m<inf> app: stats: temp_latest_mC=27280 temp_min_mC=26000 temp_max_mC=27280 temp_avg_mC=27274 pressure_latest_pa=100057 pressure_min_pa=100000 pressure_max_pa=100071 pressure_avg_pa=100057␛[0m
+␛[1;32mfieldsense> ␛[m␛[12D␛[J␛[1;32mfieldsense> ␛[mnode faults
+Fault and transition counters
+node_health: HEALTHY
+environment_status: NORMAL
+last_fault_reason: NONE
+node_health_transitions: 10
+environment_transitions: 7
+consecutive_sensor_failures: 0
+recovery_valid_samples: 99
+stale_data_events: 0
+missed_deadline_events: 0
+queue_overflow_events: 0
+fault_injection_mask: 0x00000000
+active_injections: none
+␛[1;32mfieldsense> ␛[m␛[1;36m
+  clear␛[m␛[4C␛[1;36mdate␛[m␛[5C␛[1;36mdevice␛[m␛[3C␛[1;36mdevmem␛[m␛[3C␛[1;36mhelp␛[m␛[5C␛[1;36mhistory␛[m␛[2C␛[1;36mkernel␛[m␛[3C␛[1;36mnode␛[m␛[5C␛[1;36m
+  rem␛[m␛[6C␛[1;36mresize␛[m␛[3C␛[1;36mretval␛[m␛[3C␛[1;36mshell␛[m␛[4C
+␛[1;32mfieldsense> ␛[m
+--- exit ---

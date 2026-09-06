@@ -38,8 +38,8 @@ void timing_metrics_update(struct timing_metrics *metrics,
 	}
 
 	if (metrics->have_previous_sample) {
-		if (sample->timestamp_ms >=
-		    metrics->previous_sample_timestamp_ms) {
+		if (sample->timestamp_ms >
+                    metrics->previous_sample_timestamp_ms) {
 			interval_ms = sample->timestamp_ms -
 				      metrics->previous_sample_timestamp_ms;
 		} else {

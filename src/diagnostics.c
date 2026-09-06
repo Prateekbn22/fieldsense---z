@@ -164,6 +164,9 @@ static void shell_print_fault_injections(const struct shell *sh,
 	if ((mask & FAULT_INJECTION_INVALID_MEASUREMENT) != 0U) {
 		shell_print(sh, "- invalid-measurement");
 	}
+        if ((mask & FAULT_INJECTION_NORMAL_ENVIRONMENT) != 0U) {
+	shell_print(sh, "- normal-environment");
+}
 }
 
 static int cmd_node_status(const struct shell *sh)
@@ -197,6 +200,12 @@ static int cmd_node_status(const struct shell *sh)
 		    (unsigned int)snapshot.invalid_sample_count);
 	shell_print(sh, "queue_full_count: %u events",
 		    (unsigned int)snapshot.queue_full_count);
+        shell_print(sh, "queue_used_count: %u samples",
+	            (unsigned int)snapshot.queue_used_count);
+        shell_print(sh, "queue_free_count: %u slots",
+	            (unsigned int)snapshot.queue_free_count);
+        shell_print(sh, "queue_depth: %u slots",
+	            (unsigned int)snapshot.queue_depth);
 
 	shell_print_fault_injections(sh, current_injection_mask);
 
@@ -441,7 +450,7 @@ static int cmd_node_inject(const struct shell *sh, size_t argc, char **argv)
 	const char *fault_name;
 
 	if (argc != 3) {
-		shell_error(sh, "usage: node inject <sensor-failure|stale-publication|processing-delay|queue-pressure|invalid-measurement|clear>");
+		shell_error(sh, "usage: node inject <sensor-failure|stale-publication|processing-delay|queue-pressure|invalid-measurement|normal-environment|clear>");
 		return -EINVAL;
 	}
 
@@ -477,6 +486,11 @@ static int cmd_node_inject(const struct shell *sh, size_t argc, char **argv)
 		return 0;
 	}
 
+        if (strcmp(fault_name, "normal-environment") == 0) {
+	        fault_injection_enable(FAULT_INJECTION_NORMAL_ENVIRONMENT);
+	        shell_print(sh, "enabled injection: normal-environment");
+	        return 0;
+        }
 	if (strcmp(fault_name, "clear") == 0) {
 		fault_injection_clear_all();
 		shell_print(sh, "all injected faults cleared");
@@ -484,7 +498,7 @@ static int cmd_node_inject(const struct shell *sh, size_t argc, char **argv)
 	}
 
 	shell_error(sh, "unknown injection: %s", fault_name);
-	shell_error(sh, "valid injections: sensor-failure stale-publication processing-delay queue-pressure invalid-measurement clear");
+	shell_error(sh, "valid injections: sensor-failure stale-publication processing-delay queue-pressure invalid-measurement normal-environment clear");
 
 	return -EINVAL;
 }

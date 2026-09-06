@@ -15,6 +15,10 @@ struct diagnostics_snapshot_update {
 	uint32_t invalid_sample_count;
 	uint32_t sequence_gap_count;
 	uint32_t queue_full_count;
+   
+        uint32_t queue_used_count;
+        uint32_t queue_free_count;
+        uint32_t queue_depth;
 
         uint32_t fault_injection_mask;
 

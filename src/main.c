@@ -230,6 +230,25 @@ static void apply_fault_injection_to_sample(struct sensor_sample *sample,
 			(int)sample->pressure_pa);
 	}
 
+	if ((mask & FAULT_INJECTION_NORMAL_ENVIRONMENT) != 0U) {
+		sample->timestamp_ms = now_ms;
+		sample->valid = true;
+		sample->status = SENSOR_SAMPLE_STATUS_OK;
+		sample->driver_error = 0;
+		sample->temperature_milli_celsius =
+			FAULT_INJECTION_NORMAL_TEMP_MILLI_C;
+		sample->pressure_pa =
+			FAULT_INJECTION_NORMAL_PRESSURE_PA;
+		sample->humidity_supported = false;
+		sample->humidity_milli_percent_rh = 0;
+		*ret = 0;
+
+		LOG_WRN("injection active: normal-environment sample=%u temp_mC=%d pressure_pa=%d",
+			(unsigned int)sample->sequence,
+			(int)sample->temperature_milli_celsius,
+			(int)sample->pressure_pa);
+	}
+
 	if ((mask & FAULT_INJECTION_STALE_PUBLICATION) != 0U) {
 		sample->timestamp_ms = now_ms - FAULT_INJECTION_STALE_AGE_MS;
 
@@ -379,10 +398,11 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 			processed_count = 0U;
 			expected_sequence = sample.sequence;
 
+			atomic_set(&queue_full_count, 0);
+
 			previous_missed_deadline_count =
 				timing.missed_deadline_count;
-			previous_queue_full_count =
-				(uint32_t)atomic_get(&queue_full_count);
+			previous_queue_full_count = 0U;
 			previous_stale_data = false;
 
 			LOG_INF("diagnostic statistics reset applied");
@@ -460,13 +480,10 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 
 		previous_stale_data = timing.stale_data;
 
-		if (sample.sequence != expected_sequence) {
-			uint32_t missed = 0U;
+		if (sample.sequence > expected_sequence) {
+			uint32_t missed;
 
-			if (sample.sequence > expected_sequence) {
-				missed = sample.sequence - expected_sequence;
-			}
-
+			missed = sample.sequence - expected_sequence;
 			sequence_gap_count++;
 
 			LOG_WRN("sequence gap detected: expected=%u received=%u missed=%u gap_count=%u",
@@ -474,9 +491,15 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 				(unsigned int)sample.sequence,
 				(unsigned int)missed,
 				(unsigned int)sequence_gap_count);
-		}
 
-		expected_sequence = sample.sequence + 1U;
+			expected_sequence = sample.sequence + 1U;
+		} else if (sample.sequence < expected_sequence) {
+			LOG_WRN("duplicate or out-of-order sample observed: expected=%u received=%u",
+				(unsigned int)expected_sequence,
+				(unsigned int)sample.sequence);
+		} else {
+			expected_sequence = sample.sequence + 1U;
+		}
 
 		if (sample_is_valid) {
 			latest_valid_sample = sample;
@@ -502,6 +525,13 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 				.sequence_gap_count = sequence_gap_count,
 				.queue_full_count =
 					(uint32_t)atomic_get(&queue_full_count),
+				.queue_used_count =
+					(uint32_t)k_msgq_num_used_get(
+						&sensor_sample_msgq),
+				.queue_free_count =
+					(uint32_t)k_msgq_num_free_get(
+						&sensor_sample_msgq),
+				.queue_depth = SENSOR_SAMPLE_QUEUE_DEPTH,
 				.fault_injection_mask = fault_injection_get_mask(),
 				.latest_valid_available = latest_valid_available,
 				.latest_valid_sample = latest_valid_sample,
@@ -552,11 +582,12 @@ int main(void)
 	fault_injection_init();
 	diagnostics_init();
 
-	LOG_INF("boot: FieldSense-Z fault injection checkpoint");
+	LOG_INF("boot: FieldSense-Z queue backpressure checkpoint");
 	LOG_INF("logging mode: deferred");
 	LOG_INF("pipeline: acquisition -> k_msgq -> processing -> diagnostics shell -> fault injection");
 	LOG_INF("supported sensor channels: temperature pressure; humidity unsupported on verified BMP280 hardware");
 	LOG_INF("fault injection: software-only, reversible, diagnostic-shell controlled");
+	LOG_INF("queue backpressure: finite queue, nonblocking publish, drop newest on full queue");
 
 	env_stats_test_passed = env_stats_controlled_self_test();
 	if (env_stats_test_passed) {

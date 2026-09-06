@@ -263,6 +263,8 @@ static void sensor_acquisition_thread(void *p1, void *p2, void *p3)
 	struct sensor_sample sample;
 	int ret;
 
+	k_thread_name_set(k_current_get(), "fieldsense_acq");
+
 	ARG_UNUSED(p1);
 	ARG_UNUSED(p2);
 	ARG_UNUSED(p3);
@@ -346,6 +348,8 @@ static void sensor_processing_thread(void *p1, void *p2, void *p3)
 	uint32_t processed_count = 0U;
 
 	int ret;
+
+	k_thread_name_set(k_current_get(), "fieldsense_proc");
 
 	ARG_UNUSED(p1);
 	ARG_UNUSED(p2);

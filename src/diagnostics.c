@@ -8,6 +8,7 @@
 #include <zephyr/shell/shell.h>
 #include <zephyr/sys/atomic.h>
 #include <zephyr/sys/util.h>
+#include <zephyr/debug/thread_analyzer.h>
 
 #include "diagnostics.h"
 #include "fault_injection.h"
@@ -164,9 +165,10 @@ static void shell_print_fault_injections(const struct shell *sh,
 	if ((mask & FAULT_INJECTION_INVALID_MEASUREMENT) != 0U) {
 		shell_print(sh, "- invalid-measurement");
 	}
-        if ((mask & FAULT_INJECTION_NORMAL_ENVIRONMENT) != 0U) {
-	shell_print(sh, "- normal-environment");
-}
+
+	if ((mask & FAULT_INJECTION_NORMAL_ENVIRONMENT) != 0U) {
+		shell_print(sh, "- normal-environment");
+	}
 }
 
 static int cmd_node_status(const struct shell *sh)
@@ -200,12 +202,12 @@ static int cmd_node_status(const struct shell *sh)
 		    (unsigned int)snapshot.invalid_sample_count);
 	shell_print(sh, "queue_full_count: %u events",
 		    (unsigned int)snapshot.queue_full_count);
-        shell_print(sh, "queue_used_count: %u samples",
-	            (unsigned int)snapshot.queue_used_count);
-        shell_print(sh, "queue_free_count: %u slots",
-	            (unsigned int)snapshot.queue_free_count);
-        shell_print(sh, "queue_depth: %u slots",
-	            (unsigned int)snapshot.queue_depth);
+	shell_print(sh, "queue_used_count: %u samples",
+		    (unsigned int)snapshot.queue_used_count);
+	shell_print(sh, "queue_free_count: %u slots",
+		    (unsigned int)snapshot.queue_free_count);
+	shell_print(sh, "queue_depth: %u slots",
+		    (unsigned int)snapshot.queue_depth);
 
 	shell_print_fault_injections(sh, current_injection_mask);
 
@@ -241,7 +243,8 @@ static int cmd_node_latest(const struct shell *sh)
 	shell_print(sh, "status: %s",
 		    sensor_sample_status_to_string(sample->status));
 
-	shell_print_milli_c(sh, "temperature", sample->temperature_milli_celsius);
+	shell_print_milli_c(sh, "temperature",
+			    sample->temperature_milli_celsius);
 	shell_print_pressure(sh, "pressure", sample->pressure_pa);
 
 	if (sample->humidity_supported) {
@@ -445,6 +448,18 @@ static int cmd_node_thresholds(const struct shell *sh)
 	return 0;
 }
 
+static int cmd_node_threads(const struct shell *sh)
+{
+	shell_print(sh, "Thread analyzer snapshot");
+	shell_print(sh, "Look for fieldsense_acq, fieldsense_proc, sysworkq, shell, idle, and logging-related threads.");
+	shell_print(sh, "Format: stack usage is reported by Zephyr thread analyzer.");
+	shell_print(sh, "Use this output to record allocated stack, used stack high-water, and unused stack.");
+
+	thread_analyzer_print(0);
+
+	return 0;
+}
+
 static int cmd_node_inject(const struct shell *sh, size_t argc, char **argv)
 {
 	const char *fault_name;
@@ -486,11 +501,12 @@ static int cmd_node_inject(const struct shell *sh, size_t argc, char **argv)
 		return 0;
 	}
 
-        if (strcmp(fault_name, "normal-environment") == 0) {
-	        fault_injection_enable(FAULT_INJECTION_NORMAL_ENVIRONMENT);
-	        shell_print(sh, "enabled injection: normal-environment");
-	        return 0;
-        }
+	if (strcmp(fault_name, "normal-environment") == 0) {
+		fault_injection_enable(FAULT_INJECTION_NORMAL_ENVIRONMENT);
+		shell_print(sh, "enabled injection: normal-environment");
+		return 0;
+	}
+
 	if (strcmp(fault_name, "clear") == 0) {
 		fault_injection_clear_all();
 		shell_print(sh, "all injected faults cleared");
@@ -508,7 +524,7 @@ static int cmd_node(const struct shell *sh, size_t argc, char **argv)
 	const char *subcmd;
 
 	if (argc < 2 || argc > 3) {
-		shell_error(sh, "usage: node <status|latest|stats|timing|faults|reset-stats|thresholds|inject>");
+		shell_error(sh, "usage: node <status|latest|stats|timing|faults|reset-stats|thresholds|threads|inject>");
 		return -EINVAL;
 	}
 
@@ -552,8 +568,12 @@ static int cmd_node(const struct shell *sh, size_t argc, char **argv)
 		return cmd_node_thresholds(sh);
 	}
 
+	if (strcmp(subcmd, "threads") == 0) {
+		return cmd_node_threads(sh);
+	}
+
 	shell_error(sh, "unknown node command: %s", subcmd);
-	shell_error(sh, "valid commands: status latest stats timing faults reset-stats thresholds inject");
+	shell_error(sh, "valid commands: status latest stats timing faults reset-stats thresholds threads inject");
 
 	return -EINVAL;
 }

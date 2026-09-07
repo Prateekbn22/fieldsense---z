@@ -1,310 +1,38 @@
-## Entry 3 — Zephyr environment setup and verification
-
-### 1. What I was trying to achieve
-
-I was trying to install and verify the Zephyr development environment before writing FieldSense-Z application code.
-
-### 2. What concept I learned
-
-I learned that Zephyr development depends on the host environment. The `west` tool, Python virtual environment, Zephyr workspace, CMake, Ninja, Git, and Zephyr SDK must all be available before board bring-up can start.
-
-### 3. What I changed
-
-I installed the missing Zephyr setup pieces and moved the Zephyr workspace to `C:\zephyrproject` to avoid problems caused by spaces in my Windows user path.
-
-### 4. How I tested it
-
-I activated the Zephyr virtual environment and ran `west --version`, `west topdir`, `west list zephyr`, `west boards` filtered for ESP32, `cmake --version`, `ninja --version`, `git --version`, `py -3.12 --version`, and `where.exe 7z`.
-
-### 5. What actually happened
-
-TBD after reviewing `results/logs/zephyr_environment_check.txt`.
-
-### 6. Any problem and its root cause
-
-Earlier, PowerShell could not recognize `west`, and the first Zephyr workspace path caused dependency-install issues because my Windows user path contained spaces. I fixed this by creating a clean Zephyr workspace at `C:\zephyrproject`.
-
-### 7. What I would explain in an interview
-
-I would explain that I verified the Zephyr toolchain before writing firmware. When `west` was missing and the first setup path caused issues, I treated it as an environment problem, documented the evidence, and fixed the setup before moving to board bring-up.
-
-### 8. Blog-style paragraph
-
-Before writing sensor code, I set up and verified the Zephyr environment on Windows. I captured the tool versions and ESP32 board listing in a log file so future build or flash issues can be compared against a known setup state. This step helped me separate toolchain problems from firmware or hardware problems.
-
-## Entry 4 — First ESP32 board bring-up
-
-### What I was trying to achieve
-
-I wanted to build, flash, and verify a minimal Zephyr application on my ESP32 before connecting the BME280 sensor.
-
-### What I learned
-
-I learned that hardware bring-up should be done in small steps. First I verified the board target, SDK toolchain, flashing path, and serial console before adding sensor code.
-
-### What I changed
-
-I added a minimal `src/main.c`, updated `CMakeLists.txt`, and kept `prj.conf` limited to serial console and `printk`.
-
-### How I tested it
-
-I built the application using Zephyr west, flashed it to the ESP32, and opened a serial monitor on COM9 at 115200 baud.
-
-### Result
-
-The ESP32 successfully booted Zephyr and printed periodic uptime messages every 5 seconds.
-
-### Evidence
-
-Logs saved:
-
-- `results/logs/first_board_build.txt`
-- `results/logs/first_board_flash.txt`
-- `results/logs/first_board_boot.txt`
-
-### Interview explanation
-
-I would explain that I started with a minimal board bring-up test instead of jumping directly to the sensor. This helped me isolate the build system, board target, SDK, flashing, and serial-console path first.
-
-### Blog-style paragraph
-
-For this step, I kept the firmware intentionally small. The application only prints a startup message and a periodic uptime message. This proved that the ESP32 could build, flash, boot Zephyr, and communicate over the serial console before I connected the BME280 sensor.
-
-## Entry — Bosch sensor identity verification
-
-### What I was trying to achieve
-
-I wanted to verify whether my HW-611 module actually contained a BME280 or BMP280 before writing sensor-driver measurement code.
-
-### What I learned
-
-I learned that the I2C address and chip ID are different. The address tells me where a device responds on the bus. The chip ID tells me what silicon is inside the package.
-
-### What I tested
-
-I read Bosch register `0xD0`, which is the identification register.
-
-### Result
-
-The sensor responded at address `0x76`, and register `0xD0` returned `0x58`.
-
-This identifies the module as BMP280.
-
-### Project impact
-
-I can continue with temperature and pressure measurements, but humidity cannot be implemented with this hardware. If humidity becomes required for the final FieldSense-Z demo, I need to purchase a verified BME280.
-
-### Blog seed
-
-Instead of trusting the breakout-board name or seller listing, I verified the actual silicon by reading the Bosch chip identification register. The module responded on the I2C bus at `0x76`, but that only proved communication. The stronger identity check was register `0xD0`, which returned `0x58`. That value identifies the device as a BMP280, not a BME280. This changed the project scope honestly: temperature and pressure remain available, but humidity is not possible with the current hardware.
-
-## Entry — Sensor service refactor
-
-### What I was trying to achieve
-
-I wanted to keep `main.c` simple by moving environmental sensor access into a reusable sensor service module.
-
-### What I changed
-
-I created:
-
-- `include/app_types.h`
-- `include/sensor_service.h`
-- `src/sensor_service.c`
-
-The sensor service now owns the Zephyr sensor API calls and returns a clean `sensor_sample` structure to the application.
-
-### What I learned
-
-I learned that a good module boundary keeps hardware access separate from application behavior.
-
-`main.c` should not need to know every Zephyr sensor channel or driver detail. It should ask for a sample and decide what to do with it.
-
-I also learned why explicit units matter. Instead of passing around floating-point values or raw driver structures, I store temperature in milli-degrees Celsius and pressure in pascals. This makes logs, comparisons, thresholds, and tests clearer.
-
-### Result
-
-The refactored application produced the same physical measurements as the previous sensor-driver version, but the code is cleaner and easier to extend.
-
-### Evidence
-
-Serial output from the refactored application was saved in:
-
-`results/logs/sensor_service_refactor.txt`
-
-### Blog seed
-
-After proving that the BMP280 worked through Zephyr’s sensor API, I refactored the sensor logic into a small service module. This moved hardware access out of `main.c` and created a cleaner boundary between driver-level operations and application behavior. The service fetches samples, reads supported channels, converts values into explicit integer units, and reports errors through a structured status field. This makes the next stages easier to build because future RTOS threads, queues, statistics, and fault logic can work with a simple `sensor_sample` structure instead of directly depending on sensor-driver calls.
-
-## Entry — Environmental measurement statistics
-
-### What I was trying to achieve
-
-I wanted to add useful statistics to the environmental processing thread without mixing calculation logic into the hardware layer.
-
-### What I changed
-
-I added a separate statistics module:
-
-- `include/env_stats.h`
-- `src/env_stats.c`
-
-The processing thread now updates statistics only after receiving and validating a sample.
-
-### What I learned
-
-I learned the difference between latest value, minimum, maximum, arithmetic mean, and moving average.
-
-The latest value is the newest valid reading. The minimum and maximum track the range of valid readings. A moving average smooths short-term variation by averaging only the most recent window of samples.
-
-I also learned why integer scaling matters in embedded systems. Temperature is stored in milli-degrees Celsius and pressure is stored in pascals, so statistics can be calculated without floating point.
-
-I used an `int64_t` moving-window sum to reduce overflow risk when adding multiple `int32_t` values.
-
-### Interview explanation
-
-I kept statistics separate from the hardware layer. The sensor service talks to the Zephyr sensor driver, the acquisition thread publishes samples, and the processing thread validates samples before passing values into the stats module.
-
-This makes the calculation code easier to test. I verified the module first with controlled values, then with real BMP280 measurements.
-
-Since my verified sensor is BMP280, I only calculate statistics for temperature and pressure. Humidity statistics are intentionally skipped because this hardware does not support humidity.
-
-### Evidence
-
-Serial output was saved in:
-
-`results/logs/env_stats.txt`
-
-### Blog seed
-
-After building the producer-consumer pipeline, I added environmental measurement statistics as a separate module. The goal was to keep hardware access, RTOS communication, processing, and calculations separated. The stats module tracks the latest value, minimum, maximum, valid sample count, and a moving average window for temperature and pressure. I verified the math first using controlled values, then ran it on real BMP280 readings. This made the feature easier to test and also kept the design honest because humidity statistics are not calculated on BMP280 hardware.
-
-## Entry — Sampling timing and freshness metrics
-
-### What I was trying to achieve
-
-I wanted to measure the difference between the requested sampling period and the actual timing behavior of the RTOS application.
-
-### What I changed
-
-I added a timing metrics module:
-
-- `include/timing_metrics.h`
-- `src/timing_metrics.c`
-
-The processing thread now updates timing metrics after receiving samples from the message queue.
-
-The firmware now tracks measured sample interval, minimum interval, maximum interval, mean interval, scheduler delay, missed-deadline count, last-valid-sample age, and stale-data status.
-
-### What I learned
-
-I learned that requesting a 2000 ms period does not guarantee every measured interval will be exactly 2000 ms.
-
-The actual interval includes sensor-read time, queue publishing, logging, thread sleep behavior, and scheduler behavior.
-
-I also learned that environmental monitoring does not need microsecond precision because temperature and pressure change slowly. But timing evidence is still important because it shows whether the firmware is running consistently and whether the latest valid data is fresh.
-
-### Interview explanation
-
-I measured timing using monotonic uptime instead of wall-clock time. The acquisition thread timestamps samples, and the processing side calculates the actual interval between consecutive samples.
-
-I tracked min, max, and mean interval, plus a missed-deadline counter and last-valid-sample age. This gave me real evidence of RTOS behavior instead of assuming that `k_sleep(K_MSEC(2000))` always produces an exact 2000 ms sample interval.
-
-### Result
-
-The timing run showed measured sample intervals close to the requested 2000 ms period under normal operation.
-
-No unexplained missed deadlines or stale-data events were expected during the normal run.
-
-### Evidence
-
-Timing output was saved in:
-
-`results/logs/timing_run.txt`
-
-Timing analysis was documented in:
-
-`docs/timing_analysis.md`
-
-### Blog seed
-
-FieldSense-Z requests a 2000 ms environmental sampling period, but I added timing metrics to measure what actually happens at runtime. The firmware now compares requested timing with measured sample intervals, tracks min, max, and mean interval, counts missed deadlines, and checks the age of the latest valid sample. Environmental data does not need microsecond precision, but measuring timing is still valuable because it proves the RTOS pipeline is sampling consistently and that the data being processed is fresh.
-
-## Entry — Separating node health from environmental alerts
-
-### What I was trying to achieve
-
-I wanted to define the health and alert model before writing state-machine code.
-
-### What I learned
-
-I learned that node health and environmental status are different systems.
-
-Node health answers whether the embedded device is working correctly. It depends on things like sensor communication, stale data, missed deadlines, queue behavior, and repeated failures.
-
-Environmental status answers what the sensor is measuring. It depends on temperature and pressure values from the environment.
-
-### Why this separation matters
-
-A high-temperature reading does not automatically mean the node is faulty. If the node is reading the sensor correctly, producing fresh samples, meeting timing expectations, and processing data normally, then the node can be healthy while reporting a high-temperature environmental alert.
-
-This separation makes the design easier to explain and safer to extend. Device faults should represent problems with the embedded node. Environmental alerts should represent conditions detected by the node.
-
-### Blog-ready section
-
-In FieldSense-Z, I separated system health from environmental conditions before writing the state-machine code. This matters because a sensor node can be operating correctly while detecting an abnormal environment. For example, if the BMP280 reports a high temperature, that does not automatically mean the firmware or hardware is faulty. It may mean the device is successfully detecting a hot condition. Node health is based on device behavior such as sensor failures, stale data, missed deadlines, and queue overflows. Environmental status is based on measured temperature and pressure. Keeping these two systems separate makes the firmware easier to debug, explain, and extend.
-
-## Entry — Health and environmental state machines
-
-### What I was trying to achieve
-
-I wanted to implement the state models that I had already documented, without adding extra features or shell commands yet.
-
-### What I changed
-
-I added a separate state model module:
-
-- `include/state_model.h`
-- `src/state_model.c`
-
-The module keeps node health and environmental status separate.
-
-Node health tracks whether the embedded node itself is working correctly.
-
-Environmental status tracks what the BMP280-supported measurements say about the environment.
-
-### What I learned
-
-I learned that a state machine needs states, events, transitions, guard conditions, and actions.
-
-For node health, events include sensor failures, stale data, missed deadlines, and queue overflows.
-
-For environmental status, events come from temperature and pressure thresholds.
-
-I also learned why recovery qualification matters. The node should not move from `FAULT` back to `HEALTHY` after only one good sample. This implementation requires 5 consecutive valid samples before recovery.
-
-### Interview explanation
-
-I separated node health from environmental status because they answer different questions.
-
-Node health answers: is the embedded system working correctly?
-
-Environmental status answers: what condition is the sensor measuring?
-
-For example, a high-temperature condition means the environment is hot. It does not automatically mean the node is faulty. If the sensor is communicating correctly, timing is fresh, and samples are being processed normally, then the node can be `HEALTHY` while the environmental status is `HIGH_TEMPERATURE`.
-
-The state model is also testable independently from the physical sensor. I added a controlled self-test that verifies normal startup, transient errors, repeated errors, stale data, environmental alerts, and qualified recovery.
-
-### Result
-
-The controlled state-model self-test passed, and normal runtime operation showed the node health and environmental status being reported separately.
-
-### Evidence
-
-Serial output was saved in:
-
-`results/logs/state_machines_run.txt`
-
-### Blog seed
-
-After documenting the FieldSense-Z health and alert model, I implemented the state machines in a separate module. I kept node health separate from environmental status so the firmware can distinguish between a device problem and a real environmental condition. The node health state machine handles initialization, transient errors, repeated failures, stale data, missed deadlines, queue overflows, and qualified recovery. The environmental state machine only uses channels supported by my verified BMP280 hardware, so it tracks temperature and pressure alerts but not humidity. I also added a controlled self-test so the state logic can be verified without needing to physically force every sensor failure or environmental condition.
+﻿# Learning Journal
+
+## What I learned
+
+FieldSense-Z helped me practice the difference between making a sensor print values and building a small embedded system that can be validated.
+
+Key lessons:
+
+- verify hardware identity instead of trusting breakout labels
+- use I2C ACK only as the first check, not the final proof
+- read chip ID to confirm the actual sensor
+- keep humidity out of the project when the verified hardware is BMP280
+- separate data acquisition from processing using RTOS threads
+- use finite queues and define overflow behavior
+- measure timing and missed deadlines
+- model node health separately from environmental status
+- add diagnostic shell commands to make validation easier
+- use deterministic fault injection instead of relying only on random failures
+- record evidence before marking a test PASS
+- measure stack usage instead of guessing
+
+## Most important engineering decisions
+
+The most important decision was to keep the project honest. When the module was identified as BMP280, the project stopped claiming humidity support. When screenshots were not captured, serial logs were used instead. When the first cold boot output was incomplete, the test was rerun instead of marking it PASS without evidence.
+
+## What this project demonstrates
+
+This project demonstrates practical embedded engineering skills:
+
+- Zephyr build and flash workflow
+- device-tree based hardware configuration
+- sensor driver integration
+- C data structures for embedded samples
+- RTOS thread design
+- queue-based communication
+- shell-based diagnostics
+- validation discipline
+- debugging and documentation

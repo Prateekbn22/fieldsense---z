@@ -1,48 +1,49 @@
-# FieldSense-Z Project Overview
+﻿# Project Overview
 
-## Project objective
+FieldSense-Z is a Zephyr RTOS environmental monitoring node built on an ESP32 DEVKIT V1 and a verified BMP280 sensor module.
 
-FieldSense-Z is a Zephyr RTOS environmental sensing and fault-monitoring node using an ESP32 and a BME280-style sensor breakout.
+The project demonstrates practical embedded engineering work:
 
-The project will periodically acquire temperature, humidity, and pressure samples, attach timing and validity information, pass samples through an RTOS-safe data path, detect stale data and node faults, and expose diagnostic evidence from physical hardware testing.
+- hardware bring-up
+- I2C first-principles validation
+- Zephyr devicetree configuration
+- sensor driver integration
+- RTOS thread separation
+- message queue based sample transfer
+- diagnostic shell commands
+- health and fault state modeling
+- deterministic fault injection
+- timing and resource measurement
+- hardware validation with evidence
 
-## Problem statement
+The validated sensor hardware supports temperature and pressure only. Humidity is intentionally documented as unsupported.
 
-A simple program that reads a sensor and prints a value does not prove that the embedded node is trustworthy over time.
+## Actual validated behavior
 
-A printed value may be old, repeated, delayed, or produced after an ignored error. FieldSense-Z is intended to show how an embedded system can track not only the environmental measurement, but also the health of the measurement process.
+The completed project can:
 
-## Scope
+- boot on ESP32
+- read BMP280 temperature and pressure over I2C address 0x76
+- publish samples from an acquisition thread to a processing thread
+- compute latest, minimum, maximum, and moving-average statistics
+- track sampling intervals, missed deadlines, stale data, and last valid sample age
+- classify node health separately from environmental status
+- expose a diagnostic shell
+- inject controlled software faults
+- recover from sensor, stale-data, and queue-pressure faults
+- complete a 40-minute stability run without invalid samples, missed deadlines, stale data, or queue overflows
 
-Version 1 will focus on:
+## Out of scope
 
-- ESP32 running Zephyr RTOS
-- BME280-style environmental sensor over I2C, if verified
-- Periodic acquisition
-- Timestamped samples
-- RTOS-safe message queue data transfer
-- Sample freshness checking
-- Node-health classification
-- Environmental-alert classification
-- Diagnostic logs and documentation
-- Physical hardware validation
+This project does not include:
 
-## Non-goals
-
-Version 1 will not include:
-
+- humidity measurement
+- relay switching
 - Wi-Fi
-- Cloud services
-- Dashboards
-- MQTT
 - Bluetooth
-- Machine learning
-- Extra sensors
-- Production calibration
-- Safety certification
-
-## Expected final demonstration
-
-The final demonstration should show the node acquiring environmental samples on physical hardware, reporting current measurements with timing context, detecting stale or failed acquisition states, separating node-health problems from environmental alerts, and recording test evidence through logs, photos, and notes.
-
-The project will make bounded claims based on measured results from the tested hardware only.
+- MQTT
+- cloud storage
+- dashboard UI
+- machine learning
+- battery-power characterization
+- external calibration

@@ -58,7 +58,8 @@ No test is marked PASS unless the required behavior is visible in the saved logs
 | Test | Status | Evidence path | Notes |
 |---|---|---|---|
 | Cold boot | PASS | results/logs/hardware_validation_serial.txt | ESP32 boot output, node status, and node faults were captured |
-| Normal measurements | PASS | results/logs/hardware_validation_serial.txt | Healthy state, valid temperature and pressure readings, no stale data, no queue overflows || Environmental threshold | PASS | results/logs/hardware_validation_serial.txt | Thresholds printed, normal-environment injection active, controlled readings applied, cleared successfully |
+| Normal measurements | PASS | results/logs/hardware_validation_serial.txt | Healthy state, valid temperature and pressure readings, no stale data, no queue overflows |
+| Environmental threshold | PASS | results/logs/hardware_validation_serial.txt | Thresholds printed, normal-environment injection active, controlled readings applied, cleared successfully |
 | Sensor unavailable | PASS | results/logs/hardware_validation_serial.txt, results/photos/sensor_unavailable_wiring_change.jpg, results/photos/restored_wiring_after_fault_test.jpg | Sensor unavailable fault observed, restored wiring returned node to healthy operation |
 | Sensor read failure | PASS | results/logs/hardware_validation_serial.txt | Sensor-failure injection caused FAULT and recovered after clearing |
 | Stale data | PASS | results/logs/hardware_validation_serial.txt | Stale data detected, FAULT entered, cleared and recovered |
@@ -111,6 +112,7 @@ unexpected lockups: 0 observed
 
 Decision: PASS
 
+---
 
 ## Test 2: Normal measurements
 

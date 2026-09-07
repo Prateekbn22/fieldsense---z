@@ -1,179 +1,95 @@
 ﻿# Resource Analysis
 
-## Goal
+## Purpose
 
-This document explains how FieldSense-Z measures runtime and build-time resource usage.
+This document records measured resource usage for the implemented FieldSense-Z firmware.
 
-The goal is to measure stack, RAM, flash, queue memory, logging overhead, shell overhead, and timing behavior instead of guessing.
+The goal was to measure resource usage instead of guessing and not to shrink stacks only for better-looking numbers.
 
-## Terms
+## Runtime stack measurements
 
-### Allocated thread stack
+Measured at the end of the 40-minute stability run using node threads.
 
-Allocated thread stack is the amount of RAM reserved for a thread stack.
+| Thread | Unused stack | Used stack | Allocated stack | Usage |
+|---|---:|---:|---:|---:|
+| fieldsense_proc | 896 bytes | 1152 bytes | 2048 bytes | 56 percent |
+| fieldsense_acq | 1248 bytes | 800 bytes | 2048 bytes | 39 percent |
+| shell_uart | 128 bytes | 1920 bytes | 2048 bytes | 93 percent |
+| logging | 736 bytes | 288 bytes | 1024 bytes | 28 percent |
+| idle | 816 bytes | 208 bytes | 1024 bytes | 20 percent |
+| ISR0 | 1504 bytes | 544 bytes | 2048 bytes | 26 percent |
 
-FieldSense-Z has application threads for:
+The shell stack had the highest measured usage. It was not reduced.
 
-```text
-fieldsense_acq
-fieldsense_proc
-```
+## System workqueue note
 
-The firmware also uses Zephyr/system threads such as:
+The requested resource checklist included system workqueue stack usage. The captured thread analyzer output did not list a system workqueue entry. The measured results only claim the threads that appeared in the captured output.
 
-```text
-system workqueue
-shell
-idle
-logging-related threads or backend work
-```
+## Queue memory
 
-### Stack high-water usage
+The implemented sample queue depth is:
 
-Stack high-water usage is the largest amount of stack observed as used at runtime.
+- 4 samples
 
-The project measures this using Zephyr thread analyzer output.
+The queue stores sensor_sample objects and exposes queue usage through diagnostics:
 
-The important fields are:
+- queue_used_count
+- queue_free_count
+- queue_depth
+- queue_full_count
 
-```text
-STACK: unused X usage Y / Z
-```
+During normal and stability validation, queue_full_count remained 0. During queue pressure validation, queue_full_count increased as expected.
 
-Where:
+## Timing results
 
-```text
-Z = allocated stack
-Y = observed high-water used stack
-X = unused stack
-```
+Stability run timing:
 
-Stacks should not be reduced just to make numbers look tight.
+| Metric | Value |
+|---|---:|
+| requested_period | 2000 ms |
+| latest_interval | 2071 ms |
+| mean_interval | 2070 ms |
+| missed_deadlines | 0 |
+| stale_data | no |
 
-A safe embedded design keeps margin because future logging, error paths, shell commands, and driver behavior can use more stack.
+## Boot-time memory section evidence
 
-### Static RAM
+Cold boot output included ESP32 boot section information:
 
-Static RAM is RAM allocated at build time.
+| Section | Captured size |
+|---|---:|
+| DRAM | 8432 bytes |
+| IRAM | 43344 bytes |
+| RTC_DATA | 40 bytes |
+| IROM | 50896 bytes |
+| DROM | 65536 bytes |
+| libc heap | 175 kB |
 
-This includes:
+These boot lines are useful evidence, but they are not a replacement for a full Zephyr rom_report or ram_report.
 
-```text
-global variables
-kernel objects
-thread stacks
-message queue storage
-logging buffers
-shell buffers
-driver state
-```
+## Logging overhead
 
-### Flash
+Logging was enabled and contributed to:
 
-Flash stores firmware code and read-only data.
+- log strings
+- log formatting code
+- logging thread stack
+- logging backend behavior
 
-This includes:
+Measured logging thread stack usage:
 
-```text
-application code
-Zephyr kernel code
-drivers
-shell command tables
-logging strings
-constant data
-```
+- 288 / 1024 bytes
 
-### Queue memory
+## Shell overhead
 
-FieldSense-Z uses a finite Zephyr message queue for sensor samples.
+The serial shell is useful for validation but has real cost.
 
-The main queue payload allocation is:
+Measured shell stack usage:
 
-```text
-sizeof(struct sensor_sample) × SENSOR_SAMPLE_QUEUE_DEPTH
-```
+- 1920 / 2048 bytes
 
-The firmware also has kernel metadata for the queue object.
-
-### Logging overhead
-
-Logging overhead comes from:
-
-```text
-log strings
-log formatting code
-log buffers
-logging backend code
-deferred logging support
-```
-
-Logging is useful during validation, but it increases flash and RAM use.
-
-### Shell overhead
-
-Shell overhead comes from:
-
-```text
-serial shell backend
-shell command tables
-shell buffers
-shell thread stack
-command parsing code
-```
-
-The shell is valuable for diagnostics and interview demonstration, but it is not free.
-
-## Measurement method
-
-Resource usage is measured using:
-
-```text
-Zephyr build memory summary
-ram_report
-rom_report
-thread analyzer
-node timing
-node status
-node faults
-```
-
-Build-time evidence shows flash and static RAM.
-
-Runtime evidence shows stack high-water usage and sampling timing.
-
-## What was measured
-
-The resource analysis measured:
-
-```text
-acquisition stack usage
-processing stack usage
-system workqueue stack usage
-shell stack usage
-flash usage
-RAM usage
-message queue allocation
-sampling timing
-missed deadlines
-```
-
-## Important rule
-
-Stacks were not reduced in this milestone.
-
-The goal was to measure and document actual usage first.
-
-Optimization should only happen after enough evidence is collected across normal operation, fault injection, shell usage, and recovery paths.
+The shell was kept because it is central to diagnostics and validation.
 
 ## Blog-ready paragraph
 
-For FieldSense-Z, I measured resource usage instead of guessing. In embedded systems, it is tempting to choose stack sizes and buffers based only on what seems reasonable, but that can hide real failure modes. I enabled Zephyr stack and thread analysis, collected runtime high-water stack usage for the acquisition thread, processing thread, shell, and system workqueue, and compared that with build-time flash and RAM reports. This gave me evidence for how much memory the firmware actually used during normal sampling, diagnostic-shell activity, and delayed-processing fault scenarios. I intentionally did not shrink stacks just to make the numbers look better, because safe embedded design needs margin for future code, logging, drivers, and rare error paths.
-
-## Evidence files
-
-Actual evidence is saved in:
-
-```text
-results/logs/thread_analysis.txt
-results/resource_usage.md
-```
+For FieldSense-Z, I measured resource usage instead of guessing. In embedded systems, it is tempting to choose stack sizes and buffers based only on what seems reasonable, but that can hide real failure modes. I enabled Zephyr stack and thread analysis, collected runtime high-water stack usage for the acquisition thread, processing thread, shell, logging, idle, and ISR stack, and compared that with timing behavior from normal operation and a 40-minute stability run. This gave me evidence for how much memory the firmware actually used during sensor sampling, diagnostic-shell activity, fault injection, and recovery. I intentionally did not shrink stacks just to make the numbers look better, because safe embedded design needs margin for future code, logging, drivers, and rare error paths.

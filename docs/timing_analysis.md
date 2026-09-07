@@ -1,62 +1,80 @@
-# Timing Analysis
+﻿# Timing Analysis
 
-## Goal
+## Configured timing
 
-The goal of this milestone was to compare the requested sampling period with the actual measured RTOS behavior.
+The firmware uses a requested sampling period of:
 
-FieldSense-Z requests a fixed sampling period, but the actual measured interval can vary because the acquisition thread performs work, interacts with the sensor driver, publishes data to a queue, sleeps, and is scheduled by the RTOS.
+- 2000 ms
 
-## Timing terms
+Missed deadline threshold:
 
-Requested period is the sampling period configured in firmware.
+- 2250 ms
 
-Actual measured period is the time between two produced sensor samples.
+Stale data threshold:
 
-Execution time is the time spent doing the acquisition work for one sample.
+- 6000 ms
 
-Scheduler delay is the difference between the actual measured interval and the requested period.
+## Normal measurement timing
 
-Jitter is the variation between measured sample intervals.
+Measured normal timing:
 
-A missed period is counted when the measured interval is greater than the requested period plus the configured tolerance.
+| Metric | Value |
+|---|---:|
+| requested_period | 2000 ms |
+| latest_interval | 2070 ms |
+| minimum_interval | 2070 ms |
+| maximum_interval | 2071 ms |
+| mean_interval | 2070 ms |
+| scheduler_delay | about 70 ms |
+| missed_deadlines | 0 |
+| stale_data | no |
 
-Last-valid-sample age is the age of the most recent valid sample.
+## Stale-data test
 
-Stale data means the latest valid sample is older than the configured freshness threshold.
+During stale-publication injection:
 
-## Configuration
+| Metric | Observed behavior |
+|---|---|
+| last_valid_sample_age | 7000 ms |
+| stale_data | yes |
+| node_health | FAULT |
+| last_fault_reason | STALE_DATA |
 
-Requested period: `2000 ms`
+After clearing injection:
 
-Missed-period tolerance: `250 ms`
+| Metric | Observed behavior |
+|---|---|
+| node_health | HEALTHY |
+| stale_data | no |
+| active_injections | none |
 
-Missed-period threshold: `2250 ms`
+## Queue-pressure timing
 
-Stale-data threshold: `6000 ms`
+During queue pressure and processing delay:
 
-Timing source: Zephyr monotonic uptime from `k_uptime_get_32()`
+| Metric | Observed behavior |
+|---|---|
+| queue_full_count | increased up to 101 |
+| missed deadlines | increased during stress |
+| stale_data | yes during stress |
+| node_health | FAULT during stress |
+| recovery | returned to HEALTHY after clearing injections |
 
-## Results
+## Stability run timing
 
-Evidence log:
+The 40-minute stability run showed:
 
-`results/logs/timing_run.txt`
-
-Measured results from the run:
-
-- Minimum sample interval: `<fill actual value>` ms
-- Maximum sample interval: `<fill actual value>` ms
-- Mean sample interval: `<fill actual value>` ms
-- Missed deadline count: `<fill actual value>`
-- Last-valid-sample age during normal operation: `<fill actual value>` ms
-- Stale data observed: `no`
+| Metric | Value |
+|---|---:|
+| requested_period | 2000 ms |
+| latest_interval | 2071 ms |
+| minimum_interval | 2070 ms |
+| maximum_interval | 2071 ms |
+| mean_interval | 2070 ms |
+| scheduler_delay | 71 ms |
+| missed_deadlines | 0 |
+| stale_data | no |
 
 ## Interpretation
 
-The requested sampling period was 2000 ms. The measured intervals were expected to be close to 2000 ms, but not perfectly exact.
-
-Environmental monitoring does not require microsecond-level timing because temperature and pressure change slowly. However, measuring timing is still useful because it shows whether the firmware is sampling consistently, whether deadlines are being missed, and whether the latest valid data remains fresh.
-
-## Blog-ready paragraph
-
-FieldSense-Z requested a 2000 ms environmental sampling period, then measured the actual interval between produced samples using monotonic uptime. The measured intervals were close to the requested period under normal operation, with no unexplained deadline misses or stale-data events. This matters because environmental monitoring does not need microsecond precision, but it still needs predictable behavior. Measuring the real interval, scheduler delay, and last-valid-sample age gave me evidence that the RTOS acquisition and processing pipeline was running consistently instead of assuming the timing was correct.
+The normal and stability timing results show that the implemented pipeline maintained a consistent sampling interval and did not miss deadlines under normal operating conditions. Missed deadlines appeared during intentional stress testing, which is expected behavior for the processing-delay and queue-pressure validation.
